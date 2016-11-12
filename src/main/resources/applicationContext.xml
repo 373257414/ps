@@ -16,10 +16,9 @@
     <context:component-scan base-package="com.ycw.photosystem.*"/>
 
     <mvc:annotation-driven/>
-    <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/test/"/>
+    </bean>
 
     <!-- 定义数据源bean -->
     <bean id="c3p0" class="com.mchange.v2.c3p0.ComboPooledDataSource">

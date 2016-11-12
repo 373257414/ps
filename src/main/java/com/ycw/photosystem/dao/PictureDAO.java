@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public class PictureDAO{
 	private static final Logger log = LoggerFactory.getLogger(PictureDAO.class);
-	public static final String PICTURE_NAME = "pictureName";
+	public static final String PICTURE_NAME = "name";
 	public static final String PATH = "path";
 	public static final String WATERMARK_PATH = "watermarkPath";
 	@Autowired
