@@ -97,5 +97,15 @@
         <input type="submit" value="上传">
     </form>
 </div>
+
+<div searchPicDiv>
+    <p>------------------------------------------------------------------</p>
+    <h1>图片搜索</h1>
+    <form action="/picture/search" method="post">
+        ID：<input type="text" name="id"><br/>
+        名称：<input type="text" name="name"><br/>
+        <input type="submit" value="搜索">
+    </form>
+</div>
 </body>
 </html>

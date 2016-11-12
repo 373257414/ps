@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -41,13 +42,14 @@ public class PictureService {
     private static final String DESCRIPTION = "description";
     private static final String KEY_PERSON = "keyPerson";
     private static final String PIC_LOADER = "picLoader";
-    private static final Integer VISIT_COUNT = 0;
-    private static final Integer DOWNLOADD_COUNT = 0;
+    private static final Integer VISIT_COUNT_ZERO = 0;
+    private static final Integer DOWNLOAD_COUNT_ZERO = 0;
     private static final String FILE_NUMBER = "fileNumber";
     private static final Integer HEIGHT = 0;
     private static final Integer WIDTH = 0;
-    private static final String PATH = "e:\\picture\\";
-    private static final String WARTEMARK_PATH = "e:\\picture_wm\\";
+    private static final String PATH = "picture/";
+    private static final String WARTEMARK_PATH = "picture_wm/";
+    private static final String ROOT_PATH="e:/";
 
 
     public String generateExtension(String fileName) {
@@ -74,8 +76,9 @@ public class PictureService {
 
 
     private boolean uploadPic(String fileName, MultipartFile file) {
-        File saveFile = new File(PATH, fileName);
-        File saveFlieWM = new File(WARTEMARK_PATH, fileName);
+        File saveFile = new File(ROOT_PATH+PATH, fileName);
+        File saveFlieWM = new File(ROOT_PATH+WARTEMARK_PATH, fileName);
+
         try {
             file.transferTo(saveFile);
             file.transferTo(saveFlieWM);
@@ -87,31 +90,32 @@ public class PictureService {
     }
 
     private void parameterSetter(Picture picture, String key, String[] values) {
-        if (values.length==0){
+        if (values.length == 0) {
             return;
         }
         String value = values[0];
         if (key.equals(DEPARTMENT)) {
             picture.setPictureDepartment(Integer.valueOf(value));
-        } else if (key.equals(CATEGORY)){
+        } else if (key.equals(CATEGORY)) {
             picture.setPictureCategory(Integer.valueOf(value));
-        }else if (key.equals(AUTHOR)){
+        } else if (key.equals(AUTHOR)) {
             picture.setAuthor(value);
-        }else if (key.equals(PIC_LOADER)){
+        } else if (key.equals(PIC_LOADER)) {
             picture.setPictureLoader(Integer.valueOf(value));
-        }else if (key.equals(DESCRIPTION)){
+        } else if (key.equals(DESCRIPTION)) {
             picture.setDescription(value);
+        } else if (key.equals(KEY_PERSON)) {
+            picture.setKeyPerson(value);
         }
     }
 
     public boolean addPic(Map<String, MultipartFile> fileMap, Map<String, String[]> parameterMap) throws IOException {
-        if (parameterMap.get("departmentId").length == 0) {
+        if (parameterMap.get(DEPARTMENT).length == 0) {
             return false;
         }
-        Integer departmentId = Integer.valueOf(parameterMap.get("departmentId")[0]);
         MultipartFile file = fileMap.get("file");
         String name = file.getOriginalFilename();
-        String fileNumber = generateFileNumber(departmentId);//生成档案号
+        String fileNumber = generateFileNumber(Integer.valueOf(parameterMap.get(DEPARTMENT)[0]));//生成档案号
         String extension = generateExtension(name);//生成扩展名
         String fileName = fileNumber + extension;//文件名=档案号+扩展名
         BufferedImage image = ImageIO.read(file.getInputStream());
@@ -122,18 +126,17 @@ public class PictureService {
 
         try {
             Picture picture = new Picture();
-            Set<Entry<String, String[]>> set =parameterMap.entrySet();
-            for (Entry<String,String[]> parameter:set){
-                parameterSetter(picture,parameter.getKey(),parameter.getValue());
+            Set<Entry<String, String[]>> set = parameterMap.entrySet();
+            for (Entry<String, String[]> parameter : set) {
+                parameterSetter(picture, parameter.getKey(), parameter.getValue());
             }
             picture.setCreateTime(new Timestamp(System.currentTimeMillis()));//创建时间
-            picture.setDownloadCount(0);//下载量
+            picture.setDownloadCount(DOWNLOAD_COUNT_ZERO);//下载量
             picture.setFileNumber(fileNumber);//档案号
             picture.setHeight(image.getHeight());//图片高度
             picture.setName(name);//图片名
             picture.setPath(PATH + fileName);//图片路径
-            picture.setPictureDepartment(departmentId);//图片部门
-            picture.setVisitCount(0);//访问数
+            picture.setVisitCount(VISIT_COUNT_ZERO);//访问数
             picture.setWatermarkPath(WARTEMARK_PATH + fileName);//水印图片路径
             picture.setWidth(image.getWidth());//图片宽度
             pictureDAO.save(picture);
@@ -160,5 +163,13 @@ public class PictureService {
         picture.setPictureCategory(categoryId);
         pictureDAO.update(picture);
         return picture;
+    }
+
+    public Picture searchPic(int id) {
+        return pictureDAO.findById(id);
+    }
+
+    public List<Picture> searchPic(String name) {
+        return pictureDAO.findByPictureName(name);
     }
 }
