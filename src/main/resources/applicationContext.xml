@@ -24,13 +24,13 @@
     <!-- 定义数据源bean -->
     <bean id="c3p0" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/ps"/>
-        <property name="user" value="root"/>
-        <property name="password" value="root"/>
-        <property name="maxPoolSize" value="100"/>
-        <property name="minPoolSize" value="10"/>
-        <property name="initialPoolSize" value="1"/>
-        <property name="maxIdleTime" value="20"/>
+        <property name="jdbcUrl" value="${jdbcUrl}"/>
+        <property name="user" value="${user}"/>
+        <property name="password" value="${password}"/>
+        <property name="maxPoolSize" value="${maxPoolSize}"/>
+        <property name="minPoolSize" value="${minPollSize}"/>
+        <property name="initialPoolSize" value="${initialPoolSize}"/>
+        <property name="maxIdleTime" value="${maxIdleTime}"/>
     </bean>
     <!-- 定义Hibernate的SessionFactory -->
     <bean id="sessionFactory"
