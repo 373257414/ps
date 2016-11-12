@@ -14,7 +14,7 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:component-scan base-package="com.ycw.photosystem.*"/>
-
+    <context:property-placeholder file-encoding="utf-8" location="mysql-config.properties"/>
     <mvc:annotation-driven/>
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/test/"/>
@@ -27,7 +27,7 @@
         <property name="user" value="${user}"/>
         <property name="password" value="${password}"/>
         <property name="maxPoolSize" value="${maxPoolSize}"/>
-        <property name="minPoolSize" value="${minPollSize}"/>
+        <property name="minPoolSize" value="${minPoolSize}"/>
         <property name="initialPoolSize" value="${initialPoolSize}"/>
         <property name="maxIdleTime" value="${maxIdleTime}"/>
     </bean>
