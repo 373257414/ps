@@ -2,6 +2,7 @@ package com.ycw.photosystem.service;
 
 import com.ycw.photosystem.bean.Picture;
 import com.ycw.photosystem.dao.*;
+import com.ycw.photosystem.es.PictureES;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,8 @@ public class PictureService {
     private PictureDAO pictureDAO;
     @Autowired
     private SupportDAO supportDAO;
+    @Autowired
+    private PictureES pictureES;
 
     private static final Logger log = LoggerFactory.getLogger(PictureService.class);
 
@@ -49,7 +52,7 @@ public class PictureService {
     private static final Integer WIDTH = 0;
     private static final String PATH = "picture/";
     private static final String WARTEMARK_PATH = "picture_wm/";
-    private static final String ROOT_PATH="e:/";
+    private static final String ROOT_PATH = "e:/";
 
 
     public String generateExtension(String fileName) {
@@ -76,8 +79,16 @@ public class PictureService {
 
 
     private boolean uploadPic(String fileName, MultipartFile file) {
-        File saveFile = new File(ROOT_PATH+PATH, fileName);
-        File saveFlieWM = new File(ROOT_PATH+WARTEMARK_PATH, fileName);
+        File pathDic = new File(ROOT_PATH+PATH);
+        File wmPathDic = new File(ROOT_PATH+WARTEMARK_PATH);
+        if (!pathDic.exists() && !pathDic.isDirectory()) {
+            pathDic.mkdir();
+        }
+        if (!wmPathDic.exists() && !wmPathDic.isDirectory()) {
+            wmPathDic.mkdir();
+        }
+        File saveFile = new File(pathDic, fileName);
+        File saveFlieWM = new File(wmPathDic, fileName);
 
         try {
             file.transferTo(saveFile);
@@ -139,7 +150,8 @@ public class PictureService {
             picture.setVisitCount(VISIT_COUNT_ZERO);//访问数
             picture.setWatermarkPath(WARTEMARK_PATH + fileName);//水印图片路径
             picture.setWidth(image.getWidth());//图片宽度
-            pictureDAO.save(picture);
+            pictureES.index(picture);
+            //pictureDAO.save(picture);
             log.info("添加图片成功，档案号：" + fileNumber);
             return true;
         } catch (Exception e) {
