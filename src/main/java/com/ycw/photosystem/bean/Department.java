@@ -1,12 +1,13 @@
 package com.ycw.photosystem.bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import javax.persistence.*;
+import java.util.Collection;
 
 /**
- * Created by liuyang on 2016/11/9 0009.
+ * Created by liuyang on 2016/11/25 0025.
  */
 @Entity
 public class Department {
@@ -15,9 +16,10 @@ public class Department {
     private String address;
     private String charger;
     private String email;
+    private Collection<User> users;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -27,7 +29,7 @@ public class Department {
     }
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -37,7 +39,7 @@ public class Department {
     }
 
     @Basic
-    @Column(name = "address")
+    @Column(name = "address", nullable = true, length = 255)
     public String getAddress() {
         return address;
     }
@@ -47,7 +49,7 @@ public class Department {
     }
 
     @Basic
-    @Column(name = "charger")
+    @Column(name = "charger", nullable = true, length = 45)
     public String getCharger() {
         return charger;
     }
@@ -57,7 +59,7 @@ public class Department {
     }
 
     @Basic
-    @Column(name = "email")
+    @Column(name = "email", nullable = true, length = 45)
     public String getEmail() {
         return email;
     }
@@ -90,5 +92,15 @@ public class Department {
         result = 31 * result + (charger != null ? charger.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "userDepartment")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    public Collection<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Collection<User> users) {
+        this.users = users;
     }
 }

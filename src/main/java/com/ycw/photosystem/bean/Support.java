@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by liuyang on 2016/11/9 0009.
+ * Created by liuyang on 2016/11/25 0025.
  */
 @Entity
 public class Support {
@@ -15,7 +15,7 @@ public class Support {
     private Integer year;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -25,7 +25,7 @@ public class Support {
     }
 
     @Basic
-    @Column(name = "serial_number")
+    @Column(name = "serial_number", nullable = true)
     public Integer getSerialNumber() {
         return serialNumber;
     }
@@ -35,7 +35,7 @@ public class Support {
     }
 
     @Basic
-    @Column(name = "year")
+    @Column(name = "year", nullable = true)
     public Integer getYear() {
         return year;
     }

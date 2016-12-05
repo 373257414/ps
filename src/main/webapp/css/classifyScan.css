@@ -1,0 +1,48 @@
+#container {
+    width: 785px;
+    height: 600px;
+    background-color: transparent;
+    margin: 0 auto;
+}
+header{
+    height:50px;
+}
+header h1{
+    text-align:center;
+    width: 300px;
+    background:#00A1F1;
+    font-size: 24px;
+    font-family: 'Î¢ÈíÑÅºÚ','ºÚÌå',sans-serif;
+    float: left;
+    margin-top: 0px;
+    margin-left: 230px;
+    line-height: 40px;
+    color:white;
+}
+#classSection ul{
+    margin-left:50px;
+}
+#classSection li{
+    width: 120px;
+    height: 29px;
+    background-color: aqua;
+    float:left;
+    margin:5px;
+}
+#classSection a{
+    display:block;
+    color:blue;
+    line-height: 29px;
+    text-align: center;
+}
+#scanSection{
+    margin-top:60px;
+}
+#scanSection img{
+    width:300px;
+}
+#page p{
+	position:relative;
+    top:20px;
+	left:270px;
+}

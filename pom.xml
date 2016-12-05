@@ -26,6 +26,7 @@
 
 
     <dependencies>
+        <!--引入Elasticsearch Jar文件-->
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
@@ -47,7 +48,7 @@
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.3</version>
         </dependency>
-
+        <!--引入Hibernate Jar文件-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -65,7 +66,7 @@
             <artifactId>struts2-spring-plugin</artifactId>
             <version>2.5.2</version>
         </dependency>-->
-
+        <!--引入MySQL 驱动文件-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

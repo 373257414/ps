@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.sql.Timestamp;
 
 /**
- * Created by liuyang on 2016/11/9 0009.
+ * Created by liuyang on 2016/11/25 0025.
  */
 @Entity
 public class Event {
@@ -17,7 +17,7 @@ public class Event {
     private Timestamp eventTime;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -27,7 +27,7 @@ public class Event {
     }
 
     @Basic
-    @Column(name = "event_user")
+    @Column(name = "event_user", nullable = true)
     public Integer getEventUser() {
         return eventUser;
     }
@@ -37,7 +37,7 @@ public class Event {
     }
 
     @Basic
-    @Column(name = "event_msg")
+    @Column(name = "event_msg", nullable = true, length = 255)
     public String getEventMsg() {
         return eventMsg;
     }
@@ -47,7 +47,7 @@ public class Event {
     }
 
     @Basic
-    @Column(name = "event_time")
+    @Column(name = "event_time", nullable = true)
     public Timestamp getEventTime() {
         return eventTime;
     }

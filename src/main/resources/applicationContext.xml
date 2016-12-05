@@ -35,7 +35,25 @@
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="c3p0"/>
-        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>com.ycw.photosystem.bean.Category</value>
+                <value>com.ycw.photosystem.bean.Department</value>
+                <value>com.ycw.photosystem.bean.Event</value>
+                <value>com.ycw.photosystem.bean.Permission</value>
+                <value>com.ycw.photosystem.bean.Picture</value>
+                <value>com.ycw.photosystem.bean.Request</value>
+                <value>com.ycw.photosystem.bean.Support</value>
+                <value>com.ycw.photosystem.bean.User</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/ps</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
     </bean>
 
 

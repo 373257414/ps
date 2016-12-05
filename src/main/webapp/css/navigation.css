@@ -1,0 +1,31 @@
+body{
+	opacity: 0.3;
+	background-color: #BEE5FF;
+}
+a{
+	text-decoration: none;
+}
+a:hover{
+	color: #ffc13d;
+}
+p{
+	color: 0;
+	font-family: 微软雅黑;
+}
+button{
+	background-color: #00A1F1;
+	opacity: 0.8;
+	font-family: 微软雅黑;
+}
+button:hover{
+	color:#ffc13d;
+}
+.op{
+	opacity: 0.6;
+	background-color:#00A1F1;
+	font-weight: bold;
+	color:#fff;
+}
+option:hover{
+	font-color:#ffc13d;
+}

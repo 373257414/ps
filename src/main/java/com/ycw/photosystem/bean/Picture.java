@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.sql.Timestamp;
 
 /**
- * Created by liuyang on 2016/11/9 0009.
+ * Created by liuyang on 2016/11/25 0025.
  */
 @Entity
 public class Picture {
@@ -29,7 +29,7 @@ public class Picture {
     private String fileNumber;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -39,7 +39,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -49,7 +49,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "create_time")
+    @Column(name = "create_time", nullable = true)
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -59,7 +59,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "path")
+    @Column(name = "path", nullable = true, length = 255)
     public String getPath() {
         return path;
     }
@@ -69,7 +69,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "watermark_path")
+    @Column(name = "watermark_path", nullable = true, length = 255)
     public String getWatermarkPath() {
         return watermarkPath;
     }
@@ -79,7 +79,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "picture_loader")
+    @Column(name = "picture_loader", nullable = true)
     public Integer getPictureLoader() {
         return pictureLoader;
     }
@@ -89,7 +89,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "picture_department")
+    @Column(name = "picture_department", nullable = true)
     public Integer getPictureDepartment() {
         return pictureDepartment;
     }
@@ -99,7 +99,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "picture_category")
+    @Column(name = "picture_category", nullable = true)
     public Integer getPictureCategory() {
         return pictureCategory;
     }
@@ -109,7 +109,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "height")
+    @Column(name = "height", nullable = true)
     public Integer getHeight() {
         return height;
     }
@@ -119,7 +119,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "width")
+    @Column(name = "width", nullable = true)
     public Integer getWidth() {
         return width;
     }
@@ -129,7 +129,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "key_person")
+    @Column(name = "key_person", nullable = true, length = 45)
     public String getKeyPerson() {
         return keyPerson;
     }
@@ -139,7 +139,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "author")
+    @Column(name = "author", nullable = true, length = 45)
     public String getAuthor() {
         return author;
     }
@@ -149,7 +149,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "description")
+    @Column(name = "description", nullable = true, length = 255)
     public String getDescription() {
         return description;
     }
@@ -159,7 +159,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "visit_count")
+    @Column(name = "visit_count", nullable = true)
     public Integer getVisitCount() {
         return visitCount;
     }
@@ -169,7 +169,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "download_count")
+    @Column(name = "download_count", nullable = true)
     public Integer getDownloadCount() {
         return downloadCount;
     }
@@ -179,7 +179,7 @@ public class Picture {
     }
 
     @Basic
-    @Column(name = "file_number")
+    @Column(name = "file_number", nullable = true, length = 45)
     public String getFileNumber() {
         return fileNumber;
     }

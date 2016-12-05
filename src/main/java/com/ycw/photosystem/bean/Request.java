@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.sql.Timestamp;
 
 /**
- * Created by liuyang on 2016/11/9 0009.
+ * Created by liuyang on 2016/11/25 0025.
  */
 @Entity
 public class Request {
@@ -19,7 +19,7 @@ public class Request {
     private Timestamp responseTime;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -29,7 +29,7 @@ public class Request {
     }
 
     @Basic
-    @Column(name = "request_user")
+    @Column(name = "request_user", nullable = false)
     public int getRequestUser() {
         return requestUser;
     }
@@ -39,7 +39,7 @@ public class Request {
     }
 
     @Basic
-    @Column(name = "request_msg")
+    @Column(name = "request_msg", nullable = true, length = 255)
     public String getRequestMsg() {
         return requestMsg;
     }
@@ -49,7 +49,7 @@ public class Request {
     }
 
     @Basic
-    @Column(name = "is_checked")
+    @Column(name = "is_checked", nullable = true)
     public Byte getIsChecked() {
         return isChecked;
     }
@@ -59,7 +59,7 @@ public class Request {
     }
 
     @Basic
-    @Column(name = "request_time")
+    @Column(name = "request_time", nullable = true)
     public Timestamp getRequestTime() {
         return requestTime;
     }
@@ -69,7 +69,7 @@ public class Request {
     }
 
     @Basic
-    @Column(name = "response_time")
+    @Column(name = "response_time", nullable = true)
     public Timestamp getResponseTime() {
         return responseTime;
     }

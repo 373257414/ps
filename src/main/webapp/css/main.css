@@ -1,0 +1,51 @@
+/*档案馆css文件*/
+body{
+	background: url(../img/bg.jpg);
+	/*background-color: #BEE5FF;*/
+	background-size: 100%;
+	background-color: #333;
+	background-repeat: no-repeat;
+	/*opacity: 0.6;*/
+}
+a{
+	text-decoration: none;
+	color:000000;
+	font-family: 微软雅黑;
+}
+a:hover{
+	color:#ffc13d;
+}
+/*.menuBack{
+	width: 100px;
+	height: auto;
+	background-color: #414141;
+	opacity: 0.8;
+}*/
+p{
+	color: #000000;
+	font-family: 微软雅黑;
+	position: relative;
+}
+button{
+	background-color: #00A1F1;
+	font-family: 微软雅黑;
+}
+button:hover{
+	color:#ffc13d;
+}
+.op{
+	background-color:#00A1F1;
+	font-weight: bold;
+	color:#fff;
+}
+.tableBack{
+	/*background: #fff;*/
+	background: rgba(255,255,255,0.7) none repeat 0 0 !important;
+	/*opacity: 0.7;*/
+	/*filter:alpha(opacity=70);/*ie*/
+}
+.bottom{
+	/*color: #ffffff;*/
+	/*background: #00A1F1;*/
+	background: rgba(255,255,255,0.7) none repeat 0 0 !important;
+}

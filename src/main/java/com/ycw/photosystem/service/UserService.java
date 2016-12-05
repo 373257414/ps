@@ -29,13 +29,13 @@ public class UserService {
     }
 
     public int getUserDepartment(int userId) {
-        return userDAO.findById(userId).getUserDepartment();
+        return userDAO.findById(userId).getUserDepartment().getId();
     }
 
     public boolean addUser(int departmentId, int permissionId, String userName,String password) {
         User user = new User();
         user.setUserPermission(permissionId);
-        user.setUserDepartment(departmentId);
+        user.setUserDepartment(departmentDAO.findById(departmentId));
         user.setName(userName);
         user.setPassword(password);
         userDAO.save(user);
@@ -46,7 +46,7 @@ public class UserService {
 
         user.setPassword(password);
         user.setUserPermission(permissionId);
-        user.setUserDepartment(departmentId);
+        user.setUserDepartment(departmentDAO.findById(departmentId));
         userDAO.update(user);
         return true;
     }

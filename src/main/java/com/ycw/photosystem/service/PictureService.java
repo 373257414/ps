@@ -2,7 +2,6 @@ package com.ycw.photosystem.service;
 
 import com.ycw.photosystem.bean.Picture;
 import com.ycw.photosystem.dao.*;
-import com.ycw.photosystem.es.PictureES;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +32,6 @@ public class PictureService {
     private PictureDAO pictureDAO;
     @Autowired
     private SupportDAO supportDAO;
-    @Autowired
-    private PictureES pictureES;
 
     private static final Logger log = LoggerFactory.getLogger(PictureService.class);
 
@@ -150,7 +147,7 @@ public class PictureService {
             picture.setVisitCount(VISIT_COUNT_ZERO);//访问数
             picture.setWatermarkPath(WARTEMARK_PATH + fileName);//水印图片路径
             picture.setWidth(image.getWidth());//图片宽度
-            pictureES.index(picture);
+            //pictureES.index(picture);
             //pictureDAO.save(picture);
             log.info("添加图片成功，档案号：" + fileNumber);
             return true;

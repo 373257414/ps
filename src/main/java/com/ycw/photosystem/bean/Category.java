@@ -6,15 +6,15 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by liuyang on 2016/11/9 0009.
+ * Created by liuyang on 2016/11/25 0025.
  */
 @Entity
 public class Category {
     private int id;
-    private String categoryName;
+    private String name;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -24,13 +24,13 @@ public class Category {
     }
 
     @Basic
-    @Column(name = "category_name")
-    public String getCategoryName() {
-        return categoryName;
+    @Column(name = "name", nullable = true, length = 255)
+    public String getName() {
+        return name;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -41,8 +41,7 @@ public class Category {
         Category category = (Category) o;
 
         if (id != category.id) return false;
-        if (categoryName != null ? !categoryName.equals(category.categoryName) : category.categoryName != null)
-            return false;
+        if (name != null ? !name.equals(category.name) : category.name != null) return false;
 
         return true;
     }
@@ -50,7 +49,7 @@ public class Category {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (categoryName != null ? categoryName.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
 }

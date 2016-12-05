@@ -1,0 +1,128 @@
+body{
+    background:url(../img/background.jpg);
+    background-size:100%;
+    background-color: gray;
+    background-repeat:no-repeat;
+}
+#container{
+    width: 1000px;
+    margin:auto;
+}
+#topBackground{
+    opacity:0.8;
+}
+#navBar{
+    height: 30px;
+    background: white url(../img/nav.jpg); 
+    opacity: 0.7;
+    margin-top:1px;
+}
+#navBar ul{
+    list-style-type:none;
+    display:inline;
+    position: relative; 
+    margin-top:-30px;
+}
+#navBar li{
+    width: 80px;
+    float: left;
+    margin-left: 1px;
+}
+#navBar a{
+    font-size: 15px;
+    font-family: '微软雅黑','黑体',sans-serif;
+    line-height: 30px;
+    color:#363636;
+    display: block;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+}
+#navBar a:hover,a:focus {
+    color: white;
+    background: url(../img/nav1.png);
+}
+#mainSection{
+    height: 600px;
+    margin-top: 1px;
+}
+#leftSection{
+    width: 210px;
+    height: 600px;
+    background-color: #FFF;
+    background: rgba(255,255,255,0.7) none repeat 0 0 !important;
+    float: left;
+}
+#welcome{
+    height: 21px;
+    background:#00A1F1;
+}
+#welcome h1{
+    font-size: 16px;
+    font-family: '微软雅黑','黑体',sans-serif;     
+    color: black;
+    float: left;
+    line-height:21px;
+    margin-left:5px;
+    margin-top:0px;
+}
+#welcome a{
+    font-size: 16px;
+    font-family: '微软雅黑','黑体',sans-serif;
+    color: black;
+    float: right;
+    line-height:21px;
+    margin-right:5px;
+}
+#welcome a:hover,a:focus{
+    color:darkorange;
+}
+#functions{
+    height:550px;
+}
+#functions li{
+    width: 193px;
+    height: 29px;
+    background: url(../img/tips.gif);
+    margin: 5px;
+    float:right;
+    margin-right:7px;
+}
+#functions a{
+    font-size: 16px;
+    font-family: '微软雅黑','黑体',sans-serif;
+    color: #0066ff;
+    line-height: 29px;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+}
+#functions a:hover,a:focus,a:active{
+    background:url(../img/tipson.gif);
+    color:white;
+}
+#rightSection{
+    width:785px;
+    height:600px;
+    float: right;
+    background: rgba(255,255,255,0.7) none repeat 0 0 !important;
+}
+iframe{
+    width:785px;
+    height:600px;
+}
+footer{
+    height: 30px;
+    background:black;
+    filter:alpha(opacity=95);
+    opacity:0.95; 
+    z-index:90;
+    margin-top: 1px;
+}
+address{
+    font-size: 12px;
+    font-family: '微软雅黑','黑体',sans-serif;
+    line-height: 30px;
+    color:white;
+    text-align: center;
+}

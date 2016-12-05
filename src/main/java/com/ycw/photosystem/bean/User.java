@@ -1,13 +1,10 @@
 package com.ycw.photosystem.bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * Created by liuyang on 2016/11/9 0009.
+ * Created by liuyang on 2016/11/25 0025.
  */
 @Entity
 public class User {
@@ -15,12 +12,12 @@ public class User {
     private String name;
     private String password;
     private Timestamp createTime;
-    private int userDepartment;
-    private int userPermission;
+    private Integer userPermission;
     private String nickname;
+    private Department userDepartment;
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     public int getId() {
         return id;
     }
@@ -30,7 +27,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -40,7 +37,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "password")
+    @Column(name = "password", nullable = false, length = 45)
     public String getPassword() {
         return password;
     }
@@ -50,7 +47,7 @@ public class User {
     }
 
     @Basic
-    @Column(name = "create_time")
+    @Column(name = "create_time", nullable = true)
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -60,27 +57,17 @@ public class User {
     }
 
     @Basic
-    @Column(name = "user_department")
-    public int getUserDepartment() {
-        return userDepartment;
-    }
-
-    public void setUserDepartment(int userDepartment) {
-        this.userDepartment = userDepartment;
-    }
-
-    @Basic
-    @Column(name = "user_permission")
-    public int getUserPermission() {
+    @Column(name = "user_permission", nullable = true)
+    public Integer getUserPermission() {
         return userPermission;
     }
 
-    public void setUserPermission(int userPermission) {
+    public void setUserPermission(Integer userPermission) {
         this.userPermission = userPermission;
     }
 
     @Basic
-    @Column(name = "nickname")
+    @Column(name = "nickname", nullable = true, length = 45)
     public String getNickname() {
         return nickname;
     }
@@ -97,11 +84,13 @@ public class User {
         User user = (User) o;
 
         if (id != user.id) return false;
-        if (userDepartment != user.userDepartment) return false;
-        if (userPermission != user.userPermission) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (createTime != null ? !createTime.equals(user.createTime) : user.createTime != null) return false;
+        if (userDepartment != null ? !userDepartment.equals(user.userDepartment) : user.userDepartment != null)
+            return false;
+        if (userPermission != null ? !userPermission.equals(user.userPermission) : user.userPermission != null)
+            return false;
         if (nickname != null ? !nickname.equals(user.nickname) : user.nickname != null) return false;
 
         return true;
@@ -113,9 +102,19 @@ public class User {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        result = 31 * result + userDepartment;
-        result = 31 * result + userPermission;
+        result = 31 * result + (userDepartment != null ? userDepartment.hashCode() : 0);
+        result = 31 * result + (userPermission != null ? userPermission.hashCode() : 0);
         result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "user_department", referencedColumnName = "id" )
+    public Department getUserDepartment() {
+        return userDepartment;
+    }
+
+    public void setUserDepartment(Department userDepartment) {
+        this.userDepartment = userDepartment;
     }
 }
