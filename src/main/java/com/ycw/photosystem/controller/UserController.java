@@ -1,18 +1,21 @@
 package com.ycw.photosystem.controller;
 
+import com.ycw.photosystem.bean.Department;
 import com.ycw.photosystem.bean.User;
+import com.ycw.photosystem.dao.DepartmentDAO;
+import com.ycw.photosystem.service.DepartmentService;
 import com.ycw.photosystem.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/user")
 public class UserController {
 
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
@@ -20,14 +23,22 @@ public class UserController {
     final String ERROR = null;
     @Autowired
     private UserService userService;
+    @Autowired
+    private DepartmentService departmentService;
 
-    @RequestMapping("/test")
-    public void test() {
-        log.warn("test here");
-        System.out.println("test/here");
+    @RequestMapping("userIndex")
+    public String show() {
+        return "/user/main";
     }
 
-    @RequestMapping("/update")
+    @RequestMapping("addUserJsp")
+    public ModelAndView addJsp(){
+        ModelAndView modelAndView = new ModelAndView("/user/add");
+        modelAndView.addObject("departments",departmentService.getNamesMap());
+        return modelAndView;
+    }
+
+    @RequestMapping("updateUser")
     public String update(String userName, int departmentId, int permissionId, String password) throws Exception {
         User user = userService.isUserExisted(userName);
         if ((user) != null) {

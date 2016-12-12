@@ -16,7 +16,7 @@ import java.util.List;
 public class DepartmentDAO{
 	private static final Logger log = LoggerFactory.getLogger(DepartmentDAO.class);
 
-	public static final String DEPARTMENT_NAME = "departmentName";
+	public static final String DEPARTMENT_NAME = "name";
 	public static final String ADDRESS = "address";
 	public static final String CHARGER = "charger";
 	public static final String EMAIL = "email";

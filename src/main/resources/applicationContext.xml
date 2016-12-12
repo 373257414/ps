@@ -17,7 +17,8 @@
     <context:property-placeholder file-encoding="utf-8" location="classpath:mysql-config.properties"/>
     <mvc:annotation-driven/>
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/test/"/>
+        <property name="prefix" value="/WEB-INF"/>
+        <property name="suffix" value=".jsp"/>
     </bean>
 
     <!-- 定义数据源bean -->
