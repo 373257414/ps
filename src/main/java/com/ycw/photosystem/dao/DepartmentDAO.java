@@ -36,6 +36,14 @@ public class DepartmentDAO{
 		}
 	}
 
+	public void update(Department department){
+		try{
+			sessionFactory.getCurrentSession().update(department);
+		}catch (RuntimeException re){
+			throw re;
+		}
+	}
+
 	public void delete(Department persistentInstance) {
 		log.debug("deleting Department instance");
 		try {

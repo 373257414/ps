@@ -14,15 +14,15 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
-    @RequestMapping("addDepartmentJsp")
-    public ModelAndView addJsp(){
-        return new ModelAndView("/department/add");
-    }
     @RequestMapping("mainDepartmentJsp")
     public ModelAndView mainJsp(){
         ModelAndView modelAndView = new ModelAndView("/department/main");
-        modelAndView.addObject("departments",departmentService.getAll());
+        modelAndView.addObject("departments",departmentService.getDepartments());
         return modelAndView;
+    }
+    @RequestMapping("addDepartmentJsp")
+    public ModelAndView addJsp(){
+        return new ModelAndView("/department/add");
     }
 
     @RequestMapping("addDepartment")
@@ -33,5 +33,10 @@ public class DepartmentController {
         department.setAddress(address);
         department.setEmail(email);
         departmentService.add(department);
+    }
+
+    @RequestMapping("updateDepartment")
+    public void update(int id,String name,String charger,String address,String email){
+
     }
 }

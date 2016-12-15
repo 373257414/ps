@@ -18,19 +18,15 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/picture")
 public class PictureController {
-
-    private static final String FAIL = "fail.jsp";
-    private static final String SUCCESS = "success.jsp";
 
 
     @Autowired
     PictureService pictureService;
 
-    @RequestMapping("/show")
-    public ModelAndView show(){
-        return new ModelAndView("liurunze.jsp");
+    @RequestMapping("mainPictureJsp")
+    public ModelAndView mainJsp(){
+        return new ModelAndView("/jsp/main");
     }
 
     @RequestMapping("/upload")
@@ -41,9 +37,9 @@ public class PictureController {
             pictureService.addPic(fileMap, parameterMap);
         } catch (IOException e) {
             e.printStackTrace();
-            return FAIL;
+            return "/settings/fail";
         }
-        return FAIL;
+        return "settings/fail";
     }
 
     @RequestMapping("/search")
@@ -57,7 +53,7 @@ public class PictureController {
         }else if (!StringUtils.isEmpty(name)) {
             list = pictureService.searchPic(name);
         }
-        ModelAndView mav = new ModelAndView(SUCCESS);
+        ModelAndView mav = new ModelAndView("/settings/success");
         mav.addObject("pictures",list);
         return mav;
     }

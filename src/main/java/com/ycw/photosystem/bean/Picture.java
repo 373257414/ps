@@ -6,9 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Timestamp;
 
-/**
- * Created by liuyang on 2016/11/25 0025.
- */
+
 @Entity
 public class Picture {
     private int id;

@@ -22,8 +22,10 @@ public class DepartmentService {
         }
         departmentDAO.save(department);
     }
+    public void update(Department department){
+    }
 
-    public List<Department> getAll() {
+    public List<Department> getDepartments() {
         return departmentDAO.findAll();
     }
 

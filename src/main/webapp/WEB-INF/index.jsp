@@ -14,8 +14,9 @@
 </div>
 <div>
     <h1>用户</h1>
-    <form action="/userIndex" method="get"><input type="submit" value="用户界面"/></form>
+    <form action="/mainUserJsp" method="get"><input type="submit" value="用户界面"/></form>
     <form action="/addUserJsp" method="get"><input type="submit" value="添加用户"/></form>
+    <form action="/loginJsp" method="get"><input type="submit" value="登录界面"/></form>
 </div>
 
 

@@ -17,7 +17,7 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>/WEB-INF/index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
     </welcome-file-list>
     <filter>
         <filter-name>characterEncodingFilter</filter-name>

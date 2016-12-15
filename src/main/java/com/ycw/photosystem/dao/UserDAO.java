@@ -16,7 +16,7 @@ import java.util.List;
 public class UserDAO {
     private static final Logger log = LoggerFactory.getLogger(UserDAO.class);
 
-    public static final String USER_NAME = "userName";
+    public static final String USER_NAME = "name";
     public static final String PASSWORD = "password";
     @Autowired
     private SessionFactory sessionFactory;
