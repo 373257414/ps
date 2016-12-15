@@ -109,11 +109,11 @@
             </header>
             <div id="functions">
                 <ul type="none">
-                    <li><a href="jsp/classifyScan.jsp" target="main" title="分类浏览">分类浏览</a></li>
+                    <li><a href="classifyScan" target="main" title="分类浏览">分类浏览</a></li>
                     <li><a href="#" target="main" title="下载照片-系统管理员">下载照片</a></li>
-                    <li><a href="jsp/depManage.jsp" target="main" title="部门管理">部门管理</a></li>
+                    <li><a href="depManageJsp" target="main" title="部门管理">部门管理</a></li>
                     <li><a href="#" target="main" title="照片类别管理">照片类别管理</a></li>
-                    <li><a href="jsp/userManage.jsp" target="main" title="用户管理">用户管理</a></li>
+                    <li><a href="userManageJsp" target="main" title="用户管理">用户管理</a></li>
                     <li><a href="#" target="main" title="图片管理">图片管理</a></li>
                 </ul>
             </div>

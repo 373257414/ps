@@ -1,29 +1,17 @@
 <%@ page language="java" pageEncoding="utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
+
 
 <!DOCTYPE>
 <html lang="en">
   <head>
-    <base href="<%=basePath%>">
     
     <title>北京邮电大学|系统管理员|用户管理</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-	<link rel="stylesheet" href="css/reset.css" media="screen">
-	<link rel="stylesheet" href="css/buttons.css" media="screen">
-	<link rel="stylesheet" href="css/userManage.css" media="screen">
-	<script src="js/jquery-2.2.4.js" type="text/javascript"></script>
-	<script src="js/userManage.js" type="text/javascript" charset="gbk"></script>
+
+	<link rel="stylesheet" href="/static/css/reset.css" media="screen">
+	<link rel="stylesheet" href="/static/css/buttons.css" media="screen">
+	<link rel="stylesheet" href="/static/css/userManage.css" media="screen">
+	<script src="/static/js/jquery-2.2.4.js" type="text/javascript"></script>
+	<script src="/static/js/userManage.js" type="text/javascript" charset="gbk"></script>
 
   </head>
   

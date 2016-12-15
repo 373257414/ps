@@ -1,27 +1,12 @@
 <%@ page language="java" pageEncoding="utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
 <!DOCTYPE HTML>
 <html lang="en">
   <head>
-    <base href="<%=basePath%>">
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
+
 	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
     <title>北京邮电大学|图片档案馆|游客登录|分类浏览</title>
-	<link rel="stylesheet" href="css/classifyScan.css" media="screen">
-    <link rel="stylesheet" href="css/reset.css" media="screen">
-
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	<link rel="stylesheet" href="/static/css/classifyScan.css" media="screen">
+    <link rel="stylesheet" href="/static/css/reset.css" media="screen">
 
   </head>
   
@@ -43,31 +28,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <table align="center">
                 <tr>
                     <td>
-                        <img src="img/logo.gif">
+                        <img src="/static/img/logo.gif">
                         <p>简要信息</p>
                     </td>
                     <td>
-                        <img src="img/logo.gif">
-                        <p>简要信息</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="img/logo.gif">
-                        <p>简要信息</p>
-                    </td>
-                    <td>
-                        <img src="img/logo.gif">
+                        <img src="/static/img/logo.gif">
                         <p>简要信息</p>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <img src="img/logo.gif">
+                        <img src="/static/img/logo.gif">
                         <p>简要信息</p>
                     </td>
                     <td>
-                        <img src="img/logo.gif">
+                        <img src="/static/img/logo.gif">
+                        <p>简要信息</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="/static/img/logo.gif">
+                        <p>简要信息</p>
+                    </td>
+                    <td>
+                        <img src="/static/img/logo.gif">
                         <p>简要信息</p>
                     </td>
                 </tr>

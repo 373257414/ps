@@ -1,28 +1,13 @@
 <%@ page language="java" pageEncoding="utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
 <!DOCTYPE>
 <html lang="en">
   <head>
-    <base href="<%=basePath%>">
-    
     <title>北京邮电大学|图片档案馆|系统管理员|部门管理</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <link rel="stylesheet" href="css/depManage.css" media="screen">
-    <link rel="stylesheet" href="css/reset.css" media="screen">
-    <script src="js/jquery-2.2.4.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/static/css/depManage.css" media="screen">
+    <link rel="stylesheet" href="/static/css/reset.css" media="screen">
+    <script src="/static/js/jquery-2.2.4.js" type="text/javascript"></script>
 
   </head>
   
@@ -92,6 +77,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		</div>
     	</div>
     </div>
-    <script src="js/depManagement.js" charset="gbk"></script>
+    <script src="/static/js/depManagement.js" charset="gbk"></script>
   </body>
 </html>
