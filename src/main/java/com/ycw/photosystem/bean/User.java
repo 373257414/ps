@@ -3,9 +3,7 @@ package com.ycw.photosystem.bean;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-/**
- * Created by liuyang on 2016/11/25 0025.
- */
+
 @Entity
 public class User {
     private int id;
@@ -18,6 +16,7 @@ public class User {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -26,7 +25,6 @@ public class User {
         this.id = id;
     }
 
-    @Basic
     @Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return name;
@@ -36,7 +34,6 @@ public class User {
         this.name = name;
     }
 
-    @Basic
     @Column(name = "password", nullable = false, length = 45)
     public String getPassword() {
         return password;
@@ -46,7 +43,6 @@ public class User {
         this.password = password;
     }
 
-    @Basic
     @Column(name = "create_time", nullable = true)
     public Timestamp getCreateTime() {
         return createTime;
@@ -56,7 +52,6 @@ public class User {
         this.createTime = createTime;
     }
 
-    @Basic
     @Column(name = "user_permission", nullable = true)
     public Integer getUserPermission() {
         return userPermission;
@@ -66,7 +61,6 @@ public class User {
         this.userPermission = userPermission;
     }
 
-    @Basic
     @Column(name = "nickname", nullable = true, length = 45)
     public String getNickname() {
         return nickname;

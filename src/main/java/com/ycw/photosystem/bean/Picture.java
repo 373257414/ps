@@ -1,9 +1,6 @@
 package com.ycw.photosystem.bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 
@@ -28,6 +25,7 @@ public class Picture {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -36,7 +34,6 @@ public class Picture {
         this.id = id;
     }
 
-    @Basic
     @Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return name;
@@ -46,7 +43,6 @@ public class Picture {
         this.name = name;
     }
 
-    @Basic
     @Column(name = "create_time", nullable = true)
     public Timestamp getCreateTime() {
         return createTime;
@@ -56,7 +52,6 @@ public class Picture {
         this.createTime = createTime;
     }
 
-    @Basic
     @Column(name = "path", nullable = true, length = 255)
     public String getPath() {
         return path;
@@ -66,7 +61,6 @@ public class Picture {
         this.path = path;
     }
 
-    @Basic
     @Column(name = "watermark_path", nullable = true, length = 255)
     public String getWatermarkPath() {
         return watermarkPath;
@@ -76,7 +70,6 @@ public class Picture {
         this.watermarkPath = watermarkPath;
     }
 
-    @Basic
     @Column(name = "picture_loader", nullable = true)
     public Integer getPictureLoader() {
         return pictureLoader;
@@ -86,7 +79,6 @@ public class Picture {
         this.pictureLoader = pictureLoader;
     }
 
-    @Basic
     @Column(name = "picture_department", nullable = true)
     public Integer getPictureDepartment() {
         return pictureDepartment;
@@ -96,7 +88,6 @@ public class Picture {
         this.pictureDepartment = pictureDepartment;
     }
 
-    @Basic
     @Column(name = "picture_category", nullable = true)
     public Integer getPictureCategory() {
         return pictureCategory;
@@ -106,7 +97,6 @@ public class Picture {
         this.pictureCategory = pictureCategory;
     }
 
-    @Basic
     @Column(name = "height", nullable = true)
     public Integer getHeight() {
         return height;
@@ -116,7 +106,6 @@ public class Picture {
         this.height = height;
     }
 
-    @Basic
     @Column(name = "width", nullable = true)
     public Integer getWidth() {
         return width;
@@ -126,7 +115,6 @@ public class Picture {
         this.width = width;
     }
 
-    @Basic
     @Column(name = "key_person", nullable = true, length = 45)
     public String getKeyPerson() {
         return keyPerson;
@@ -136,7 +124,6 @@ public class Picture {
         this.keyPerson = keyPerson;
     }
 
-    @Basic
     @Column(name = "author", nullable = true, length = 45)
     public String getAuthor() {
         return author;
@@ -146,7 +133,6 @@ public class Picture {
         this.author = author;
     }
 
-    @Basic
     @Column(name = "description", nullable = true, length = 255)
     public String getDescription() {
         return description;
@@ -156,7 +142,6 @@ public class Picture {
         this.description = description;
     }
 
-    @Basic
     @Column(name = "visit_count", nullable = true)
     public Integer getVisitCount() {
         return visitCount;
@@ -166,7 +151,6 @@ public class Picture {
         this.visitCount = visitCount;
     }
 
-    @Basic
     @Column(name = "download_count", nullable = true)
     public Integer getDownloadCount() {
         return downloadCount;
@@ -176,7 +160,6 @@ public class Picture {
         this.downloadCount = downloadCount;
     }
 
-    @Basic
     @Column(name = "file_number", nullable = true, length = 45)
     public String getFileNumber() {
         return fileNumber;

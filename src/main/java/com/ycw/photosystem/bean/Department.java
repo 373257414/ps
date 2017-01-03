@@ -6,9 +6,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
 import java.util.Collection;
 
-/**
- * Created by liuyang on 2016/11/25 0025.
- */
+
 @Entity
 public class Department {
     private int id;
@@ -29,7 +27,6 @@ public class Department {
         this.id = id;
     }
 
-    @Basic
     @Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return name;
@@ -49,7 +46,6 @@ public class Department {
         this.address = address;
     }
 
-    @Basic
     @Column(name = "charger", nullable = true, length = 45)
     public String getCharger() {
         return charger;
@@ -59,7 +55,6 @@ public class Department {
         this.charger = charger;
     }
 
-    @Basic
     @Column(name = "email", nullable = true, length = 45)
     public String getEmail() {
         return email;

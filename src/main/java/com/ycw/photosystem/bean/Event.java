@@ -1,14 +1,9 @@
 package com.ycw.photosystem.bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
-/**
- * Created by liuyang on 2016/11/25 0025.
- */
+
 @Entity
 public class Event {
     private int id;
@@ -18,6 +13,7 @@ public class Event {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -26,7 +22,6 @@ public class Event {
         this.id = id;
     }
 
-    @Basic
     @Column(name = "event_user", nullable = true)
     public Integer getEventUser() {
         return eventUser;
@@ -36,7 +31,6 @@ public class Event {
         this.eventUser = eventUser;
     }
 
-    @Basic
     @Column(name = "event_msg", nullable = true, length = 255)
     public String getEventMsg() {
         return eventMsg;
@@ -46,7 +40,6 @@ public class Event {
         this.eventMsg = eventMsg;
     }
 
-    @Basic
     @Column(name = "event_time", nullable = true)
     public Timestamp getEventTime() {
         return eventTime;

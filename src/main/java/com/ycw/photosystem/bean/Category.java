@@ -1,20 +1,15 @@
 package com.ycw.photosystem.bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-/**
- * Created by liuyang on 2016/11/25 0025.
- */
 @Entity
 public class Category {
     private int id;
     private String name;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id",nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -23,7 +18,6 @@ public class Category {
         this.id = id;
     }
 
-    @Basic
     @Column(name = "name", nullable = true, length = 255)
     public String getName() {
         return name;

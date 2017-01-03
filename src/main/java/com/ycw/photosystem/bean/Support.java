@@ -1,13 +1,8 @@
 package com.ycw.photosystem.bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-/**
- * Created by liuyang on 2016/11/25 0025.
- */
+
 @Entity
 public class Support {
     private int id;
@@ -16,6 +11,7 @@ public class Support {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -24,7 +20,6 @@ public class Support {
         this.id = id;
     }
 
-    @Basic
     @Column(name = "serial_number", nullable = true)
     public Integer getSerialNumber() {
         return serialNumber;
@@ -34,7 +29,6 @@ public class Support {
         this.serialNumber = serialNumber;
     }
 
-    @Basic
     @Column(name = "year", nullable = true)
     public Integer getYear() {
         return year;

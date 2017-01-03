@@ -1,14 +1,9 @@
 package com.ycw.photosystem.bean;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
-/**
- * Created by liuyang on 2016/11/25 0025.
- */
+
 @Entity
 public class Request {
     private int id;
@@ -20,6 +15,7 @@ public class Request {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -28,7 +24,6 @@ public class Request {
         this.id = id;
     }
 
-    @Basic
     @Column(name = "request_user", nullable = false)
     public int getRequestUser() {
         return requestUser;
@@ -38,7 +33,6 @@ public class Request {
         this.requestUser = requestUser;
     }
 
-    @Basic
     @Column(name = "request_msg", nullable = true, length = 255)
     public String getRequestMsg() {
         return requestMsg;
@@ -48,7 +42,6 @@ public class Request {
         this.requestMsg = requestMsg;
     }
 
-    @Basic
     @Column(name = "is_checked", nullable = true)
     public Byte getIsChecked() {
         return isChecked;
@@ -58,7 +51,6 @@ public class Request {
         this.isChecked = isChecked;
     }
 
-    @Basic
     @Column(name = "request_time", nullable = true)
     public Timestamp getRequestTime() {
         return requestTime;
@@ -68,7 +60,6 @@ public class Request {
         this.requestTime = requestTime;
     }
 
-    @Basic
     @Column(name = "response_time", nullable = true)
     public Timestamp getResponseTime() {
         return responseTime;
