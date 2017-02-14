@@ -3,9 +3,9 @@ package com.ycw.photosystem.service;
 
 import com.ycw.photosystem.bean.Department;
 import com.ycw.photosystem.bean.User;
-import com.ycw.photosystem.dao.DepartmentDAO;
-import com.ycw.photosystem.dao.PermissionDAO;
-import com.ycw.photosystem.dao.UserDAO;
+import com.ycw.photosystem.dao.mysql.DepartmentDAO;
+import com.ycw.photosystem.dao.mysql.PermissionDAO;
+import com.ycw.photosystem.dao.mysql.UserDAO;
 import com.ycw.photosystem.info.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

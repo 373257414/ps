@@ -6,22 +6,22 @@
   <head>
     <title>北京邮电大学|登录界面</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-	<link rel="stylesheet" href="css/reset.css" media="screen">
-    <link rel="stylesheet" href="css/buttons.css" media="screen">
-    <link rel="stylesheet" href="css/mainFrame.css" media="screen">
-    <script src="js/jquery-2.2.4.js" type="text/javascript"></script>
-    <script src="js/advancedSearch.js" type="text/javascript" charset="gbk"></script>
-    <script src="js/login.js" type="text/javascript" charset="gbk"></script>
-    <script src="js/slideToggle.js" type="text/javascript" charset="gbk"></script>
-    <script src="js/getQueryStringArgs.js" type="text/javascript" charset="gbk"></script>
+	<link rel="stylesheet" href="/static/css/reset.css" media="screen">
+    <link rel="stylesheet" href="/static/css/buttons.css" media="screen">
+    <link rel="stylesheet" href="/static/css/mainFrame.css" media="screen">
+    <script src="/static/js/jquery-2.2.4.js" type="text/javascript"></script>
+    <script src="/static/js/advancedSearch.js" type="text/javascript" charset="gbk"></script>
+    <script src="/static/js/login.js" type="text/javascript" charset="gbk"></script>
+    <script src="/static/js/slideToggle.js" type="text/javascript" charset="gbk"></script>
+    <script src="/static/js/getQueryStringArgs.js" type="text/javascript" charset="gbk"></script>
   </head>
   <body>
     <div id="container">
         <header>
-            <img src="img/topbackground.jpg" align="middle" alt="北京邮电大学照片档案管理系统" id="topBackground">
+            <img src="/static/img/topbackground.jpg" align="middle" alt="北京邮电大学照片档案管理系统" id="topBackground">
             <nav id="navBar">
                 <ul>
-                    <li><a href="jsp/login.jsp" title="首页">首页</a></li>
+                    <li><a href="/loginJsp" title="首页">首页</a></li>
                     <li><a href="#" title="人气排行">人气排行</a></li>
                 </ul>
             </nav>
@@ -32,14 +32,14 @@
                 	<a href="#" class="lHeader">用户登录</a>
                 </header>
                 <div id="loginSection" class="firstSection">
-                	<form id="loginForm" action="loginAction" method="post">
+                	<form id="loginForm" action="/loginAction" method="post">
                 		<div id="login_inputSec">
 	                		<P>
-	                			<label for="login_username"><img src="img/ZHYuser16.png" class="icon_inline label" alt="账号" title="账号"/></label>
+	                			<label for="login_username"><img src="/static/img/ZHYuser16.png" class="icon_inline label" alt="账号" title="账号"/></label>
 		                		<input type="text" id="login_username" class="username" name="userName" placeholder="请输入账号"/>
 	                		</p>
 	                		<p>
-	                			<label for="login_password"><img src="img/ZHYpassword16.png" class="icon_inline label" alt="密码" title="密码"/></label>
+	                			<label for="login_password"><img src="/static/img/ZHYpassword16.png" class="icon_inline label" alt="密码" title="密码"/></label>
                 				<input type="password" id="login_password" class="password" name="password" placeholder="请输入6~15位字母或数字"/>
 	                		</p>
                 		</div>
@@ -68,7 +68,7 @@
 	                		<input type="reset" value="清空" name="reset" class="button button-3d button-caution button-pill button-tiny"/>
 		                </div>
 	                </form>
-	                <a href="#" title="高级搜索" id="A_Search_link"><img src="img/ZHYgodown16.png" class="icon_inline icon_change_search"/>高级搜索<img src="img/ZHYgodown16.png" class="icon_inline icon_change_search"/></a>
+	                <a href="#" title="高级搜索" id="A_Search_link"><img src="/static/img/ZHYgodown16.png" class="icon_inline icon_change_search"/>高级搜索<img src="/static/img/ZHYgodown16.png" class="icon_inline icon_change_search"/></a>
 	                <div id="A_SearchSection">
 	                	<form id="A_searchForm">
 		                	<div id="A_inputSec">
@@ -126,7 +126,7 @@
                 </div>
             </div>
             <div id="rightSection">
-                <iframe src="jsp/advancedSearch.jsp" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
+                <iframe src="/classifyScan" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
                 </iframe>
             </div> 
         </div>

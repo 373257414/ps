@@ -1,11 +1,12 @@
 package com.ycw.photosystem.service;
 
 import com.ycw.photosystem.bean.Picture;
-import com.ycw.photosystem.dao.*;
+import com.ycw.photosystem.dao.mysql.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -20,6 +21,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 @Service
+@Transactional
 public class PictureService {
 
     @Autowired
@@ -158,13 +160,13 @@ public class PictureService {
     }
 
 
-    public boolean deletePic(int id) {
+    public boolean deletePic(long id) {
         Picture picture = pictureDAO.findById(id);
         pictureDAO.delete(picture);
         return true;
     }
 
-    public Picture updatePic(int id, String author, String decription, String keyPerson, String name, int categoryId, int departmentId) {
+    public Picture updatePic(long id, String author, String decription, String keyPerson, String name, int categoryId, int departmentId) {
         Picture picture = pictureDAO.findById(id);
         picture.setDescription(decription);
         picture.setKeyPerson(keyPerson);
@@ -174,11 +176,8 @@ public class PictureService {
         return picture;
     }
 
-    public Picture searchPic(int id) {
+    public Picture searchPic(long id) {
         return pictureDAO.findById(id);
     }
 
-    public List<Picture> searchPic(String name) {
-        return pictureDAO.findByPictureName(name);
-    }
 }

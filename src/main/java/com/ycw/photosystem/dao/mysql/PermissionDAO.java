@@ -1,4 +1,4 @@
-package com.ycw.photosystem.dao;
+package com.ycw.photosystem.dao.mysql;
 
 import com.ycw.photosystem.bean.Permission;
 import org.hibernate.Query;
@@ -11,11 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional
 @Repository
 public class PermissionDAO{
-	private static final Logger log = LoggerFactory
-			.getLogger(PermissionDAO.class);
+	private static final Logger log = LoggerFactory.getLogger(PermissionDAO.class);
 	@Autowired
 	private SessionFactory sessionFactory;
 

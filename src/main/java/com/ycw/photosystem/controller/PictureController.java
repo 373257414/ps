@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,10 +25,10 @@ public class PictureController {
 
     @RequestMapping("mainPictureJsp")
     public ModelAndView mainJsp(){
-        return new ModelAndView("/jsp/main");
+        return new ModelAndView("/jsp/recycleBin/main");
     }
 
-    @RequestMapping("/upload")
+    @RequestMapping("/uploadAction")
     public String upload(MultipartHttpServletRequest request) {
         Map fileMap = request.getFileMap();
         Map<String, String[]> parameterMap = request.getParameterMap();
@@ -42,7 +41,7 @@ public class PictureController {
         return "settings/fail";
     }
 
-    @RequestMapping("/search")
+    @RequestMapping("/searchAction")
     @ResponseBody
     public ModelAndView search(HttpServletRequest request) {
         Integer id = Integer.parseInt(request.getParameter("id"));
@@ -51,7 +50,7 @@ public class PictureController {
         if (null != id) {
             list.add( pictureService.searchPic(id));
         }else if (!StringUtils.isEmpty(name)) {
-            list = pictureService.searchPic(name);
+//            list = pictureService.searchPic(name);
         }
         ModelAndView mav = new ModelAndView("/settings/success");
         mav.addObject("pictures",list);

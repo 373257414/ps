@@ -1,6 +1,5 @@
 $(document).ready(function()
-{		
-	/*控制高级搜索区域的伸缩,并控制第一区域的伸缩*/
+{
 	var counter_search = 0;
 	var $icon_change_search = $(".icon_change_search");
 	$("#A_Search_link").click(function(event)
@@ -12,7 +11,7 @@ $(document).ready(function()
 						{
 							$("#A_SearchSection").stop(true, false).animate({height:"215px"},500,function()
 								{
-									$icon_change_search.attr("src","img/ZHYgoup16.png");
+									$icon_change_search.attr("src","/static/img/ZHYgoup16.png");
 								});
 						});
 				}
@@ -22,7 +21,7 @@ $(document).ready(function()
 						{
 							$(".firstSection").stop(true, false).slideDown(500,function()
 								{
-									$icon_change_search.attr("src","img/ZHYgodown16.png");
+									$icon_change_search.attr("src","/static/img/ZHYgodown16.png");
 								});
 						});
 				}

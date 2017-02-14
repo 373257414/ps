@@ -1,4 +1,4 @@
-package com.ycw.photosystem.dao;
+package com.ycw.photosystem.dao.mysql;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.awt.*;
 import java.util.List;
 
-@Transactional
 @Repository
 public class EventDAO{
 	private static final Logger log = LoggerFactory.getLogger(EventDAO.class);

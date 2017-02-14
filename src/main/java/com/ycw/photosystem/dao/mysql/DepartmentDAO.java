@@ -1,4 +1,4 @@
-package com.ycw.photosystem.dao;
+package com.ycw.photosystem.dao.mysql;
 
 import com.ycw.photosystem.bean.Department;
 import org.hibernate.Query;
@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional
 @Repository
 public class DepartmentDAO{
 	private static final Logger log = LoggerFactory.getLogger(DepartmentDAO.class);

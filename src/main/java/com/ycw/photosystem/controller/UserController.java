@@ -40,19 +40,14 @@ public class UserController {
         modelAndView.addObject("permissions", permissionService.getPermissionMap());
         return modelAndView;
     }
-
-    @RequestMapping("loginJsp")
-    public ModelAndView loginJsp(){
-        return new ModelAndView("/user/login");
-    }
-    @RequestMapping("addUser")
+    @RequestMapping("addUserAction")
     public String addUser(HttpServletRequest request) {
         Map userMap=request.getParameterMap();
         userService.addUser(userMap);
         return null;
     }
 
-    @RequestMapping("login")
+    @RequestMapping("loginAction")
     public String login(String userName, String password, HttpServletRequest request) throws Exception {
         String message = new String("");
         User user = userService.isUserExisted(userName);
@@ -69,11 +64,11 @@ public class UserController {
                 HttpSession session = request.getSession();
                 session.setAttribute("currentUser",user);
                 if (user.getUserPermission() == 1) {
-                    return "/permission/system";
+                    return "/jsp/system.jsp";
                 } else if (user.getUserPermission() == 2) {
-                    return "/permission/department";
+                    return "/jsp/department";
                 } else {
-                    return "/permission/normal";
+                    return "/jsp/normal";
                 }
             }else{
                 return "/test/fail";

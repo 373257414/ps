@@ -25,7 +25,7 @@ public class DepartmentController {
         return new ModelAndView("/department/add");
     }
 
-    @RequestMapping("addDepartment")
+    @RequestMapping("addDepartmentAction")
     public void add(String name,String charger,String address,String email){
         Department department= new Department();
         department.setName(name);
@@ -35,7 +35,7 @@ public class DepartmentController {
         departmentService.add(department);
     }
 
-    @RequestMapping("updateDepartment")
+    @RequestMapping("updateDepartmentAction")
     public void update(int id,String name,String charger,String address,String email){
 
     }

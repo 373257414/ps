@@ -5,23 +5,23 @@ body{
     background-repeat:no-repeat;
     background-attachment:fixed;
 }
-#container{		/*Õû¸öÈİÆ÷*/
+#container{		/*æ•´ä¸ªå®¹å™¨*/
     width: 1000px;
     margin:auto;
 }
-#topBackground{		/*¶¥²¿±³¾°Í¼*/
+#topBackground{		/*é¡¶éƒ¨èƒŒæ™¯å›¾*/
     opacity:0.8;
 }
-#navBar{		/*¶¥²¿²Ëµ¥*/
+#navBar{		/*é¡¶éƒ¨èœå•*/
     height: 30px;
-    background: white url(../img/nav.jpg); 
+    background: white url(../img/nav.jpg);
     opacity: 0.7;
     margin-top:1px;
 }
 #navBar ul{
     list-style-type:none;
     display:inline;
-    position: relative; 
+    position: relative;
     margin-top:-30px;
 }
 #navBar li{
@@ -31,7 +31,7 @@ body{
 }
 #navBar a{
     font-size: 15px;
-    font-family: 'Î¢ÈíÑÅºÚ','ºÚÌå',sans-serif;
+    font-family: 'å¾®è½¯é›…é»‘','é»‘ä½“',sans-serif;
     line-height: 30px;
     color:#363636;
     display: block;
@@ -43,112 +43,112 @@ body{
     color: white;
     background: url(../img/nav1.png);
 }
-#mainSection{		/*ÏÂ²¿ÇøÓò*/
+#mainSection{		/*ä¸‹éƒ¨åŒºåŸŸ*/
     height: 700px;
     margin-top: 1px;
 }
-#leftSection{		/*×ó²àÇøÓò*/
+#leftSection{		/*å·¦ä¾§åŒºåŸŸ*/
     width: 210px;
     height: 700px;
     background-color: #FFF;
     background: rgba(255,255,255,0.7) none repeat 0 0 !important;
     float: left;
 }
-.leftHeader{		/*×ó²à±êÌâÇøÓò*/
-	width:200px;;
-	height:20px;
-	margin:1px auto 0 auto;
-	background:#00A1F1;
+.leftHeader{		/*å·¦ä¾§æ ‡é¢˜åŒºåŸŸ*/
+    width:200px;;
+    height:20px;
+    margin:1px auto 0 auto;
+    background:#00A1F1;
 }
-.leftHeader a{		/*×ó²à±êÌâÇøÓòÎÄ×Ö*/
-	font-size:18px;
-	display:block;
-	text-align:center;
-	color:white;
+.leftHeader a{		/*å·¦ä¾§æ ‡é¢˜åŒºåŸŸæ–‡å­—*/
+    font-size:18px;
+    display:block;
+    text-align:center;
+    color:white;
 }
-.icon_inline{		/*ĞĞÄÚÌáÊ¾Í¼±ê*/
-	display:inline;
+.icon_inline{		/*è¡Œå†…æç¤ºå›¾æ ‡*/
+    display:inline;
 }
-#loginSection{		/*µÇÂ¼ÇøÓò*/
+#loginSection{		/*ç™»å½•åŒºåŸŸ*/
 }
-#loginForm{		/*µÇÂ¼±íµ¥*/
-	height:90px;
+#loginForm{		/*ç™»å½•è¡¨å•*/
+    height:90px;
 }
-#login_inputSec{		/*µÇÂ¼ÇøÎÄ±¾ÊäÈëÇø*/
-	margin-left:10px;
+#login_inputSec{		/*ç™»å½•åŒºæ–‡æœ¬è¾“å…¥åŒº*/
+    margin-left:10px;
 }
-#login_inputSec input{		/*µÇÂ¼ÇøÎÄ±¾ÊäÈë¿ò*/
-	height:22px;
-	width:150px;
-	margin-top:3px;
+#login_inputSec input{		/*ç™»å½•åŒºæ–‡æœ¬è¾“å…¥æ¡†*/
+    height:22px;
+    width:150px;
+    margin-top:3px;
 }
-#loginBtn{		/*µÇÂ¼°´Å¥*/
-	margin:5px 0 0 65px ;
+#loginBtn{		/*ç™»å½•æŒ‰é’®*/
+    margin:5px 0 0 65px ;
 }
-#userSection{		/*ĞÅÏ¢ÇøÓò*/
-	height:95px;
+#userSection{		/*ä¿¡æ¯åŒºåŸŸ*/
+    height:95px;
 }
-#information{		/*ĞÅÏ¢Çø*/
+#information{		/*ä¿¡æ¯åŒº*/
 }
-#information p{		/*ĞÅÏ¢ÇøÎÄ±¾*/
-	font-size:14px;
-	text-align:center;
-	margin-top:2px;
+#information p{		/*ä¿¡æ¯åŒºæ–‡æœ¬*/
+    font-size:14px;
+    text-align:center;
+    margin-top:2px;
 }
-#logout{		/*ĞÅÏ¢Çø×¢Ïú°´Å¥*/
-	float:right;
+#logout{		/*ä¿¡æ¯åŒºæ³¨é”€æŒ‰é’®*/
+    float:right;
 }
-#Q_searchForm{		/*¿ìËÙËÑË÷±íµ¥*/
-	height:70px;
+#Q_searchForm{		/*å¿«é€Ÿæœç´¢è¡¨å•*/
+    height:70px;
 }
-#Q_inputSec{		/*¿ìËÙËÑË÷ÊäÈëÇø*/
-	margin:7px 0 0 4px;
+#Q_inputSec{		/*å¿«é€Ÿæœç´¢è¾“å…¥åŒº*/
+    margin:7px 0 0 4px;
 }
-select{		/*¿ìËÙËÑË÷ÇøÏÂÀ­²Ëµ¥*/
-	font-size:11px;
-	height:20px;
-	width:75px;
+select{		/*å¿«é€Ÿæœç´¢åŒºä¸‹æ‹‰èœå•*/
+    font-size:11px;
+    height:20px;
+    width:75px;
 }
-#Q_inputSec input{		/*¿ìËÙËÑË÷ÇøÊäÈë¿ò*/
-	height:20px;
-	width:120px;
+#Q_inputSec input{		/*å¿«é€Ÿæœç´¢åŒºè¾“å…¥æ¡†*/
+    height:20px;
+    width:120px;
 }
-#Q_searchBtn{		/*¿ìËÙËÑË÷°´Å¥Çø*/
-	margin:8px 0 0 10px;
+#Q_searchBtn{		/*å¿«é€Ÿæœç´¢æŒ‰é’®åŒº*/
+    margin:8px 0 0 10px;
 }
-#Q_searchBtn input{		/*¿ìËÙËÑË÷°´Å¥*/
-	margin-left:15px;
+#Q_searchBtn input{		/*å¿«é€Ÿæœç´¢æŒ‰é’®*/
+    margin-left:15px;
 }
-#A_Search_link{		/*ËÑË÷Çø¡°¸ß¼¶ËÑË÷¡±Á´½Ó*/
-	font-size:16px;
-	margin-left:57px;;
+#A_Search_link{		/*æœç´¢åŒºâ€œé«˜çº§æœç´¢â€é“¾æ¥*/
+    font-size:16px;
+    margin-left:57px;;
 }
-#A_SearchSection{		/*¸ß¼¶ËÑË÷ÇøÓò*/
-	height:0px;
-	overflow:hidden;
+#A_SearchSection{		/*é«˜çº§æœç´¢åŒºåŸŸ*/
+    height:0px;
+    overflow:hidden;
 }
-#A_inputSec{		/*¸ß¼¶ËÑË÷ÊäÈëÇø*/
-	margin-left:15px;
+#A_inputSec{		/*é«˜çº§æœç´¢è¾“å…¥åŒº*/
+    margin-left:15px;
 }
-#A_inputSec p{		/*¸ß¼¶ËÑË÷ÇøÊäÈë¿ò*/
-	height:20px;
-	margin-top:2px ;
+#A_inputSec p{		/*é«˜çº§æœç´¢åŒºè¾“å…¥æ¡†*/
+    height:20px;
+    margin-top:2px ;
 }
-#A_check{		/*¸ß¼¶ËÑË÷Çøµ¥Ñ¡ÇøÓò*/
+#A_check{		/*é«˜çº§æœç´¢åŒºå•é€‰åŒºåŸŸ*/
     margin-top:5px;
     margin-left:20px;
     font-size:14px;
 }
-#A_check input{		/*¸ß¼¶ËÑË÷Çøµ¥Ñ¡°´Å¥*/
+#A_check input{		/*é«˜çº§æœç´¢åŒºå•é€‰æŒ‰é’®*/
     margin-left:10px;
 }
-#A_searchBtn{		/*¸ß¼¶ËÑË÷°´Å¥Çø*/
-	margin:5px 0 0 10px;
+#A_searchBtn{		/*é«˜çº§æœç´¢æŒ‰é’®åŒº*/
+    margin:5px 0 0 10px;
 }
-#A_searchBtn input{		/*¸ß¼¶ËÑË÷°´Å¥*/
-	margin-left:15px;
+#A_searchBtn input{		/*é«˜çº§æœç´¢æŒ‰é’®*/
+    margin-left:15px;
 }
-#functions li{		/*¹¦ÄÜÇø¹¦ÄÜÁĞ±í*/
+#functions li{		/*åŠŸèƒ½åŒºåŠŸèƒ½åˆ—è¡¨*/
     width: 193px;
     height: 29px;
     background: url(../img/tips.gif);
@@ -156,20 +156,20 @@ select{		/*¿ìËÙËÑË÷ÇøÏÂÀ­²Ëµ¥*/
     float:right;
     margin-right:7px;
 }
-#functions ul a{		/*¹¦ÄÜÇø¹¦ÄÜ°´Å¥*/
+#functions ul a{		/*åŠŸèƒ½åŒºåŠŸèƒ½æŒ‰é’®*/
     font-size: 16px;
-    font-family: 'Î¢ÈíÑÅºÚ','ºÚÌå',sans-serif;
+    font-family: 'å¾®è½¯é›…é»‘','é»‘ä½“',sans-serif;
     color: #0066ff;
     line-height: 29px;
     font-weight: bold;
     display: block;
     text-align: center;
 }
-#functions ul a:hover,ul a:focus,ul a:active{		/*¹¦ÄÜÇø¹¦ÄÜ°´Å¥Êó±êÊÂ¼ş*/
+#functions ul a:hover,ul a:focus,ul a:active{		/*åŠŸèƒ½åŒºåŠŸèƒ½æŒ‰é’®é¼ æ ‡äº‹ä»¶*/
     background:url(../img/tipson.gif);
     color:white;
 }
-#rightSection{		/*ÓÒ²àÇøÓò*/
+#rightSection{		/*å³ä¾§åŒºåŸŸ*/
     width:785px;
     height:700px;
     float: right;
@@ -179,17 +179,17 @@ iframe{
     width:785px;
     height:600px;
 }
-footer{		/*×¢½Å*/
+footer{		/*æ³¨è„š*/
     height: 30px;
     background:black;
     filter:alpha(opacity=95);
-    opacity:0.95; 
+    opacity:0.95;
     z-index:90;
     margin-top: 1px;
 }
-address{		/*×¢½ÅÎÄ×Ö*/
+address{		/*æ³¨è„šæ–‡å­—*/
     font-size: 12px;
-    font-family: 'Î¢ÈíÑÅºÚ','ºÚÌå',sans-serif;
+    font-family: 'å¾®è½¯é›…é»‘','é»‘ä½“',sans-serif;
     line-height: 30px;
     color:white;
     text-align: center;

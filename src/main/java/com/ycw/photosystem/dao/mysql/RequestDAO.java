@@ -1,8 +1,8 @@
-package com.ycw.photosystem.dao;
+package com.ycw.photosystem.dao.mysql;
 
-import com.ycw.photosystem.bean.Category;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.omg.CORBA.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +11,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional
 @Repository
-public class CategoryDAO{
-	private static final Logger log = LoggerFactory.getLogger(CategoryDAO.class);
-	public static final String CATEGORY_NAME = "categoryName";
+public class RequestDAO{
+	private static final Logger log = LoggerFactory.getLogger(RequestDAO.class);
+
+	public static final String REQUEST_MSG = "requestMsg";
+	public static final String IS_CHECKED = "isChecked";
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void save(Category transientInstance) {
-		log.debug("saving Category instance");
+	public void save(Request transientInstance) {
+		log.debug("saving Request instance");
 		try {
 			sessionFactory.getCurrentSession().save(transientInstance);
 			log.debug("save successful");
@@ -30,8 +31,8 @@ public class CategoryDAO{
 		}
 	}
 
-	public void delete(Category persistentInstance) {
-		log.debug("deleting Category instance");
+	public void delete(Request persistentInstance) {
+		log.debug("deleting Request instance");
 		try {
 			sessionFactory.getCurrentSession().delete(persistentInstance);
 			log.debug("delete successful");
@@ -41,11 +42,10 @@ public class CategoryDAO{
 		}
 	}
 
-	public Category findById(java.lang.Integer id) {
-		log.debug("getting Category instance with id: " + id);
+	public Request findById(java.lang.Integer id) {
+		log.debug("getting Request instance with id: " + id);
 		try {
-			Category instance = (Category) sessionFactory.getCurrentSession().get(
-					"com.ycw.photosystem.bean.Category", id);
+			Request instance = (Request) sessionFactory.getCurrentSession().get("com.ycw.photosystem.bean.Request", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -54,11 +54,10 @@ public class CategoryDAO{
 	}
 
 	public List findByProperty(String propertyName, Object value) {
-		log.debug("finding Category instance with property: " + propertyName
-				+ ", value: " + value);
+		log.debug("finding Request instance with property: " + propertyName+ ", value: " + value);
 		try {
-			String queryString = "from Category as model where model."
-					+ propertyName + "= "+value;
+			String queryString = "from Request as model where model."
+					+ propertyName + "="+value;
 			Query query= sessionFactory.getCurrentSession().createQuery(queryString);
 			return query.list();
 		} catch (RuntimeException re) {
@@ -67,14 +66,18 @@ public class CategoryDAO{
 		}
 	}
 
-	public List findByCategoryName(Object categoryName) {
-		return findByProperty(CATEGORY_NAME, categoryName);
+	public List findByRequestMsg(Object requestMsg) {
+		return findByProperty(REQUEST_MSG, requestMsg);
+	}
+
+	public List findByIsChecked(Object isChecked) {
+		return findByProperty(IS_CHECKED, isChecked);
 	}
 
 	public List findAll() {
-		log.debug("finding all Category instances");
+		log.debug("finding all Request instances");
 		try {
-			String queryString = "from Category";
+			String queryString = "from Request";
 			Query query= sessionFactory.getCurrentSession().createQuery(queryString);
 			return query.list();
 		} catch (RuntimeException re) {

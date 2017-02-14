@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 @Entity
 public class Picture {
-    private int id;
+    private Long id;
     private String name;
     private Timestamp createTime;
     private String path;
@@ -26,11 +26,11 @@ public class Picture {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -43,7 +43,7 @@ public class Picture {
         this.name = name;
     }
 
-    @Column(name = "create_time", nullable = true)
+    @Column(name = "create_time")
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -52,7 +52,7 @@ public class Picture {
         this.createTime = createTime;
     }
 
-    @Column(name = "path", nullable = true, length = 255)
+    @Column(name = "path")
     public String getPath() {
         return path;
     }
@@ -61,7 +61,7 @@ public class Picture {
         this.path = path;
     }
 
-    @Column(name = "watermark_path", nullable = true, length = 255)
+    @Column(name = "watermark_path")
     public String getWatermarkPath() {
         return watermarkPath;
     }
@@ -70,7 +70,7 @@ public class Picture {
         this.watermarkPath = watermarkPath;
     }
 
-    @Column(name = "picture_loader", nullable = true)
+    @Column(name = "picture_loader")
     public Integer getPictureLoader() {
         return pictureLoader;
     }
@@ -79,7 +79,7 @@ public class Picture {
         this.pictureLoader = pictureLoader;
     }
 
-    @Column(name = "picture_department", nullable = true)
+    @Column(name = "picture_department")
     public Integer getPictureDepartment() {
         return pictureDepartment;
     }
@@ -88,7 +88,7 @@ public class Picture {
         this.pictureDepartment = pictureDepartment;
     }
 
-    @Column(name = "picture_category", nullable = true)
+    @Column(name = "picture_category")
     public Integer getPictureCategory() {
         return pictureCategory;
     }
@@ -97,7 +97,7 @@ public class Picture {
         this.pictureCategory = pictureCategory;
     }
 
-    @Column(name = "height", nullable = true)
+    @Column(name = "height")
     public Integer getHeight() {
         return height;
     }
@@ -106,7 +106,7 @@ public class Picture {
         this.height = height;
     }
 
-    @Column(name = "width", nullable = true)
+    @Column(name = "width")
     public Integer getWidth() {
         return width;
     }
@@ -115,7 +115,7 @@ public class Picture {
         this.width = width;
     }
 
-    @Column(name = "key_person", nullable = true, length = 45)
+    @Column(name = "key_person", length = 45)
     public String getKeyPerson() {
         return keyPerson;
     }
@@ -124,7 +124,7 @@ public class Picture {
         this.keyPerson = keyPerson;
     }
 
-    @Column(name = "author", nullable = true, length = 45)
+    @Column(name = "author", length = 45)
     public String getAuthor() {
         return author;
     }
@@ -133,7 +133,7 @@ public class Picture {
         this.author = author;
     }
 
-    @Column(name = "description", nullable = true, length = 255)
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -142,7 +142,7 @@ public class Picture {
         this.description = description;
     }
 
-    @Column(name = "visit_count", nullable = true)
+    @Column(name = "visit_count")
     public Integer getVisitCount() {
         return visitCount;
     }
@@ -151,7 +151,7 @@ public class Picture {
         this.visitCount = visitCount;
     }
 
-    @Column(name = "download_count", nullable = true)
+    @Column(name = "download_count")
     public Integer getDownloadCount() {
         return downloadCount;
     }
@@ -160,7 +160,7 @@ public class Picture {
         this.downloadCount = downloadCount;
     }
 
-    @Column(name = "file_number", nullable = true, length = 45)
+    @Column(name = "file_number", length = 45)
     public String getFileNumber() {
         return fileNumber;
     }
@@ -203,7 +203,7 @@ public class Picture {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = Math.toIntExact(id);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
         result = 31 * result + (path != null ? path.hashCode() : 0);
