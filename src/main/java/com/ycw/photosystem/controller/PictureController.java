@@ -28,7 +28,7 @@ public class PictureController {
         return new ModelAndView("/jsp/recycleBin/main");
     }
 
-    @RequestMapping("/uploadAction")
+    @RequestMapping("uploadAction")
     public String upload(MultipartHttpServletRequest request) {
         Map fileMap = request.getFileMap();
         Map<String, String[]> parameterMap = request.getParameterMap();
@@ -36,12 +36,12 @@ public class PictureController {
             pictureService.addPic(fileMap, parameterMap);
         } catch (IOException e) {
             e.printStackTrace();
-            return "/settings/fail";
+            return "settings/fail";
         }
         return "settings/fail";
     }
 
-    @RequestMapping("/searchAction")
+    @RequestMapping("searchAction")
     @ResponseBody
     public ModelAndView search(HttpServletRequest request) {
         Integer id = Integer.parseInt(request.getParameter("id"));

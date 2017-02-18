@@ -32,11 +32,11 @@
             </header>
             <div id="userSection" class="firstSection">
                 <div id="information">
-                    <p>欢迎：<a href="jsp/userInformation.jsp" target="main">${sessionScope.userName}</a></p>
+                    <p>欢迎：<a href="jsp/userInformation" target="main">${sessionScope.userName}</a></p>
                     <p>权限：系统管理员</p>
-                    <p><a href="jsp/userInformation.jsp" target="main" class="button button-glow button-border button-rounded button-tiny button-primary"/>查看</a></p>
+                    <p><a href="jsp/userInformation" target="main" class="button button-glow button-border button-rounded button-tiny button-primary"/>查看</a></p>
                 </div>
-                <a href="jsp/login.jsp" id="logout"><img src="/static/img/ZHYlogout32.png" alt="注销" title="注销"/></a>
+                <a href="jsp/login" id="logout"><img src="/static/img/ZHYlogout32.png" alt="注销" title="注销"/></a>
             </div>
             <header class="leftHeader">
                 <a href="#" class="lHeader">图片搜索</a>
