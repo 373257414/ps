@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -35,6 +36,11 @@ public class SearchService {
             return pictureDAO.findByProperty(field,condition);
         }
     }
+
+    public List complexSearch(Map<String,String> conditionMap){
+        return pictureDAO.findByProperties(conditionMap);
+    }
+
 
 
     public Picture findById(Long id) {

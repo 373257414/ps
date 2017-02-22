@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Repository
 public class PictureDAO {
@@ -65,6 +67,15 @@ public class PictureDAO {
         return criteria.list();
     }
 
+    public List findByProperties(Map<String, String> propertiesMap) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Picture.class);
+        Set<Map.Entry<String, String>> propertiesEntrySet = propertiesMap.entrySet();
+        for (Map.Entry<String, String> entry : propertiesEntrySet) {
+            criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));
+        }
+        return criteria.list();
+    }
+
     public List findByCategory(int cid, int from, int count) {
         return sessionFactory.getCurrentSession().createCriteria(Picture.class)
                 .add(Restrictions.eq("pictureCategory", cid))
@@ -72,8 +83,8 @@ public class PictureDAO {
                 .setMaxResults(count).list();
     }
 
-    public List findByProperty(String propertyName,String condition){
-        return sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.eq(propertyName,condition)).list();
+    public List findByProperty(String propertyName, String condition) {
+        return sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.eq(propertyName, condition)).list();
     }
 
     public List findByFileNumber(String fileNumber) {

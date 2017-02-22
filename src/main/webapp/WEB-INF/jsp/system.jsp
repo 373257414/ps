@@ -70,11 +70,11 @@
                             </p>
                             <p>
                                 <label for="pictureIntro">图片说明</label>
-                                <input type="text" id="pictureIntro" name="pictureIntro" size="15" maxlength="20"/>
+                                <input type="text" id="pictureIntro" name="description" size="15" maxlength="20"/>
                             </p>
                             <p>
                                 <label for="importantPerson">关键人物</label>
-                                <input type="text" id="importantPerson" name="importantPerson" size="15" maxlength="20"/>
+                                <input type="text" id="importantPerson" name="keyPerson" size="15" maxlength="20"/>
                             </p>
                             <p>
                                 <label for="photographer">摄影人员</label>
