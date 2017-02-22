@@ -4,7 +4,6 @@ import com.ycw.photosystem.bean.Picture;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,21 +34,21 @@ public class PictureDAO {
     }
 
 
-    public Long getTotalCount(){
+    public Long getTotalCount() {
         return (Long) sessionFactory.getCurrentSession().createCriteria(Picture.class).setProjection(Projections.rowCount()).uniqueResult();
     }
 
-    public Long getMinId(){
+    public Long getMinId() {
         return (Long) sessionFactory.getCurrentSession().createCriteria(Picture.class).setProjection(Projections.min("id")).uniqueResult();
     }
 
-    public Long getMaxId(){
+    public Long getMaxId() {
         return (Long) sessionFactory.getCurrentSession().createCriteria(Picture.class).setProjection(Projections.max("id")).uniqueResult();
     }
 
-    public List findFromTO(Long fromId,Long toId){
+    public List findFromTO(Long fromId, Long toId) {
         return sessionFactory.getCurrentSession().createCriteria(Picture.class)
-                .add(Restrictions.between("id",fromId,toId)).list();
+                .add(Restrictions.between("id", fromId, toId)).list();
     }
 
     public List findByIds(Long[] ids) {
@@ -65,11 +64,20 @@ public class PictureDAO {
         }
         return criteria.list();
     }
-    public List findByCategory(int cid, int from, int count){
+
+    public List findByCategory(int cid, int from, int count) {
         return sessionFactory.getCurrentSession().createCriteria(Picture.class)
                 .add(Restrictions.eq("pictureCategory", cid))
                 .setFirstResult(from)
                 .setMaxResults(count).list();
+    }
+
+    public List findByProperty(String propertyName,String condition){
+        return sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.eq(propertyName,condition)).list();
+    }
+
+    public List findByFileNumber(String fileNumber) {
+        return sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.eq("fileNumber", fileNumber)).list();
     }
 
 }

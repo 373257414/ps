@@ -1,116 +1,116 @@
 $(document).ready(function()
 {
-	$("#pwdChangeSection").hide();		//ĞŞ¸ÄÇøÓò±¾ÉíÊÇÒş²ØµÄ
+	$("#pwdChangeSection").hide();		//ä¿®æ”¹åŒºåŸŸæœ¬èº«æ˜¯éšè—çš„
 	$("#emailChangeSection").hide();
 	$("#pwdChange").click(function()
-		{		//µã»÷¡°ĞŞ¸ÄµÇÂ¼ÃÜÂë¡±
-			$("#password").find(".formtips").remove();		//Ã¿´Îµã»÷¡°ĞŞ¸Ä¡±½«ËùÓĞÊäÈë¿òÖØÖÃ
-			$("#resetBtn").click();
-			$("#emailChangeSection").hide();		//Òş²ØÓÊÏäĞŞ¸ÄÇøÓò
-			$("#pwdChangeSection").show();		//ÏÔÊ¾ÃÜÂëĞŞ¸ÄÇøÓò
-			$("#newPassword1").focus(function()
-				{		//Îª¡°ÇëÊäÈëĞÂÃÜÂë¡±Ìí¼Ó½¹µãÊÂ¼ş
-					var $parent = $(this).parent();
-					$parent.find(".formtips").remove();		//·ÀÖ¹×·¼ÓÈßÓà
-					var Msg = "6~20Î»×Ö·û£¨×ÖÄ¸¡¢Êı×Ö¡¢·ûºÅ£©";
-					$parent.append("<p class='formtips onError'>" + Msg + "</p>");
-				});
-			$("#password :input").blur(function()
-				{		//Îª±íµ¥ÔªËØÌí¼ÓÊ§È¥½¹µãÊÂ¼ş
-					var $parent = $(this).parent();
-					$parent.find(".formtips").remove();		//·ÀÖ¹×·¼ÓÈßÓà
-					if($(this).is("#oldPassword"))
-						{		//ÑéÖ¤µ±Ç°ÃÜÂë
-							if(this.value == "")
-								{		//µ±Ç°ÃÜÂëÎª¿Õ
-									var errorMsg = "ÇëÊäÈëÃÜÂë";
-									$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
-								}
-						}
-					if($(this).is("#newPassword1"))
-						{		//ĞÂÃÜÂëµÄÑéÖ¤
-							if(this.value == "" || this.value.length<6 || this.value.length>20)
-								{		//ĞÂÃÜÂë³¤¶È´íÎó
-									var errorMsg = "ÃÜÂë³¤¶È²»ÕıÈ·£¬ÇëÊäÈë6~20¸ö×Ö·û";
-									$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
-								}
-							else if(this.value == $("#oldPassword").val())
-								{
-									var errorMsg = "ĞÂÃÜÂë±ØĞëºÍµ±Ç°ÃÜÂë²»Í¬";
-									$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
-								}
-							else
-								{
-									var okMsg = "ÃÜÂë¸ñÊ½ÕıÈ·";
-									$parent.append("<p class='formtips onOk'>" + okMsg + "</p>");
-								}
-						}
-					if($(this).is("#newPassword2"))
-						{		//ĞÂÃÜÂëµÄ¶ş´ÎÑéÖ¤
-							if(this.value == "" || this.value.length<6 || this.value.length>20)
-								{		//ÃÜÂë³¤¶È´íÎó
-									var errorMsg = "ÃÜÂë³¤¶È²»ÕıÈ·£¬ÇëÊäÈë6~20¸ö×Ö·û";
-									$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
-								}
-							else if(this.value != $("#newPassword1").val())
-								{		//Á½´ÎÊäÈë²»Ò»ÖÂ
-									var errorMsg = "Á½´ÎÃÜÂëÊäÈëµÄ²»Ò»ÖÂ£¬ÇëÖØĞÂÊäÈë";
-									$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
-								}
-							else
-								{		//Á½´ÎÊäÈëÒ»ÖÂ
-									var okMsg = "ÊäÈëÕıÈ·";
-									$parent.append("<p class='formtips onOk'>" + okMsg + "</p>");
-								}
-						}
-				});
-				return false;		//×èÖ¹Á´½Ó
+	{		//ç‚¹å‡»â€œä¿®æ”¹ç™»å½•å¯†ç â€
+		$("#password").find(".formtips").remove();		//æ¯æ¬¡ç‚¹å‡»â€œä¿®æ”¹â€å°†æ‰€æœ‰è¾“å…¥æ¡†é‡ç½®
+		$("#resetBtn").click();
+		$("#emailChangeSection").hide();		//éšè—é‚®ç®±ä¿®æ”¹åŒºåŸŸ
+		$("#pwdChangeSection").show();		//æ˜¾ç¤ºå¯†ç ä¿®æ”¹åŒºåŸŸ
+		$("#newPassword1").focus(function()
+		{		//ä¸ºâ€œè¯·è¾“å…¥æ–°å¯†ç â€æ·»åŠ ç„¦ç‚¹äº‹ä»¶
+			var $parent = $(this).parent();
+			$parent.find(".formtips").remove();		//é˜²æ­¢è¿½åŠ å†—ä½™
+			var Msg = "6~20ä½å­—ç¬¦ï¼ˆå­—æ¯ã€æ•°å­—ã€ç¬¦å·ï¼‰";
+			$parent.append("<p class='formtips onError'>" + Msg + "</p>");
 		});
+		$("#password :input").blur(function()
+		{		//ä¸ºè¡¨å•å…ƒç´ æ·»åŠ å¤±å»ç„¦ç‚¹äº‹ä»¶
+			var $parent = $(this).parent();
+			$parent.find(".formtips").remove();		//é˜²æ­¢è¿½åŠ å†—ä½™
+			if($(this).is("#oldPassword"))
+			{		//éªŒè¯å½“å‰å¯†ç 
+				if(this.value == "")
+				{		//å½“å‰å¯†ç ä¸ºç©º
+					var errorMsg = "è¯·è¾“å…¥å¯†ç ";
+					$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
+				}
+			}
+			if($(this).is("#newPassword1"))
+			{		//æ–°å¯†ç çš„éªŒè¯
+				if(this.value == "" || this.value.length<6 || this.value.length>20)
+				{		//æ–°å¯†ç é•¿åº¦é”™è¯¯
+					var errorMsg = "å¯†ç é•¿åº¦ä¸æ­£ç¡®ï¼Œè¯·è¾“å…¥6~20ä¸ªå­—ç¬¦";
+					$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
+				}
+				else if(this.value == $("#oldPassword").val())
+				{
+					var errorMsg = "æ–°å¯†ç å¿…é¡»å’Œå½“å‰å¯†ç ä¸åŒ";
+					$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
+				}
+				else
+				{
+					var okMsg = "å¯†ç æ ¼å¼æ­£ç¡®";
+					$parent.append("<p class='formtips onOk'>" + okMsg + "</p>");
+				}
+			}
+			if($(this).is("#newPassword2"))
+			{		//æ–°å¯†ç çš„äºŒæ¬¡éªŒè¯
+				if(this.value == "" || this.value.length<6 || this.value.length>20)
+				{		//å¯†ç é•¿åº¦é”™è¯¯
+					var errorMsg = "å¯†ç é•¿åº¦ä¸æ­£ç¡®ï¼Œè¯·è¾“å…¥6~20ä¸ªå­—ç¬¦";
+					$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
+				}
+				else if(this.value != $("#newPassword1").val())
+				{		//ä¸¤æ¬¡è¾“å…¥ä¸ä¸€è‡´
+					var errorMsg = "ä¸¤æ¬¡å¯†ç è¾“å…¥çš„ä¸ä¸€è‡´ï¼Œè¯·é‡æ–°è¾“å…¥";
+					$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
+				}
+				else
+				{		//ä¸¤æ¬¡è¾“å…¥ä¸€è‡´
+					var okMsg = "è¾“å…¥æ­£ç¡®";
+					$parent.append("<p class='formtips onOk'>" + okMsg + "</p>");
+				}
+			}
+		});
+		return false;		//é˜»æ­¢é“¾æ¥
+	});
 	$("#emailChange").click(function()
-		{		//µã»÷¡°ĞŞ¸Äµç×ÓÓÊÏä¡±
-			$("#email").find(".formtips").remove();		//Ã¿´Îµã»÷¡°ĞŞ¸Ä¡±½«ËùÓĞÊäÈë¿òÖØÖÃ
-			$(".resetBtn").click();
-			$("#pwdChangeSection").hide();		//Òş²ØÃÜÂëĞŞ¸ÄÇøÓò
-			$("#emailChangeSection").show();		//ÏÔÊ¾ÓÊÏäĞŞ¸ÄÇøÓò
-			$("#email :input").blur(function()
-				{		//Îª±íµ¥ÔªËØÌí¼ÓÊ§È¥½¹µãÊÂ¼ş
-					var $parent = $(this).parent();
-					$parent.find(".formtips").remove();		//·ÀÖ¹×·¼ÓÈßÓà
-					if($(this).is("#userName"))
-						{		//ÓÃ»§ÃûµÄÑéÖ¤
-							if(this.value == "")
-								{
-									var errorMsg = "ÇëÊäÈëµ±Ç°ÓÃ»§Ãû";
-									$parent.append("<p class='formtips onError'>" + errorMsg + "</P>");
-								}
-						}
-					if($(this).is("#pwdForEmail"))
-						{		//ÃÜÂëµÄÑéÖ¤
-							if(this.value == "")
-								{
-									var errorMsg = "ÇëÊäÈëÃÜÂë";
-									$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
-								}
-						}
-					if($(this).is("#newEmail"))
-						{		//ÓÊÏäµÄÑéÖ¤
-							if(this.value == "")
-								{
-									var errorMsg = "ÇëÊäÈëĞÂµÄµç×ÓÓÊÏä";
-									$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
-								}
-							else if(this.value!="" && !/.+@.+\.[a-zA-Z]{2,4}$/.test(this.value))
-								{
-									var errorMsg = "ÓÊÏäµØÖ·¸ñÊ½´íÎó";
-									$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
-								}
-							else
-								{
-									var okMsg = "ÊäÈëÕıÈ·";
-									$parent.append("<p class='formtips onOk'>" + okMsg + "</p>");
-								}
-						}
-				});
-			return false;		//×èÖ¹Á´½Ó
+	{		//ç‚¹å‡»â€œä¿®æ”¹ç”µå­é‚®ç®±â€
+		$("#email").find(".formtips").remove();		//æ¯æ¬¡ç‚¹å‡»â€œä¿®æ”¹â€å°†æ‰€æœ‰è¾“å…¥æ¡†é‡ç½®
+		$(".resetBtn").click();
+		$("#pwdChangeSection").hide();		//éšè—å¯†ç ä¿®æ”¹åŒºåŸŸ
+		$("#emailChangeSection").show();		//æ˜¾ç¤ºé‚®ç®±ä¿®æ”¹åŒºåŸŸ
+		$("#email :input").blur(function()
+		{		//ä¸ºè¡¨å•å…ƒç´ æ·»åŠ å¤±å»ç„¦ç‚¹äº‹ä»¶
+			var $parent = $(this).parent();
+			$parent.find(".formtips").remove();		//é˜²æ­¢è¿½åŠ å†—ä½™
+			if($(this).is("#userName"))
+			{		//ç”¨æˆ·åçš„éªŒè¯
+				if(this.value == "")
+				{
+					var errorMsg = "è¯·è¾“å…¥å½“å‰ç”¨æˆ·å";
+					$parent.append("<p class='formtips onError'>" + errorMsg + "</P>");
+				}
+			}
+			if($(this).is("#pwdForEmail"))
+			{		//å¯†ç çš„éªŒè¯
+				if(this.value == "")
+				{
+					var errorMsg = "è¯·è¾“å…¥å¯†ç ";
+					$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
+				}
+			}
+			if($(this).is("#newEmail"))
+			{		//é‚®ç®±çš„éªŒè¯
+				if(this.value == "")
+				{
+					var errorMsg = "è¯·è¾“å…¥æ–°çš„ç”µå­é‚®ç®±";
+					$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
+				}
+				else if(this.value!="" && !/.+@.+\.[a-zA-Z]{2,4}$/.test(this.value))
+				{
+					var errorMsg = "é‚®ç®±åœ°å€æ ¼å¼é”™è¯¯";
+					$parent.append("<p class='formtips onError'>" + errorMsg + "</p>");
+				}
+				else
+				{
+					var okMsg = "è¾“å…¥æ­£ç¡®";
+					$parent.append("<p class='formtips onOk'>" + okMsg + "</p>");
+				}
+			}
 		});
+		return false;		//é˜»æ­¢é“¾æ¥
+	});
 });

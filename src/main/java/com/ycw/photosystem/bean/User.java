@@ -12,6 +12,7 @@ public class User {
     private Timestamp createTime;
     private Integer userPermission;
     private String nickname;
+    private String email;
     private Department userDepartment;
 
     @Id
@@ -70,6 +71,11 @@ public class User {
         this.nickname = nickname;
     }
 
+    @Column(name = "email")
+    public String getEmail(){return email;}
+
+    public void setEmail(String email){this.email = email;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -86,6 +92,7 @@ public class User {
         if (userPermission != null ? !userPermission.equals(user.userPermission) : user.userPermission != null)
             return false;
         if (nickname != null ? !nickname.equals(user.nickname) : user.nickname != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
 
         return true;
     }
@@ -99,6 +106,7 @@ public class User {
         result = 31 * result + (userDepartment != null ? userDepartment.hashCode() : 0);
         result = 31 * result + (userPermission != null ? userPermission.hashCode() : 0);
         result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
     }
 

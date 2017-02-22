@@ -126,7 +126,7 @@
                 </div>
             </div>
             <div id="rightSection">
-                <iframe src="/classifyScan" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
+                <iframe src="/classifyScanJsp" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
                 </iframe>
             </div> 
         </div>

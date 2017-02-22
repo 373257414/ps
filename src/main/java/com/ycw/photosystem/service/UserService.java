@@ -88,14 +88,20 @@ public class UserService {
         userDAO.update(user);
     }
 
-    public boolean changePassword(int id, String oldPassword, String newPassword) {
-        User user = userDAO.findById(id);
+    public String changePassword(User user, String oldPassword, String newPassword) {
         if (oldPassword.equals(user.getPassword())) {
             user.setPassword(newPassword);
-            return true;
+            userDAO.update(user);
+            return "密码修改成功";
         } else {
-            return false;
+            return "密码错误";
         }
+    }
+
+    public String changeEmail(User user, String newEmail) {
+        user.setEmail(newEmail);
+        userDAO.update(user);
+        return "邮箱修改成功";
     }
 
 
