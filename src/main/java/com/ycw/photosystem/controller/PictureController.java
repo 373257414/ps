@@ -22,7 +22,7 @@ public class PictureController {
     SearchService searchService;
 
 
-    //// TODO:  
+    // TODO:
     @RequestMapping("simpleSearchAction")
     public String simpleSearch(String searchKeys, String keyWords, HttpServletRequest request) {
         List result =searchService.simpleSearch(searchKeys,keyWords);
@@ -43,7 +43,7 @@ public class PictureController {
             }
             conditionMap.put(field,condition);
         }
-        List result =searchService.complexSearch(conditionMap);
+        List result =searchService.complexSearch(conditionMap,true);
         return "/jsp/system";
     }
 

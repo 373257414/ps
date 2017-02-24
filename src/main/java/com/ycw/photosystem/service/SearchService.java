@@ -33,14 +33,17 @@ public class SearchService {
         if (field.equals(null)) {
             return null;
         } else {
-            return pictureDAO.findByProperty(field,condition);
+            return pictureDAO.findByProperty(field, condition);
         }
     }
 
-    public List complexSearch(Map<String,String> conditionMap){
-        return pictureDAO.findByProperties(conditionMap);
+    public List complexSearch(Map<String, String> conditionMap, Boolean mode) {
+        if (mode.equals(true)) {
+            return pictureDAO.findByPropertiesAnd(conditionMap);
+        } else {
+            return pictureDAO.findByPropertiesOr(conditionMap);
+        }
     }
-
 
 
     public Picture findById(Long id) {

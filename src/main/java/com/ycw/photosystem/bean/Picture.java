@@ -14,6 +14,7 @@ public class Picture {
     private Integer pictureLoader;
     private Integer pictureDepartment;
     private Integer pictureCategory;
+    private String place;
     private Integer height;
     private Integer width;
     private String keyPerson;
@@ -95,6 +96,15 @@ public class Picture {
 
     public void setPictureCategory(Integer pictureCategory) {
         this.pictureCategory = pictureCategory;
+    }
+
+    @Column(name = "place")
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     @Column(name = "height")
