@@ -40,6 +40,8 @@ public class PictureEsDAO {
         client.prepareUpdate(INDEX_NAME, TYPE, id).setSource(json).get();
     }
 
+
+
     public Long[] findIdByMatchQuery(String field, String text) {
         QueryBuilder qb = matchQuery(field, text);
         SearchResponse searchResponse = client.prepareSearch(INDEX_NAME)

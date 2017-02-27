@@ -1,30 +1,55 @@
 package com.ycw.photosystem;
 
 import com.ycw.photosystem.bean.Picture;
+import com.ycw.photosystem.service.SearchService;
 import com.ycw.photosystem.service.TestService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 
 public class Main {
 
     private static TestService testService;
+    private static SearchService searchService;
 
     static {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
         testService = (TestService) context.getBean("testService");
+        searchService = (SearchService) context.getBean("searchService");
     }
 
     public static void main(String[] args) {
 
+
+        Map<String, String> conditionMap = new HashMap<>();
+        conditionMap.put("fileNumber", "testFileNumber");
+        conditionMap.put("description", "testDescription");
+        conditionMap.put("keyPerson", "testKeyPerson");
+        conditionMap.put("author", "testFake");
+        List resultAnd = searchService.complexSearch(conditionMap, true);
+        List resultOr = searchService.complexSearch(conditionMap, false);
+        System.out.print("使用数据之前\n");
+        if (resultAnd != null && resultAnd.size() > 0) {
+            Picture picture1 = (Picture) resultAnd.get(0);
+            System.out.print(picture1.getId());
+        }
+        if (resultOr != null && resultOr.size() > 0) {
+            Picture picture2 = (Picture) resultOr.get(0);
+            System.out.print(picture2.getId());
+        }
+        System.out.print("使用数据之后\n");
+
+
         //testService.totalUpdate();
-        testService.esSearch("name", "猫");
+        //testService.esSearch("name", "猫");
         //testService.esSearch("pictureCategory", "测试", 0, 10);
-        System.out.println("--------------");
+        //System.out.println("--------------");
         //testService.esSearch("pictureCategory", "测试", 0, 5);
 
     }

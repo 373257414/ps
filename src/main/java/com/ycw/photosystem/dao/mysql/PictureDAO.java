@@ -3,13 +3,13 @@ package com.ycw.photosystem.dao.mysql;
 import com.ycw.photosystem.bean.Picture;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Repository
 public class PictureDAO {
@@ -65,6 +65,20 @@ public class PictureDAO {
         return criteria.list();
     }
 
+    public List findByPropertiesAnd(Map<String, String> propertiesMap) {
+        return sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.allEq(propertiesMap)).list();
+    }
+
+    public List findByPropertiesOr(Map<String, String> propertiesMap) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Picture.class);
+        Set<Map.Entry<String, String>> propertiesEntrySet = propertiesMap.entrySet();
+        Disjunction disjunction = Restrictions.disjunction();
+        for (Map.Entry<String, String> entry : propertiesEntrySet) {
+            disjunction.add(Restrictions.eq(entry.getKey(), entry.getValue()));
+        }
+        return criteria.add(disjunction).list();
+    }
+
     public List findByCategory(int cid, int from, int count) {
         return sessionFactory.getCurrentSession().createCriteria(Picture.class)
                 .add(Restrictions.eq("pictureCategory", cid))
@@ -72,8 +86,8 @@ public class PictureDAO {
                 .setMaxResults(count).list();
     }
 
-    public List findByProperty(String propertyName,String condition){
-        return sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.eq(propertyName,condition)).list();
+    public List findByProperty(String propertyName, String condition) {
+        return sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.eq(propertyName, condition)).list();
     }
 
     public List findByFileNumber(String fileNumber) {
