@@ -40,12 +40,14 @@ $(document).ready(function()
 	})
 	/*获取地址栏参数并判断是账号还是密码错误*/
 	var args = getQueryStringArgs();
-	if(args["message"] == "账号不存在")
-	{
-		$("#login_username").css("border-color","red");
-	}
-	if(args["message"] == "密码错误")
-	{
-		$("#login_password").css("border-color","red");
+	if(args["message"]){
+        if(args["message"] == "账号不存在")
+        {
+            $("#login_username").css("border-color","red");
+        }
+        if(args["message"] == "密码错误")
+        {
+            $("#login_password").css("border-color","red");
+        }
 	}
 });

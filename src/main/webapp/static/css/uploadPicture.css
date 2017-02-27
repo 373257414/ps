@@ -1,0 +1,60 @@
+#container {
+    width: 785px;
+    height: 600px;
+    background-color: transparent;
+    margin: 0 auto;
+}
+header{
+    height:50px;
+}
+header h1{
+    text-align:center;
+    width: 300px;
+    background:#00A1F1;
+    font-size: 24px;
+    font-family: '΢���ź�','����',sans-serif;
+    float: left;
+    margin-top: 0px;
+    margin-left: 230px;
+    line-height: 40px;
+    color:white;
+}
+form p{
+    display:inline;
+}
+#leftSection{		/*������*/
+    position:absolute;
+}
+#departments{		/*�����б�*/
+    font-size:15px;
+    width:100px;
+    margin-top:50px;
+    margin-left:100px;
+}
+.buttons{		/*��ť����*/
+    margin-top:20px;
+    margin-left:30px;
+}
+.buttons input{		/*��ť*/
+    font-size:15px;
+    margin-left:15px;
+}
+#rightSection{		/*�Ҳ�����*/
+    margin-left:350px;
+    margin-top:0px;
+    position:absolute;
+}
+#depInfo{		/*������Ϣ����*/
+    margin-top:50px;
+}
+#depInfo p{		/*������Ϣ��������*/
+    font-size:14px;
+    margin-top:13px;
+}
+#depEdit{		/*���ű༭����*/
+    margin-top:90px;
+}
+#depEdit p{
+    font-size:14px;
+    margin-top:13px;
+}

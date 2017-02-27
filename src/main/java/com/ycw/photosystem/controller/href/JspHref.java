@@ -10,6 +10,9 @@ public class JspHref {
     @RequestMapping("classifyScanJsp")
     public ModelAndView classifyScanJsp() { return new ModelAndView("/jsp/classifyScan"); }
 
+    @RequestMapping("uploadPictureJsp")
+    public ModelAndView uploadPictureJsp() { return new ModelAndView("/jsp/uploadPicture"); }
+
     @RequestMapping("departmentJsp")
     public ModelAndView departmentJsp() { return new ModelAndView("/jsp/deparment"); }
 

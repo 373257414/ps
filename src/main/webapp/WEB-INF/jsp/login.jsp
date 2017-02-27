@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="/static/css/buttons.css" media="screen">
     <link rel="stylesheet" href="/static/css/mainFrame.css" media="screen">
     <script src="/static/js/jquery-2.2.4.js" type="text/javascript"></script>
-    <script src="/static/js/advancedSearch.js" type="text/javascript" charset="gbk"></script>
-    <script src="/static/js/login.js" type="text/javascript" charset="gbk"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+	  <script src="/static/js/advancedSearch.js" type="text/javascript"></script>
     <script src="/static/js/slideToggle.js" type="text/javascript" charset="gbk"></script>
     <script src="/static/js/getQueryStringArgs.js" type="text/javascript" charset="gbk"></script>
   </head>
@@ -71,36 +71,36 @@
 	                <a href="#" title="高级搜索" id="A_Search_link"><img src="/static/img/ZHYgodown16.png" class="icon_inline icon_change_search"/>高级搜索<img src="/static/img/ZHYgodown16.png" class="icon_inline icon_change_search"/></a>
 	                <div id="A_SearchSection">
 	                	<form id="A_searchForm">
-		                	<div id="A_inputSec">
-		                        <p>
-		                            <label for="fileNumber">归档号码</label>
-		                            <input type="text" id="fileNumber" name="fileNumber" size="15" maxlength="20"/>
-		                        </p>
-		                        <p>
-		                            <label for="pictureIntro">图片说明</label>
-		                            <input type="text" id="pictureIntro" name="pictureIntro" size="15" maxlength="20"/>
-		                        </p>
-		                        <p>
-		                            <label for="importantPerson">关键人物</label>
-		                            <input type="text" id="importantPerson" name="importantPerson" size="15" maxlength="20"/>
-		                        </p>
-		                        <p>
-		                            <label for="photographer">摄影人员</label>
-		                            <input type="text" id="photographer" name="photographer" size="15" maxlength="20"/>
-		                        </p>
-		                        <p>
-		                            <label for="placeOfTaken">拍摄地点</label>
-		                            <input type="text" id="placeOfTaken" name="placeOfTaken" size="15" maxlength="20"/>
-		                        </p>
-		                        <p>
-		                            <label for="fileDepartment">归档部门</label>
-		                            <input type="text" id="fileDepartment" name="fileDepartment" size="15" maxlength="20"/>
-		                        </p>
-		                        <p>
-		                            <label for="pictureKind">图片种类</label>
-		                            <input type="text" id="pictureKind" name="pictureKind" size="15" maxlength="20"/>
-		                        </p>
-		                    </div>
+							<div id="A_inputSec">
+								<p>
+									<label for="fileNumber">归档号码</label>
+									<input type="text" id="fileNumber" name="fileNumber" size="15" maxlength="20"/>
+								</p>
+								<p>
+									<label for="pictureIntro">图片说明</label>
+									<input type="text" id="pictureIntro" name="pictureIntro" size="15" maxlength="20"/>
+								</p>
+								<p>
+									<label for="importantPerson">关键人物</label>
+									<input type="text" id="importantPerson" name="importantPerson" size="15" maxlength="20"/>
+								</p>
+								<p>
+									<label for="photographer">摄影人员</label>
+									<input type="text" id="photographer" name="photographer" size="15" maxlength="20"/>
+								</p>
+								<p>
+									<label for="placeOfTaken">拍摄地点</label>
+									<input type="text" id="placeOfTaken" name="placeOfTaken" size="15" maxlength="20"/>
+								</p>
+								<p>
+									<label for="fileDepartment">归档部门</label>
+									<input type="text" id="fileDepartment" name="fileDepartment" size="15" maxlength="20"/>
+								</p>
+								<p>
+									<label for="pictureKind">图片种类</label>
+									<input type="text" id="pictureKind" name="pictureKind" size="15" maxlength="20"/>
+								</p>
+							</div>
 		                    <div id="A_check">
 		                        <input type="radio" value="accurateSearch" name="check" title="照片符合所有选择条件" checked="check"/>精确搜索
 		                        <input type="radio" value="blurySearch" name="check" title="照片符合任意一个选择条件即可"/>模糊搜索
@@ -126,11 +126,12 @@
                 </div>
             </div>
             <div id="rightSection">
-                <iframe src="/classifyScanJsp" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
+                <iframe src="/uploadPictureJsp" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
                 </iframe>
             </div> 
         </div>
         <footer><address>Beijing University of Posts and Telecommunications 2016 Photo Album</address></footer>
     </div>
+	<script src="/static/js/login.js" type="text/javascript" charset="gbk"></script>
   </body>
 </html>
