@@ -1,5 +1,9 @@
 $(document).ready(function()
 {
+	/*$.ajax({
+		method:'GET',
+		url:''
+	});*/
 	/*当输入框获得焦点时重置红色提示边框*/
 	$(".username,.password").focus(function()
 	{

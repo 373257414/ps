@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>北京邮电大学|图片档案馆|系统管理员</title>
+    <title>北京邮电大学|图片档案馆|部门管理员</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                	<p>权限：部门管理员</p>
 	                	<p><a href="jsp/userInformation.jsp" target="main" class="button button-glow button-border button-rounded button-tiny button-primary"/>查看</a></p>
                 	</div>
-                	<a href="jsp/login.jsp" id="logout"><img src="img/ZHYlogout32.png" alt="注销" title="注销"/></a>
+                	<a href="loginJsp" id="logout"><img src="img/ZHYlogout32.png" alt="注销" title="注销"/></a>
                 </div>
                 <div id="searchSection">
 	                <header class="leftHeader">
