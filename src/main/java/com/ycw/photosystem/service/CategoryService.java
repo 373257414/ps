@@ -14,7 +14,6 @@ public class CategoryService {
     @Autowired
     CategoryDAO categoryDAO;
 
-    @RequestMapping("getAllCategory")
     public List findAll() {
         return categoryDAO.findAll();
     }
