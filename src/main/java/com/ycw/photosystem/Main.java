@@ -1,15 +1,15 @@
 package com.ycw.photosystem;
 
 import com.ycw.photosystem.bean.Picture;
+import com.ycw.photosystem.dao.mysql.UserDAO;
 import com.ycw.photosystem.service.SearchService;
 import com.ycw.photosystem.service.TestService;
+import com.ycw.photosystem.service.UserService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.Timestamp;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 
@@ -17,17 +17,22 @@ public class Main {
 
     private static TestService testService;
     private static SearchService searchService;
+    private static UserService userService;
+    private static UserDAO userDAO;
 
     static {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
         testService = (TestService) context.getBean("testService");
         searchService = (SearchService) context.getBean("searchService");
+        userService = (UserService) context.getBean("userService");
     }
 
     public static void main(String[] args) {
+        List list =userService.findAll();
+        System.out.print(list.size());
 
 
-        Map<String, String> conditionMap = new HashMap<>();
+        /*Map<String, String> conditionMap = new HashMap<>();
         conditionMap.put("fileNumber", "testFileNumber");
         conditionMap.put("description", "testDescription");
         conditionMap.put("keyPerson", "testKeyPerson");
@@ -43,7 +48,7 @@ public class Main {
             Picture picture2 = (Picture) resultOr.get(0);
             System.out.print(picture2.getId());
         }
-        System.out.print("使用数据之后\n");
+        System.out.print("使用数据之后\n");*/
 
 
         //testService.totalUpdate();

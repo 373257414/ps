@@ -86,7 +86,7 @@ public class PictureDAO {
                 .setMaxResults(count).list();
     }
 
-    public List findByProperty(String propertyName, String condition) {
+    public List findByProperty(String propertyName, Object condition) {
         return sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.eq(propertyName, condition)).list();
     }
 

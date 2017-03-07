@@ -1,49 +1,50 @@
 package com.ycw.photosystem.controller;
 
-import com.ycw.photosystem.dao.mysql.PictureDAO;
 import com.ycw.photosystem.service.PictureService;
 import com.ycw.photosystem.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
-import java.util.Map.Entry;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Controller
 public class PictureController {
-
 
     @Autowired
     PictureService pictureService;
     @Autowired
     SearchService searchService;
 
-
-    // TODO:
     @RequestMapping("simpleSearchAction")
-    public String simpleSearch(String searchKeys, String keyWords, HttpServletRequest request) {
-        List result =searchService.simpleSearch(searchKeys,keyWords);
-        return "/jsp/system";
+    public ModelAndView simpleSearch(String searchKeys, String keyWords) {
+        List result = searchService.simpleSearch(searchKeys, keyWords);
+        ModelAndView mav = new ModelAndView("/jsp/system");
+        mav.addObject(result);
+        return mav;
     }
 
     // TODO: 精确查找和模糊查找，与前端的配合
     @RequestMapping("complexSearchAction")
-    public String complexSearch(String check, HttpServletRequest request){
-        Map<String,String[]> parameterMap=request.getParameterMap();
+    public String complexSearch(String check, HttpServletRequest request) {
+        Map<String, String[]> parameterMap = request.getParameterMap();
         parameterMap.remove("check");
-        Set<String> fields=parameterMap.keySet();
-        Map<String,String> conditionMap = new HashMap<>();
-        for (String field:fields) {
-            String condition=StringUtils.trimWhitespace(request.getParameter(field));
-            if (StringUtils.isEmpty(condition)){
+        Set<String> fields = parameterMap.keySet();
+        Map<String, String> conditionMap = new HashMap<>();
+        for (String field : fields) {
+            String condition = StringUtils.trimWhitespace(request.getParameter(field));
+            if (StringUtils.isEmpty(condition)) {
                 continue;
             }
-            conditionMap.put(field,condition);
+            conditionMap.put(field, condition);
         }
-        List result =searchService.complexSearch(conditionMap,true);
+        List result = searchService.complexSearch(conditionMap, true);
         return "/jsp/system";
     }
 

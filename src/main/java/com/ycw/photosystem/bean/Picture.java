@@ -3,26 +3,10 @@ package com.ycw.photosystem.bean;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-
 @Entity
 public class Picture {
+
     private Long id;
-    private String name;
-    private Timestamp createTime;
-    private String path;
-    private String watermarkPath;
-    private Integer pictureLoader;
-    private Integer pictureDepartment;
-    private Integer pictureCategory;
-    private String place;
-    private Integer height;
-    private Integer width;
-    private String keyPerson;
-    private String author;
-    private String description;
-    private Integer visitCount;
-    private Integer downloadCount;
-    private String fileNumber;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -34,6 +18,26 @@ public class Picture {
     public void setId(Long id) {
         this.id = id;
     }
+
+    private String name;
+    private Timestamp createTime;
+    private String path;
+    private String watermarkPath;
+    private Integer pictureLoader;
+    //省略其他字段
+    private Integer pictureDepartment;
+    private Integer pictureCategory;
+    private String place;
+    private Integer height;
+    private Integer width;
+    private String keyPerson;
+    private String author;
+    private String description;
+    private Integer visitCount;
+    private Integer downloadCount;
+    private String fileNumber;
+    private Short status;
+
 
     @Column(name = "name", nullable = false, length = 45)
     public String getName() {
@@ -179,6 +183,15 @@ public class Picture {
         this.fileNumber = fileNumber;
     }
 
+    @Column(name = "status", length = 1)
+    public Short getStatus() {
+        return status;
+    }
+
+    public void setStatus(Short status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -231,4 +244,5 @@ public class Picture {
         result = 31 * result + (fileNumber != null ? fileNumber.hashCode() : 0);
         return result;
     }
+    //省略部分代码
 }

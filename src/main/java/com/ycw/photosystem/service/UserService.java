@@ -1,6 +1,5 @@
 package com.ycw.photosystem.service;
 
-
 import com.ycw.photosystem.bean.Department;
 import com.ycw.photosystem.bean.User;
 import com.ycw.photosystem.dao.mysql.DepartmentDAO;
@@ -19,7 +18,6 @@ import java.util.Map;
 @Service
 @Transactional
 public class UserService {
-
 
     @Autowired
     private UserDAO userDAO;
@@ -122,5 +120,11 @@ public class UserService {
         } else {
             return (User) users.get(0);
         }
+    }
+    //省略成员方法
+
+
+    public List findAll() {
+        return userDAO.findAllBySQL();
     }
 }

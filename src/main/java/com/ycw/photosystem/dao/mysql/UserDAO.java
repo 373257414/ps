@@ -3,8 +3,7 @@ package com.ycw.photosystem.dao.mysql;
 import com.ycw.photosystem.bean.User;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,68 +11,29 @@ import java.util.List;
 
 @Repository
 public class UserDAO {
-    private static final Logger log = LoggerFactory.getLogger(UserDAO.class);
 
     public static final String USER_NAME = "name";
     @Autowired
     private SessionFactory sessionFactory;
 
     public void save(User transientInstance) {
-        log.debug("saving User instance");
-        try {
-            sessionFactory.getCurrentSession().save(transientInstance);
-            log.debug("save successful");
-        } catch (RuntimeException re) {
-            log.error("save failed", re);
-            throw re;
-        }
+        sessionFactory.getCurrentSession().save(transientInstance);
     }
 
     public void update(User transientInstance) {
-        log.debug("updating User instance");
-        try {
-            sessionFactory.getCurrentSession().update(transientInstance);
-            log.debug("update successful");
-        } catch (RuntimeException re) {
-            log.error("update failed", re);
-            throw re;
-        }
+        sessionFactory.getCurrentSession().update(transientInstance);
     }
 
     public void delete(User persistentInstance) {
-        log.debug("deleting User instance");
-        try {
-            sessionFactory.getCurrentSession().delete(persistentInstance);
-            log.debug("delete successful");
-        } catch (RuntimeException re) {
-            log.error("delete failed", re);
-            throw re;
-        }
+        sessionFactory.getCurrentSession().delete(persistentInstance);
     }
 
     public User findById(java.lang.Integer id) {
-        log.debug("getting User instance with id: " + id);
-        try {
-            User instance = (User) sessionFactory.getCurrentSession().get(User.class, id);
-            return instance;
-        } catch (RuntimeException re) {
-            log.error("get failed", re);
-            throw re;
-        }
+        return (User) sessionFactory.getCurrentSession().get(User.class, id);
     }
 
-    public List findByProperty(String propertyName, Object value) {
-        log.debug("finding User instance with property: " + propertyName
-                + ", value: " + value);
-        try {
-            String queryString = "from User as model where model."
-                    + propertyName + "= \'" + value + "\'";
-            Query query = sessionFactory.getCurrentSession().createQuery(queryString);
-            return query.list();
-        } catch (RuntimeException re) {
-            log.error("find by property name failed", re);
-            throw re;
-        }
+    public List findByProperty(String propertyName, Object condition) {
+        return sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq(propertyName, condition)).list();
     }
 
     public List findByUserName(Object userName) {
@@ -81,14 +41,11 @@ public class UserDAO {
     }
 
     public List findAll() {
-        log.debug("finding all User instances");
-        try {
-            String queryString = "from User";
-            Query query = sessionFactory.getCurrentSession().createQuery(queryString);
-            return query.list();
-        } catch (RuntimeException re) {
-            log.error("find all failed", re);
-            throw re;
-        }
+        return sessionFactory.getCurrentSession().createCriteria(User.class).list();
+    }
+    public List findAllBySQL(){
+        String queryString = "from User";
+        Query query= sessionFactory.getCurrentSession().createQuery(queryString);
+        return query.list();
     }
 }

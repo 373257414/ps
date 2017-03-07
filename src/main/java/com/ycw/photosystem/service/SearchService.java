@@ -17,11 +17,9 @@ import java.util.Map;
 @Service
 @Transactional
 public class SearchService {
-
     private final PictureDAO pictureDAO;
     private final PictureEsDAO pictureEsDAO;
     private final PictureTransform pictureTransform;
-
     @Autowired
     public SearchService(PictureDAO pictureDAO, PictureEsDAO pictureEsDAO, PictureTransform pictureTransform) {
         this.pictureDAO = pictureDAO;

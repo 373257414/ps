@@ -59,6 +59,12 @@ public class PictureService {
         return fileName.substring(pos);
     }
 
+    private void jietu(){
+        departmentDAO.findAll();
+        userDAO.findAll();
+        categoryDAO.findAll();
+    }
+
     private String generateFileNumber(int departmentId) {
         Calendar c = Calendar.getInstance();
         int currentYear = c.get(Calendar.YEAR);
