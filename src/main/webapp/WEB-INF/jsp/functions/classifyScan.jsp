@@ -7,6 +7,7 @@
     <title>北京邮电大学|图片档案馆|游客登录|分类浏览</title>
 	<link rel="stylesheet" href="/static/css/classifyScan.css" media="screen">
     <link rel="stylesheet" href="/static/css/reset.css" media="screen">
+      <script src="/static/js/jquery-2.2.4.js" type="text/javascript"></script>
 
   </head>
   
@@ -78,5 +79,6 @@
             </div>
         </div>
     </div>
+<script src="/static/js/classifyScan.js" type="text/javascript"></script>
 </body>
 </html>
