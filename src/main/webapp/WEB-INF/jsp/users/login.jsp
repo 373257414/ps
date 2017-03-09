@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="/static/css/mainFrame.css" media="screen">
     <script src="/static/js/jquery-2.2.4.js" type="text/javascript"></script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
-	  <script src="/static/js/advancedSearch.js" type="text/javascript"></script>
-    <script src="/static/js/slideToggle.js" type="text/javascript" charset="gbk"></script>
-    <script src="/static/js/getQueryStringArgs.js" type="text/javascript" charset="gbk"></script>
   </head>
   <body>
     <div id="container">
@@ -34,14 +31,10 @@
                 <div id="loginSection" class="firstSection">
                 	<form id="loginForm" action="/loginAction" method="post">
                 		<div id="login_inputSec">
-	                		<P>
-	                			<label for="login_username"><img src="/static/img/ZHYuser16.png" class="icon_inline label" alt="账号" title="账号"/></label>
-		                		<input type="text" id="login_username" class="username" name="userName" placeholder="请输入账号"/>
-	                		</p>
-	                		<p>
-	                			<label for="login_password"><img src="/static/img/ZHYpassword16.png" class="icon_inline label" alt="密码" title="密码"/></label>
-                				<input type="password" id="login_password" class="password" name="password" placeholder="请输入6~15位字母或数字"/>
-	                		</p>
+							<p v-for="loginInput in loginInputs">
+								<label :for="loginInput.id"><img :src="loginInput.src" class="icon_inline label" :alt="loginInput.title" :title="loginInput.title"/></label>
+								<input :type="loginInput.type" :id="loginInput.id" :class="loginInput.class" :name="loginInput.name" :placeholder="loginInput.placeholder"/>
+							</p>
                 		</div>
                 			<button id="loginBtn" class="button button-3d button-action button-pill button-tiny">登录</button>
                 	</form>
@@ -53,13 +46,7 @@
 	                <form id="Q_searchForm">
 	                	<div id="Q_inputSec">
 		                	<select name="searchKeys" size="1" id="searchKeys">
-			                    <option value="fileNumber" select="selected">档案号</option>
-			                    <option value="pictrueIntro">图片说明</option>
-			                    <option value="importantPerson">关键人物</option>
-			                    <option value="photogragher">摄影者</option>
-			                    <option value="placeOfTaken">拍摄地点</option>
-			                    <option value="fileDepartment">归档部门</option>
-			                    <option value="pictrueKind">图片种类</option>
+								<option v-for="searchKey in searchKeys" :value="searchKey.value" :select="searchKey.select">{{searchKey.title}}</option>
 		                    </select>
 		                    <input type="text" name="keywords" required="required"/>
 	                	</div>
@@ -72,33 +59,9 @@
 	                <div id="A_SearchSection">
 	                	<form id="A_searchForm">
 							<div id="A_inputSec">
-								<p>
-									<label for="fileNumber">归档号码</label>
-									<input type="text" id="fileNumber" name="fileNumber" size="15" maxlength="20"/>
-								</p>
-								<p>
-									<label for="pictureIntro">图片说明</label>
-									<input type="text" id="pictureIntro" name="pictureIntro" size="15" maxlength="20"/>
-								</p>
-								<p>
-									<label for="importantPerson">关键人物</label>
-									<input type="text" id="importantPerson" name="importantPerson" size="15" maxlength="20"/>
-								</p>
-								<p>
-									<label for="photographer">摄影人员</label>
-									<input type="text" id="photographer" name="photographer" size="15" maxlength="20"/>
-								</p>
-								<p>
-									<label for="placeOfTaken">拍摄地点</label>
-									<input type="text" id="placeOfTaken" name="placeOfTaken" size="15" maxlength="20"/>
-								</p>
-								<p>
-									<label for="fileDepartment">归档部门</label>
-									<input type="text" id="fileDepartment" name="fileDepartment" size="15" maxlength="20"/>
-								</p>
-								<p>
-									<label for="pictureKind">图片种类</label>
-									<input type="text" id="pictureKind" name="pictureKind" size="15" maxlength="20"/>
+								<p v-for="searchKey in searchKeys">
+									<label :for="searchKey.value">{{searchKey.title}}</label>
+									<input :type="searchKey.type" :id="searchKey.value" :name="searchKey.value" size="15" maxlength="20">
 								</p>
 							</div>
 		                    <div id="A_check">
@@ -133,5 +96,8 @@
         <footer><address>Beijing University of Posts and Telecommunications 2016 Photo Album</address></footer>
     </div>
 	<script src="/static/js/login.js" type="text/javascript" charset="gbk"></script>
+	<script src="/static/js/advancedSearch.js" type="text/javascript"></script>
+	<script src="/static/js/slideToggle.js" type="text/javascript" charset="gbk"></script>
+	<script src="/static/js/getQueryStringArgs.js" type="text/javascript" charset="gbk"></script>
   </body>
 </html>

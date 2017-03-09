@@ -71,7 +71,7 @@ public class UserController {
                 HttpSession session = request.getSession();
                 session.setAttribute("currentUser", user);
                 if (user.getUserPermission() == 1) {
-                    return "/jsp/system";
+                    return "/jsp/users/system";
                 } else if (user.getUserPermission() == 2) {
                     return "/jsp/department";
                 } else {
