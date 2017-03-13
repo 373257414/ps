@@ -20,7 +20,7 @@ public class CategoryService {
         return categoryDAO.findAll();
     }
 
-    public Integer getPictureCount(int categoryId) {
+    public Long getPictureCount(int categoryId) {
         return pictureDAO.getPicSumInCategory(categoryId);
     }
 }
