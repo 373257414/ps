@@ -1,6 +1,6 @@
 package com.ycw.photosystem.dao.mysql;
 
-import com.ycw.photosystem.bean.User;
+import com.ycw.photosystem.bean.mysql.User;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;

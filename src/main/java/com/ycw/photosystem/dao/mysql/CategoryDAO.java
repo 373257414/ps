@@ -1,13 +1,12 @@
 package com.ycw.photosystem.dao.mysql;
 
-import com.ycw.photosystem.bean.Category;
+import com.ycw.photosystem.bean.mysql.Category;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

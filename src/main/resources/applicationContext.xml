@@ -42,14 +42,14 @@
         <property name="dataSource" ref="c3p0"/>
         <property name="annotatedClasses">
             <list>
-                <value>com.ycw.photosystem.bean.Category</value>
-                <value>com.ycw.photosystem.bean.Department</value>
-                <value>com.ycw.photosystem.bean.Event</value>
-                <value>com.ycw.photosystem.bean.Permission</value>
-                <value>com.ycw.photosystem.bean.Picture</value>
-                <value>com.ycw.photosystem.bean.Request</value>
-                <value>com.ycw.photosystem.bean.Support</value>
-                <value>com.ycw.photosystem.bean.User</value>
+                <value>com.ycw.photosystem.bean.mysql.Category</value>
+                <value>com.ycw.photosystem.bean.mysql.Department</value>
+                <value>com.ycw.photosystem.bean.mysql.Event</value>
+                <value>com.ycw.photosystem.bean.mysql.Permission</value>
+                <value>com.ycw.photosystem.bean.mysql.Picture</value>
+                <value>com.ycw.photosystem.bean.mysql.Request</value>
+                <value>com.ycw.photosystem.bean.mysql.Support</value>
+                <value>com.ycw.photosystem.bean.mysql.User</value>
             </list>
         </property>
         <property name="hibernateProperties">

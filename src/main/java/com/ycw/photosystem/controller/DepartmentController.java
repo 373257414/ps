@@ -1,6 +1,6 @@
 package com.ycw.photosystem.controller;
 
-import com.ycw.photosystem.bean.Department;
+import com.ycw.photosystem.bean.mysql.Department;
 import com.ycw.photosystem.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

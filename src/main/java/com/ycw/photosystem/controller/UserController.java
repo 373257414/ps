@@ -1,6 +1,6 @@
 package com.ycw.photosystem.controller;
 
-import com.ycw.photosystem.bean.User;
+import com.ycw.photosystem.bean.mysql.User;
 import com.ycw.photosystem.service.DepartmentService;
 import com.ycw.photosystem.service.PermissionService;
 import com.ycw.photosystem.service.UserService;

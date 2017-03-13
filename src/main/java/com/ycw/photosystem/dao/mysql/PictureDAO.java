@@ -1,9 +1,13 @@
 package com.ycw.photosystem.dao.mysql;
 
-import com.ycw.photosystem.bean.Picture;
+import com.ycw.photosystem.bean.mysql.Picture;
+import com.ycw.photosystem.bean.paper.Paper;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.*;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -65,6 +69,30 @@ public class PictureDAO {
         return criteria.list();
     }
 
+
+    public List findByPaper(Paper paper) {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Picture.class);
+        int from = (paper.getCurrentPaper() - 1) * paper.getPaperSize();
+        int count = from + paper.getPaperSize();
+        if (paper.getCategoryId() > 0) {
+            criteria.add(Restrictions.eq("PictureCategory", paper.getCategoryId()));
+        }
+        if (paper.getDepartmentId() > 0) {
+            criteria.add(Restrictions.eq("PictureDepartment", paper.getDepartmentId()));
+        }
+        if (paper.getIds() != null) {
+            criteria.add(Restrictions.in("id", paper.getIds()));
+        }
+        if (paper.isDescOrder() == true) {
+            criteria.addOrder(Order.desc("id"));
+        }
+        return criteria.setFirstResult(from).setMaxResults(count).list();
+    }
+
+    public List findByProperty(String propertyName, Object condition) {
+        return sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.eq(propertyName, condition)).list();
+    }
+
     public List findByPropertiesAnd(Map<String, String> propertiesMap) {
         return sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.allEq(propertiesMap)).list();
     }
@@ -78,20 +106,4 @@ public class PictureDAO {
         }
         return criteria.add(disjunction).list();
     }
-
-    public List findByCategory(int cid, int from, int count) {
-        return sessionFactory.getCurrentSession().createCriteria(Picture.class)
-                .add(Restrictions.eq("pictureCategory", cid))
-                .setFirstResult(from)
-                .setMaxResults(count).list();
-    }
-
-    public List findByProperty(String propertyName, Object condition) {
-        return sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.eq(propertyName, condition)).list();
-    }
-
-    public List findByFileNumber(String fileNumber) {
-        return sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.eq("fileNumber", fileNumber)).list();
-    }
-
 }

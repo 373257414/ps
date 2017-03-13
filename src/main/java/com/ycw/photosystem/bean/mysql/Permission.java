@@ -1,14 +1,15 @@
-package com.ycw.photosystem.bean;
+package com.ycw.photosystem.bean.mysql;
 
 import javax.persistence.*;
 
+
 @Entity
-public class Category {
+public class Permission {
     private int id;
     private String name;
 
     @Id
-    @Column(name = "id",nullable = false)
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
@@ -18,7 +19,7 @@ public class Category {
         this.id = id;
     }
 
-    @Column(name = "name", nullable = true, length = 255)
+    @Column(name = "name", nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -32,10 +33,10 @@ public class Category {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Category category = (Category) o;
+        Permission that = (Permission) o;
 
-        if (id != category.id) return false;
-        if (name != null ? !name.equals(category.name) : category.name != null) return false;
+        if (id != that.id) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;
     }

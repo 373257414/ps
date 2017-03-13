@@ -43,7 +43,7 @@ public class EventDAO{
 	public Event findById(java.lang.Integer id) {
 		log.debug("getting Event instance with id: " + id);
 		try {
-			Event instance = (Event) sessionFactory.getCurrentSession().get("com.ycw.photosystem.bean.Event", id);
+			Event instance = (Event) sessionFactory.getCurrentSession().get("com.ycw.photosystem.bean.mysql.Event", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

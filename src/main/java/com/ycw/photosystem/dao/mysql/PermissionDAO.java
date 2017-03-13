@@ -1,13 +1,12 @@
 package com.ycw.photosystem.dao.mysql;
 
-import com.ycw.photosystem.bean.Permission;
+import com.ycw.photosystem.bean.mysql.Permission;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class PermissionDAO{
 	public Permission findById(java.lang.Integer id) {
 		log.debug("getting Permission instance with id: " + id);
 		try {
-			Permission instance = (Permission) sessionFactory.getCurrentSession().get(	"com.ycw.photosystem.bean.Permission", id);
+			Permission instance = (Permission) sessionFactory.getCurrentSession().get(	"com.ycw.photosystem.bean.mysql.Permission", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

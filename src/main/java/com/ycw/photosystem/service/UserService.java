@@ -1,7 +1,7 @@
 package com.ycw.photosystem.service;
 
-import com.ycw.photosystem.bean.Department;
-import com.ycw.photosystem.bean.User;
+import com.ycw.photosystem.bean.mysql.Department;
+import com.ycw.photosystem.bean.mysql.User;
 import com.ycw.photosystem.dao.mysql.DepartmentDAO;
 import com.ycw.photosystem.dao.mysql.PermissionDAO;
 import com.ycw.photosystem.dao.mysql.UserDAO;

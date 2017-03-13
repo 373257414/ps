@@ -1,4 +1,4 @@
-<%@ page import="com.ycw.photosystem.bean.Picture" %>
+<%@ page import="com.ycw.photosystem.bean.mysql.Picture" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%--

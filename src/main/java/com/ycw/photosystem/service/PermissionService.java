@@ -1,6 +1,6 @@
 package com.ycw.photosystem.service;
 
-import com.ycw.photosystem.bean.Permission;
+import com.ycw.photosystem.bean.mysql.Permission;
 import com.ycw.photosystem.dao.mysql.PermissionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

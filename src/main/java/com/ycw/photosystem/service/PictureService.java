@@ -1,6 +1,6 @@
 package com.ycw.photosystem.service;
 
-import com.ycw.photosystem.bean.Picture;
+import com.ycw.photosystem.bean.mysql.Picture;
 import com.ycw.photosystem.dao.mysql.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +15,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;

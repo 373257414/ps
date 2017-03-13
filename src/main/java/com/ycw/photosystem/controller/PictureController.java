@@ -1,11 +1,13 @@
 package com.ycw.photosystem.controller;
 
+import com.ycw.photosystem.bean.paper.Paper;
 import com.ycw.photosystem.service.PictureService;
 import com.ycw.photosystem.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +48,15 @@ public class PictureController {
         }
         List result = searchService.complexSearch(conditionMap, true);
         return "/jsp/system";
+    }
+
+    @RequestMapping("classifyScan")
+    @ResponseBody
+    public List classifyScan(int currentPaper, int categoryId){
+        Paper paper = new Paper();
+        paper.setCategoryId(categoryId);
+        paper.setCurrentPaper(currentPaper);
+        return searchService.displayByPaper(paper);
     }
 
 

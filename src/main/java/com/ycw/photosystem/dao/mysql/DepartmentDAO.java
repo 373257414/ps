@@ -1,13 +1,12 @@
 package com.ycw.photosystem.dao.mysql;
 
-import com.ycw.photosystem.bean.Department;
+import com.ycw.photosystem.bean.mysql.Department;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -58,7 +57,7 @@ public class DepartmentDAO{
 		log.debug("getting Department instance with id: " + id);
 		try {
 			Department instance = (Department) sessionFactory.getCurrentSession().get(
-					"com.ycw.photosystem.bean.Department", id);
+					"com.ycw.photosystem.bean.mysql.Department", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

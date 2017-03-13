@@ -2,7 +2,8 @@ package com.ycw.photosystem.service;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.ycw.photosystem.bean.Picture;
+import com.ycw.photosystem.bean.mysql.Picture;
+import com.ycw.photosystem.bean.paper.Paper;
 import com.ycw.photosystem.dao.es.PictureEsDAO;
 import com.ycw.photosystem.dao.mysql.PictureDAO;
 import com.ycw.photosystem.dao.tranform.PictureTransform;
@@ -20,6 +21,7 @@ public class SearchService {
     private final PictureDAO pictureDAO;
     private final PictureEsDAO pictureEsDAO;
     private final PictureTransform pictureTransform;
+
     @Autowired
     public SearchService(PictureDAO pictureDAO, PictureEsDAO pictureEsDAO, PictureTransform pictureTransform) {
         this.pictureDAO = pictureDAO;
@@ -43,27 +45,8 @@ public class SearchService {
         }
     }
 
-
-    public Picture findById(Long id) {
-        return pictureDAO.findById(id);
-    }
-
-    public List findByIds(Long[] ids) {
-        return pictureDAO.findByIds(ids);
-    }
-
-    public List findByIdsDecs(Long[] ids) {
-        return pictureDAO.findByIds(ids, false);
-    }
-
-    public List findByCategory(int cid, int from, int count) {
-        List list = pictureDAO.findByCategory(cid, from, count);
-        return pictureDAO.findByCategory(cid, from, count);
-    }
-
-
-    public void save(Picture picture) {
-        pictureDAO.save(picture);
+    public List displayByPaper(Paper paper){
+        return pictureDAO.findByPaper(paper);
     }
 
     public void totalUpdate() {

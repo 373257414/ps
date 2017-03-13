@@ -1,6 +1,6 @@
 package com.ycw.photosystem.service;
 
-import com.ycw.photosystem.bean.Department;
+import com.ycw.photosystem.bean.mysql.Department;
 import com.ycw.photosystem.dao.mysql.DepartmentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

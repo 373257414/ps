@@ -1,6 +1,6 @@
 package com.ycw.photosystem;
 
-import com.ycw.photosystem.bean.Picture;
+import com.ycw.photosystem.bean.mysql.Picture;
 import com.ycw.photosystem.dao.mysql.UserDAO;
 import com.ycw.photosystem.service.SearchService;
 import com.ycw.photosystem.service.TestService;

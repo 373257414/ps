@@ -45,7 +45,7 @@ public class RequestDAO{
 	public Request findById(java.lang.Integer id) {
 		log.debug("getting Request instance with id: " + id);
 		try {
-			Request instance = (Request) sessionFactory.getCurrentSession().get("com.ycw.photosystem.bean.Request", id);
+			Request instance = (Request) sessionFactory.getCurrentSession().get("com.ycw.photosystem.bean.mysql.Request", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);

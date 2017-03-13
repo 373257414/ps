@@ -1,6 +1,6 @@
 package com.ycw.photosystem.dao.tranform;
 
-import com.ycw.photosystem.bean.Picture;
+import com.ycw.photosystem.bean.mysql.Picture;
 import com.ycw.photosystem.bean.es.PictureEsBean;
 import com.ycw.photosystem.dao.mysql.CategoryDAO;
 import com.ycw.photosystem.dao.mysql.DepartmentDAO;

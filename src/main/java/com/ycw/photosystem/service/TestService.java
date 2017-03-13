@@ -1,7 +1,7 @@
 package com.ycw.photosystem.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.ycw.photosystem.bean.Picture;
+import com.ycw.photosystem.bean.mysql.Picture;
 import com.ycw.photosystem.dao.es.PictureEsDAO;
 import com.ycw.photosystem.dao.mysql.PictureDAO;
 import com.ycw.photosystem.dao.tranform.PictureTransform;

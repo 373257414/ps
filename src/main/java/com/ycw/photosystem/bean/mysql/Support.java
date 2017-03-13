@@ -1,4 +1,4 @@
-package com.ycw.photosystem.bean;
+package com.ycw.photosystem.bean.mysql;
 
 import javax.persistence.*;
 
