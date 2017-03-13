@@ -52,11 +52,11 @@ public class PictureController {
 
     @RequestMapping("getPicInCat")
     @ResponseBody
-    public List getPicInCategory(int currentPaper, int categoryId){
+    public List getPicInCategory(int currentPage, int categoryId){
         Page page = new Page();
         page.setCategoryId(categoryId);
-        page.setCurrentPage(currentPaper);
-        return searchService.displayByPaper(page);
+        page.setCurrentPage(currentPage);
+        return searchService.displayByPage(page);
     }
 
 

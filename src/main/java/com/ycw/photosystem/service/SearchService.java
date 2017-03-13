@@ -45,7 +45,7 @@ public class SearchService {
         }
     }
 
-    public List displayByPaper(Page page){
+    public List displayByPage(Page page){
         return pictureDAO.findByPage(page);
     }
 

@@ -76,7 +76,7 @@ public class PictureDAO {
     public List findByPage(Page page) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Picture.class);
         int from = (page.getCurrentPage() - 1) * page.getPageSize();
-        int count = from + page.getPageSize();
+        int count = page.getPageSize();
         if (page.getCategoryId() > 0) {
             criteria.add(Restrictions.eq("pictureCategory", page.getCategoryId()));
         }
