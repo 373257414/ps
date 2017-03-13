@@ -1,48 +1,68 @@
 /**
  * Created by zhy on 2017/3/7.
  */
-$(document).ready(function(){
-    var container = new Vue({
-        el: '#container',
-        data: {
-            categories:[],
-            pictures:[
-                {src:'/static/img/desert.jpg', fileNumber:'0', description:'lalala0', author:'zhy'},
-                {src:'/static/img/background.jpg', fileNumber:'1', description:'lalala1', author:'lrz'},
-                {src:'/static/img/penguin.jpg', fileNumber:'2', description:'lalala2', author:'wm'},
-                {src:'/static/img/penguin.jpg', fileNumber:'3', description:'lalala3', author:'yg'}
-                ],
-            pagination:{
-                currentPage:1,
-                pageSize:6,
-                total:4
-            }
-        },
-    });
-    $('.image').width($('.el-card').width());
-    $.ajax({
-        url:'getAllCategory',
-        type:'GET',
-        success:function(response){
-            for(var i in response) {
-                container.categories.push({
-                    id:response[i].id,
-                    name:response[i].name
-                });
-            }
-        },
-        error:function(response){
-            console.log(response);
+var container = new Vue({
+    el: '#container',
+    data: {
+        categoryId:1,
+        categories:[],
+        pictures:[
+            {src:'/static/img/desert.jpg', fileNumber:'0', description:'lalala0', time:'2014.1.1'},
+            {src:'/static/img/background.jpg', fileNumber:'1', description:'lalala1', time:'2014.1.2'},
+            {src:'/static/img/penguin.jpg', fileNumber:'2', description:'lalala2', time:'2014.1.3'},
+            {src:'/static/img/penguin.jpg', fileNumber:'3', description:'lalala3', time:'2014.1.4'}
+        ],
+        pagination:{
+            currentPage:1,
+            pageSize:6,
+            total:100
         }
-    });
-    $.ajax({
-        url:'getPicture',
-        type:'GET',
-        success:function(response){
-            console.log(response);
+    },
+    mounted:function(){
+        $.get({
+            url:'getAllCategory',
+            success:function(response){
+                for(var i in response) {
+                    container.categories.push({
+                        id:response[i].id,
+                        name:response[i].name
+                    });
+                }
+            },
+            error:function(response){
+                console.log(response);
+            }
+        });
+        $('.image').width($('.el-card').width());
+    },
+    methods:{
+        handleCurrentChange:function(val){
+            this.pagination.currentPage = val;
+        },
+        handleCategoryChange:function(){
+            this.categoryId = $("#myCategory").val();
+            $.get({
+                url:'getPicSumInCat',
+                data:{
+                    categoryId:this.categoryId,
+                },
+                success:function(response){
+                    console.log(response)
+                    //this.pagination.total = response
+                    $.get({
+                        url:'getPicInCat',
+                        data:{
+                            cateforyId:this.categoryId,
+                            currentPage:1
+                        },
+                        success:function(responsePic){
+                            console.log(responsePic);
+                            this.pagination.currentPage = 1;
+                        }
+                    })
+                }
+            });
+
         }
-    })
-})
-function getPicture(){
-    console.log($("#myCategory").val());
-};
+    }
+});

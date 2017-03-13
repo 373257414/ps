@@ -18,8 +18,7 @@
             <img src="/static/img/topbackground.jpg" align="middle" alt="北京邮电大学照片档案管理系统" id="topBackground">
             <nav id="navBar">
                 <ul>
-                    <li><a href="/loginJsp" title="首页">首页</a></li>
-                    <li><a href="#" title="人气排行">人气排行</a></li>
+					<li v-for="navBar in navBars"><a :href="navBar.href" :title="navBar.title">{{navBar.title}}</a></li>
                 </ul>
             </nav>
         </header>

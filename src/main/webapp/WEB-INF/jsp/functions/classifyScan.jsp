@@ -20,7 +20,7 @@
             <h1>分类浏览</h1>
         </header>
         <div id="classSection">
-            <select id="myCategory" onchange="getPicture()">
+            <select id="myCategory" @change="handleCategoryChange">
                 <option v-for="category in categories" :value="category.id">{{category.name}}</option>
             </select>
         </div>
@@ -32,13 +32,13 @@
                         <div style="padding: 14px;">
                             <p>档案号码：{{picture.fileNumber}}</p>
                             <p>图片说明：{{picture.description}}</p>
-                            <p>摄影人员：{{picture.author}}</p>
+                            <p>拍摄时间：{{picture.time}}</p>
                         </div>
                     </el-card>
                 </el-col>
             </el-row>
             <el-col :span="8" :offset="8">
-            <el-pagination :current-page="pagination.currentPage" :page-size="pagination.pageSize" layout="total, prev, pager, next, jumper" :total="pagination.total"></el-pagination>
+            <el-pagination @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-size="pagination.pageSize" layout="total, prev, pager, next, jumper" :total="pagination.total"></el-pagination>
             </el-col>
         </div>
     </div>

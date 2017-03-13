@@ -2,6 +2,9 @@ $(document).ready(function() {
 	var container = new Vue({
 		el:'#container',
 		data:{
+			navBars:[
+				{href:'/loginJsp', title:'首页'},
+				{href:'#', title:'人气排行'}],
 			loginInputs:[
 				{id:'login_username', src:'/static/img/ZHYuser16.png', title:'账号', type:'text', class:'username', name:'userName', placeholder:'请输入账号'},
 				{id:'login_password', src:'/static/img/ZHYpassword16.png', title:'密码', type:'password', class:'password', name:'password', placeholder:'请输入6~15位字母或数字'}],
