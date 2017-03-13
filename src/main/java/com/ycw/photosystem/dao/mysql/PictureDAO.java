@@ -1,7 +1,7 @@
 package com.ycw.photosystem.dao.mysql;
 
 import com.ycw.photosystem.bean.mysql.Picture;
-import com.ycw.photosystem.bean.paper.Paper;
+import com.ycw.photosystem.bean.page.Page;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Disjunction;
@@ -73,20 +73,20 @@ public class PictureDAO {
     }
 
 
-    public List findByPaper(Paper paper) {
+    public List findByPage(Page page) {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Picture.class);
-        int from = (paper.getCurrentPaper() - 1) * paper.getPaperSize();
-        int count = from + paper.getPaperSize();
-        if (paper.getCategoryId() > 0) {
-            criteria.add(Restrictions.eq("pictureCategory", paper.getCategoryId()));
+        int from = (page.getCurrentPage() - 1) * page.getPageSize();
+        int count = from + page.getPageSize();
+        if (page.getCategoryId() > 0) {
+            criteria.add(Restrictions.eq("pictureCategory", page.getCategoryId()));
         }
-        if (paper.getDepartmentId() > 0) {
-            criteria.add(Restrictions.eq("pictureDepartment", paper.getDepartmentId()));
+        if (page.getDepartmentId() > 0) {
+            criteria.add(Restrictions.eq("pictureDepartment", page.getDepartmentId()));
         }
-        if (paper.getIds() != null) {
-            criteria.add(Restrictions.in("id", paper.getIds()));
+        if (page.getIds() != null) {
+            criteria.add(Restrictions.in("id", page.getIds()));
         }
-        if (paper.isDescOrder() == true) {
+        if (page.isDescOrder() == true) {
             criteria.addOrder(Order.desc("id"));
         }
         return criteria.setFirstResult(from).setMaxResults(count).list();

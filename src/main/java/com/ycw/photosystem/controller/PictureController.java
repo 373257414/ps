@@ -1,6 +1,6 @@
 package com.ycw.photosystem.controller;
 
-import com.ycw.photosystem.bean.paper.Paper;
+import com.ycw.photosystem.bean.page.Page;
 import com.ycw.photosystem.service.PictureService;
 import com.ycw.photosystem.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,10 +53,10 @@ public class PictureController {
     @RequestMapping("getPicInCat")
     @ResponseBody
     public List getPicInCategory(int currentPaper, int categoryId){
-        Paper paper = new Paper();
-        paper.setCategoryId(categoryId);
-        paper.setCurrentPaper(currentPaper);
-        return searchService.displayByPaper(paper);
+        Page page = new Page();
+        page.setCategoryId(categoryId);
+        page.setCurrentPage(currentPaper);
+        return searchService.displayByPaper(page);
     }
 
 
