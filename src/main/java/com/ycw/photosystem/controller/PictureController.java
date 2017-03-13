@@ -50,9 +50,9 @@ public class PictureController {
         return "/jsp/system";
     }
 
-    @RequestMapping("classifyScan")
+    @RequestMapping("getPicInCat")
     @ResponseBody
-    public List classifyScan(int currentPaper, int categoryId){
+    public List getPicInCategory(int currentPaper, int categoryId){
         Paper paper = new Paper();
         paper.setCategoryId(categoryId);
         paper.setCurrentPaper(currentPaper);

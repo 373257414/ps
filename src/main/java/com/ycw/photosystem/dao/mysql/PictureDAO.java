@@ -41,6 +41,9 @@ public class PictureDAO {
     public Long getTotalCount() {
         return (Long) sessionFactory.getCurrentSession().createCriteria(Picture.class).setProjection(Projections.rowCount()).uniqueResult();
     }
+    public Integer getPicSumInCategory(int categoryId){
+        return (Integer) sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.eq("PictureCategory",categoryId)).setProjection(Projections.rowCount()).uniqueResult();
+    }
 
     public Long getMinId() {
         return (Long) sessionFactory.getCurrentSession().createCriteria(Picture.class).setProjection(Projections.min("id")).uniqueResult();

@@ -19,4 +19,10 @@ public class CategoryController {
     public List getAllCategory() {
         return categoryService.findAll();
     }
+
+    @RequestMapping("getPicSumInCat")
+    @ResponseBody
+    public Integer getPicSumInCat(int categoryId) {
+        return categoryService.getPictureCount(categoryId);
+    }
 }
