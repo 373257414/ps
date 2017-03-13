@@ -3,7 +3,7 @@ package com.ycw.photosystem.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.ycw.photosystem.bean.mysql.Picture;
-import com.ycw.photosystem.bean.paper.Paper;
+import com.ycw.photosystem.bean.page.Page;
 import com.ycw.photosystem.dao.es.PictureEsDAO;
 import com.ycw.photosystem.dao.mysql.PictureDAO;
 import com.ycw.photosystem.dao.tranform.PictureTransform;
@@ -45,8 +45,8 @@ public class SearchService {
         }
     }
 
-    public List displayByPaper(Paper paper){
-        return pictureDAO.findByPaper(paper);
+    public List displayByPage(Page page){
+        return pictureDAO.findByPage(page);
     }
 
     public void totalUpdate() {

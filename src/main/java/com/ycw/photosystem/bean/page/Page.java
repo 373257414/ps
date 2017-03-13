@@ -1,38 +1,38 @@
-package com.ycw.photosystem.bean.paper;
+package com.ycw.photosystem.bean.page;
 
 import java.util.List;
 
-public class Paper {
-    private int currentPaper;
-    private static int paperSize;
+public class Page {
+    private int currentPage;
+    private static int pageSize;
     private int categoryId;
     private int departmentId;
     private boolean descOrder;
     private List ids;
 
-    public Paper() {
-        currentPaper = 1;
-        paperSize = 6;
+    public Page() {
+        currentPage = 1;
+        pageSize = 6;
         categoryId = -1;
         departmentId = -1;
         descOrder = false;
         ids = null;
     }
 
-    public int getCurrentPaper() {
-        return currentPaper;
+    public int getCurrentPage() {
+        return currentPage;
     }
 
-    public void setCurrentPaper(int currentPaper) {
-        this.currentPaper = currentPaper;
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
     }
 
-    public int getPaperSize() {
-        return paperSize;
+    public static int getPageSize() {
+        return pageSize;
     }
 
-    public void setPaperSize(int paperSize) {
-        this.paperSize = paperSize;
+    public static void setPageSize(int pageSize) {
+        Page.pageSize = pageSize;
     }
 
     public int getCategoryId() {
