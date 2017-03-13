@@ -39,11 +39,6 @@ public class TestService {
         return pictureDAO.findByIds(ids, false);
     }
 
-    public List findByCategory(int cid, int from, int count) {
-        List list = pictureDAO.findByCategory(cid, from, count);
-
-        return pictureDAO.findByCategory(cid, from, count);
-    }
 
 
     public void save(Picture picture) {

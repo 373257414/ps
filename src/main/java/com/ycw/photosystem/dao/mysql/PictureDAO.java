@@ -41,8 +41,8 @@ public class PictureDAO {
     public Long getTotalCount() {
         return (Long) sessionFactory.getCurrentSession().createCriteria(Picture.class).setProjection(Projections.rowCount()).uniqueResult();
     }
-    public Integer getPicSumInCategory(int categoryId){
-        return (Integer) sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.eq("PictureCategory",categoryId)).setProjection(Projections.rowCount()).uniqueResult();
+    public Long getPicSumInCategory(int categoryId){
+        return (Long) sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.eq("pictureCategory",categoryId)).setProjection(Projections.rowCount()).uniqueResult();
     }
 
     public Long getMinId() {
@@ -78,10 +78,10 @@ public class PictureDAO {
         int from = (paper.getCurrentPaper() - 1) * paper.getPaperSize();
         int count = from + paper.getPaperSize();
         if (paper.getCategoryId() > 0) {
-            criteria.add(Restrictions.eq("PictureCategory", paper.getCategoryId()));
+            criteria.add(Restrictions.eq("pictureCategory", paper.getCategoryId()));
         }
         if (paper.getDepartmentId() > 0) {
-            criteria.add(Restrictions.eq("PictureDepartment", paper.getDepartmentId()));
+            criteria.add(Restrictions.eq("pictureDepartment", paper.getDepartmentId()));
         }
         if (paper.getIds() != null) {
             criteria.add(Restrictions.in("id", paper.getIds()));

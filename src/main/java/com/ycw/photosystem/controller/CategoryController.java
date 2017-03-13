@@ -22,7 +22,7 @@ public class CategoryController {
 
     @RequestMapping("getPicSumInCat")
     @ResponseBody
-    public Integer getPicSumInCat(int categoryId) {
+    public Long getPicSumInCat(int categoryId) {
         return categoryService.getPictureCount(categoryId);
     }
 }
