@@ -2,14 +2,14 @@ package com.ycw.photosystem.service;
 
 import com.ycw.photosystem.bean.mysql.Picture;
 import com.ycw.photosystem.dao.mysql.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.ycw.photosystem.tool.WaterMark;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -34,34 +34,101 @@ public class PictureService {
     @Autowired
     private SupportDAO supportDAO;
 
-    private static final Logger log = LoggerFactory.getLogger(PictureService.class);
+
+    private static final String CHECK_DIC = "e:/checkpicture/";
+    private static final String PATH_DIC = "e:/picture/";
+    private static final String WATERMARK_PATH_DIC = "e:/watermarkpicture/";
 
 
-    private static final String DEPARTMENT = "departmentId";
-    private static final String CATEGORY = "categoryId";
-    private static final String AUTHOR = "author";
-    private static final String DESCRIPTION = "description";
-    private static final String KEY_PERSON = "keyPerson";
-    private static final String PIC_LOADER = "picLoader";
-    private static final Integer VISIT_COUNT_ZERO = 0;
-    private static final Integer DOWNLOAD_COUNT_ZERO = 0;
-    private static final String FILE_NUMBER = "fileNumber";
-    private static final Integer HEIGHT = 0;
-    private static final Integer WIDTH = 0;
-    private static final String PATH = "picture/";
-    private static final String WARTEMARK_PATH = "picture_wm/";
-    private static final String ROOT_PATH = "e:/";
-
-
-    public String generateExtension(String fileName) {
-        int pos = fileName.lastIndexOf(".");
-        return fileName.substring(pos);
+    /*上传到待审核库*/
+    public boolean addPic(Map<String, MultipartFile> fileMap, Map<String, String[]> parameterMap) throws IOException {
+        if (parameterMap.get("departmentId").length == 0) {
+            return false;
+        }
+        MultipartFile file = fileMap.get("file");
+        //上传文件，名字为原名称
+        boolean up = uploadPicFile(file);
+        if (up == false) {
+            return false;
+        }
+        try {
+            BufferedImage image = ImageIO.read(file.getInputStream());
+            Picture picture = new Picture();
+            Set<Entry<String, String[]>> set = parameterMap.entrySet();
+            for (Entry<String, String[]> parameter : set) {
+                parameterSetter(picture, parameter.getKey(), parameter.getValue());
+            }
+            picture.setName(file.getOriginalFilename());//图片名
+            picture.setPath(CHECK_DIC + file.getOriginalFilename());//图片路径
+            picture.setCreateTime(new Timestamp(System.currentTimeMillis()));//创建时间
+            picture.setHeight(image.getHeight());//图片高度
+            picture.setWidth(image.getWidth());//图片宽度
+            picture.setDownloadCount(0);//下载量
+            picture.setVisitCount(0);//访问数
+            picture.setStatus((short) 1);//审核状态
+            pictureDAO.save(picture);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    private void jietu(){
-        departmentDAO.findAll();
-        userDAO.findAll();
-        categoryDAO.findAll();
+
+    /*审核图片*/
+    public boolean checkPic(Picture picture, boolean approved) {
+
+        if (approved == true) {
+            String fileNumber = generateFileNumber(picture.getPictureDepartment());//生成档案号
+            String extension = generateExtension(picture.getName());//生成扩展名
+            String fileName = fileNumber + extension;//文件名=档案号+扩展名
+            if (generatePicFile(picture, fileName) == true && generateWmPicFile(picture, fileName) == true) {
+                picture.setName(fileName);
+                picture.setStatus((short) 2);//审核状态
+                pictureDAO.save(picture);
+            }
+        } else {
+
+        }
+        return true;
+    }
+
+    /*编辑图片*/
+    public Picture updatePic(long id, String author, String decription, String keyPerson, String name, int categoryId, int departmentId) {
+        Picture picture = pictureDAO.findById(id);
+        picture.setDescription(decription);
+        picture.setKeyPerson(keyPerson);
+        picture.setPictureDepartment(departmentId);
+        picture.setPictureCategory(categoryId);
+        pictureDAO.update(picture);
+        return picture;
+    }
+
+    /*删除图片*/
+    public boolean deletePic(long id) {
+        Picture picture = pictureDAO.findById(id);
+        pictureDAO.delete(picture);
+        return true;
+    }
+
+    private boolean uploadPicFile(MultipartFile file) {
+        File pictureDic = new File(CHECK_DIC);
+        if (!pictureDic.exists() && !pictureDic.isDirectory()) {
+            pictureDic.mkdir();
+        }
+        File saveFile = new File(pictureDic, file.getOriginalFilename());
+        try {
+            file.transferTo(saveFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+
+    private String generateExtension(String fileName) {
+        int pos = fileName.lastIndexOf(".");
+        return fileName.substring(pos);
     }
 
     private String generateFileNumber(int departmentId) {
@@ -81,22 +148,40 @@ public class PictureService {
         return "ZP" + currentYear + "_" + departmentId + "_" + serialNumber;
     }
 
-
-    private boolean uploadPic(String fileName, MultipartFile file) {
-        File pathDic = new File(ROOT_PATH+PATH);
-        File wmPathDic = new File(ROOT_PATH+WARTEMARK_PATH);
-        if (!pathDic.exists() && !pathDic.isDirectory()) {
-            pathDic.mkdir();
+    private boolean generatePicFile(Picture picture, String fileName) {
+        File oldFile = new File(picture.getPath());
+        if (!oldFile.exists()) {
+            return false;
         }
-        if (!wmPathDic.exists() && !wmPathDic.isDirectory()) {
-            wmPathDic.mkdir();
+        File picDic = new File(PATH_DIC);
+        if (!picDic.exists() && !picDic.isDirectory()) {
+            picDic.mkdir();
         }
-        File saveFile = new File(pathDic, fileName);
-        File saveFlieWM = new File(wmPathDic, fileName);
+        File newFile = new File(PATH_DIC + fileName);
+        if (newFile.exists()) {
+            return false;
+        } else {
+            oldFile.renameTo(newFile);
+            picture.setName(fileName);
+            picture.setPath(PATH_DIC + fileName);
+            return true;
+        }
+    }
 
+    private boolean generateWmPicFile(Picture picture, String fileName) {
+        File wmPicDic = new File(WATERMARK_PATH_DIC);
+        if (!wmPicDic.exists() && !wmPicDic.isDirectory()) {
+            wmPicDic.mkdir();
+        }
+        File sourcePicFile = new File(picture.getPath());
+        picture.setWatermarkPath(WATERMARK_PATH_DIC + fileName);
+        File wmPicFile = new File(picture.getWatermarkPath());
         try {
-            file.transferTo(saveFile);
-            file.transferTo(saveFlieWM);
+            Image image = ImageIO.read(sourcePicFile);
+            BufferedImage bufferedImage = ImageIO.read(sourcePicFile);
+            String format = "JPEG";
+            WaterMark.printText(image, bufferedImage, "北邮档案", image.getWidth(null) / 4, image.getHeight(null) / 2);
+            ImageIO.write(bufferedImage, format, wmPicFile);
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -109,80 +194,19 @@ public class PictureService {
             return;
         }
         String value = values[0];
-        if (key.equals(DEPARTMENT)) {
+        if (key.equals("departmentId")) {
             picture.setPictureDepartment(Integer.valueOf(value));
-        } else if (key.equals(CATEGORY)) {
+        } else if (key.equals("categoryId")) {
             picture.setPictureCategory(Integer.valueOf(value));
-        } else if (key.equals(AUTHOR)) {
+        } else if (key.equals("author")) {
             picture.setAuthor(value);
-        } else if (key.equals(PIC_LOADER)) {
+        } else if (key.equals("picLoader")) {
             picture.setPictureLoader(Integer.valueOf(value));
-        } else if (key.equals(DESCRIPTION)) {
+        } else if (key.equals("description")) {
             picture.setDescription(value);
-        } else if (key.equals(KEY_PERSON)) {
+        } else if (key.equals("keyPerson")) {
             picture.setKeyPerson(value);
         }
-    }
-
-    public boolean addPic(Map<String, MultipartFile> fileMap, Map<String, String[]> parameterMap) throws IOException {
-        if (parameterMap.get(DEPARTMENT).length == 0) {
-            return false;
-        }
-        MultipartFile file = fileMap.get("file");
-        String name = file.getOriginalFilename();
-        String fileNumber = generateFileNumber(Integer.valueOf(parameterMap.get(DEPARTMENT)[0]));//生成档案号
-        String extension = generateExtension(name);//生成扩展名
-        String fileName = fileNumber + extension;//文件名=档案号+扩展名
-        BufferedImage image = ImageIO.read(file.getInputStream());
-        boolean up = uploadPic(fileName, file);
-        if (up == false) {
-            return false;
-        }
-
-        try {
-            Picture picture = new Picture();
-            Set<Entry<String, String[]>> set = parameterMap.entrySet();
-            for (Entry<String, String[]> parameter : set) {
-                parameterSetter(picture, parameter.getKey(), parameter.getValue());
-            }
-            picture.setCreateTime(new Timestamp(System.currentTimeMillis()));//创建时间
-            picture.setDownloadCount(DOWNLOAD_COUNT_ZERO);//下载量
-            picture.setFileNumber(fileNumber);//档案号
-            picture.setHeight(image.getHeight());//图片高度
-            picture.setName(name);//图片名
-            picture.setPath(PATH + fileName);//图片路径
-            picture.setVisitCount(VISIT_COUNT_ZERO);//访问数
-            picture.setWatermarkPath(WARTEMARK_PATH + fileName);//水印图片路径
-            picture.setWidth(image.getWidth());//图片宽度
-            //pictureES.index(picture);
-            //pictureDAO.save(picture);
-            log.info("添加图片成功，档案号：" + fileNumber);
-            return true;
-        } catch (Exception e) {
-            log.info("添加图片错误:" + e);
-            return false;
-        }
-    }
-
-
-    public boolean deletePic(long id) {
-        Picture picture = pictureDAO.findById(id);
-        pictureDAO.delete(picture);
-        return true;
-    }
-
-    public Picture updatePic(long id, String author, String decription, String keyPerson, String name, int categoryId, int departmentId) {
-        Picture picture = pictureDAO.findById(id);
-        picture.setDescription(decription);
-        picture.setKeyPerson(keyPerson);
-        picture.setPictureDepartment(departmentId);
-        picture.setPictureCategory(categoryId);
-        pictureDAO.update(picture);
-        return picture;
-    }
-
-    public Picture searchPic(long id) {
-        return pictureDAO.findById(id);
     }
 
 }

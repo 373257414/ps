@@ -1,16 +1,21 @@
 package com.ycw.photosystem;
 
 import com.ycw.photosystem.bean.mysql.Picture;
+import com.ycw.photosystem.dao.es.PictureEsDAO;
 import com.ycw.photosystem.dao.mysql.UserDAO;
+import com.ycw.photosystem.dao.tranform.PictureTransform;
 import com.ycw.photosystem.service.SearchService;
 import com.ycw.photosystem.service.TestService;
 import com.ycw.photosystem.service.UserService;
+import com.ycw.photosystem.tool.RandomString;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class Main {
@@ -19,6 +24,8 @@ public class Main {
     private static SearchService searchService;
     private static UserService userService;
     private static UserDAO userDAO;
+    private static PictureEsDAO pictureEsDAO;
+    private static PictureTransform pictureTransform;
 
     static {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
@@ -28,9 +35,19 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        List list =userService.findAll();
+        totalUpdate();
+        /*
+        Picture picture=generate1("特殊测试图片4","北京师范大学");
+        testService.oneUpdate(picture);*/
+        /*double start = System.currentTimeMillis();
+        searchService.esSearch("description", "教四");
+        //searchService.simpleSearch("description", "教四");
+        double end = System.currentTimeMillis();
+        System.out.println(end - start);*/
+        //searchService.totalUpdate();
+       /* List list =userService.findAll();
         System.out.print(list.size());
-
+*/
 
         /*Map<String, String> conditionMap = new HashMap<>();
         conditionMap.put("fileNumber", "testFileNumber");
@@ -73,32 +90,52 @@ public class Main {
         }
     }
 
-    private static void generate1000() {
-        Random random = new Random();
-        for (int i = 1; i < 1001; i++) {
+    private static void generate1000000(Long startId, Long endId) {
+        for (Long i = startId; i < endId; i++) {
             String NAME = "测试图片名称";
             Picture picture = new Picture();
             picture.setName(NAME + "_" + i);
-            picture.setCreateTime(new Timestamp(System.currentTimeMillis()));
-            picture.setPictureCategory(random.nextInt(3) + 1);
+            picture.setPictureCategory(1);
+            picture.setDescription("test");
             picture.setPictureDepartment(1);
-            picture.setWidth(random.nextInt(1000));
-            picture.setHeight(random.nextInt(1000));
             testService.save(picture);
+            testService.oneUpdate(picture);
         }
     }
 
-    private static void generate1() {
+    private static Picture generate1(String name, String description) {
         Random random = new Random();
-        String NAME = "火猫";
         Picture picture = new Picture();
-        picture.setName(NAME);
+        picture.setName(name);
         picture.setCreateTime(new Timestamp(System.currentTimeMillis()));
         picture.setPictureCategory(random.nextInt(3) + 1);
+        picture.setDescription(description);
         picture.setPictureDepartment(1);
         picture.setWidth(random.nextInt(1000));
         picture.setHeight(random.nextInt(1000));
         testService.save(picture);
+        return picture;
+    }
+
+
+    private static void totalUpdate() {
+        int threadCount = 20;
+        ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
+        Long MaxId = 1000000L;
+        Long MinId = 521504L;
+        Long threadRange = (MaxId - MinId) / threadCount;
+        for (int i = 0; i < threadCount; i++) {
+            int innerI = i;//thisThreadNum在内部，传值
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    Long startId = MinId + threadRange * innerI;
+                    Long endId = startId + threadRange;
+                    generate1000000(startId, endId);
+                }
+            });
+        }
+        executorService.shutdown();
     }
 
 }
