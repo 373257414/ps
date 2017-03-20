@@ -56,7 +56,7 @@
             </el-upload>
         </el-col>
         <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到待审核库</el-button>-->
-        <form action="">
+        <form action="/uploadAction" enctype="multipart/form-data" method="post">
             <p v-for="input in inputs">
                 <label :for="input.value">{{input.title}}</label>
                 <input :type="input.type" :id="input.value" :name="input.value" size="15" maxlength="20">

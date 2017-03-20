@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +54,7 @@ public class PictureController {
 
     @RequestMapping("getPicInCat")
     @ResponseBody
-    public List getPicInCategory(int currentPage, int categoryId){
+    public List getPicInCategory(int currentPage, int categoryId) {
         Page page = new Page();
         page.setCategoryId(categoryId);
         page.setCurrentPage(currentPage);
@@ -60,20 +62,20 @@ public class PictureController {
     }
 
 
-
-    /*@RequestMapping("uploadAction")
-    public String upload(MultipartHttpServletRequest request) {
+    @RequestMapping("uploadAction")
+    @ResponseBody
+    public void upload(MultipartHttpServletRequest request) {
         Map fileMap = request.getFileMap();
         Map<String, String[]> parameterMap = request.getParameterMap();
         try {
             pictureService.addPic(fileMap, parameterMap);
         } catch (IOException e) {
             e.printStackTrace();
-            return "settings/fail";
+            return;
         }
-        return "settings/fail";
+        return;
     }
-
+/*
     @RequestMapping("searchAction")
     @ResponseBody
     public ModelAndView search(HttpServletRequest request) {

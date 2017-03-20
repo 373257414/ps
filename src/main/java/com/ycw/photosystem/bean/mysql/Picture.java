@@ -21,10 +21,10 @@ public class Picture {
 
     private String name;
     private Timestamp createTime;
+    private Timestamp photoDate;
     private String path;
     private String watermarkPath;
     private Integer pictureLoader;
-    //省略其他字段
     private Integer pictureDepartment;
     private Integer pictureCategory;
     private String place;
@@ -55,6 +55,15 @@ public class Picture {
 
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
+    }
+
+    @Column(name = "photo_date")
+    public Timestamp getPhotoDate() {
+        return photoDate;
+    }
+
+    public void setPhotoDate(Timestamp photoDate) {
+        this.photoDate = photoDate;
     }
 
     @Column(name = "path")

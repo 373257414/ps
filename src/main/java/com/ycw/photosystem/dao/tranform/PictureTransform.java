@@ -22,6 +22,7 @@ public class PictureTransform {
         bean.setId(picture.getId());
         bean.setName(picture.getName());
         bean.setCreateTime(picture.getCreateTime());
+        bean.setPhotoDate(picture.getPhotoDate());
         if (picture.getPictureLoader() != null) {
             bean.setPictureLoader(userDAO.findById(picture.getPictureLoader()).getName());
         }

@@ -9,6 +9,7 @@ public class PictureEsBean {
     private Long id;
     private String name;
     private Timestamp createTime;
+    private Timestamp photoDate;
     private String pictureLoader;
     private String pictureDepartment;
     private String pictureCategory;
@@ -42,6 +43,14 @@ public class PictureEsBean {
 
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
+    }
+
+    public Timestamp getPhotoDate() {
+        return photoDate;
+    }
+
+    public void setPhotoDate(Timestamp photoDate) {
+        this.photoDate = photoDate;
     }
 
     public String getPictureLoader() {
