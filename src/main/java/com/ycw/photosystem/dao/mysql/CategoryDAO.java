@@ -1,10 +1,7 @@
 package com.ycw.photosystem.dao.mysql;
 
 import com.ycw.photosystem.bean.mysql.Category;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,38 +9,46 @@ import java.util.List;
 
 @Repository
 public class CategoryDAO {
-    private static final Logger log = LoggerFactory.getLogger(CategoryDAO.class);
-    public static final String CATEGORY_NAME = "categoryName";
     @Autowired
     private SessionFactory sessionFactory;
 
     public void save(Category transientInstance) {
-        sessionFactory.getCurrentSession().save(transientInstance);
+        try {
+            sessionFactory.getCurrentSession().save(transientInstance);
+        } catch (RuntimeException re) {
+            throw re;
+        }
+    }
+
+    public void update(Category transientInstance) {
+        try {
+            sessionFactory.getCurrentSession().update(transientInstance);
+        } catch (RuntimeException re) {
+            throw re;
+        }
     }
 
     public void delete(Category persistentInstance) {
-        sessionFactory.getCurrentSession().delete(persistentInstance);
+        try {
+            sessionFactory.getCurrentSession().delete(persistentInstance);
+        } catch (RuntimeException re) {
+            throw re;
+        }
     }
 
-    public Category findById(java.lang.Integer id) {
-        Category instance = (Category) sessionFactory.getCurrentSession().get(Category.class, id);
-        return instance;
-    }
-
-    public List findByProperty(String propertyName, Object value) {
-
-        String queryString = "from Category as model where model." + propertyName + "= " + value;
-        Query query = sessionFactory.getCurrentSession().createQuery(queryString);
-        return query.list();
-    }
-
-    public List findByCategoryName(Object categoryName) {
-        return findByProperty(CATEGORY_NAME, categoryName);
+    public Category findById(int id) {
+        try {
+            return (Category) sessionFactory.getCurrentSession().get(Category.class, id);
+        } catch (RuntimeException re) {
+            throw re;
+        }
     }
 
     public List findAll() {
-        String queryString = "from Category";
-        Query query = sessionFactory.getCurrentSession().createQuery(queryString);
-        return query.list();
+        try {
+            return sessionFactory.getCurrentSession().createCriteria(Category.class).list();
+        } catch (RuntimeException re) {
+            throw re;
+        }
     }
 }

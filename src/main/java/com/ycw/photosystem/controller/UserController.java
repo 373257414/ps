@@ -37,7 +37,7 @@ public class UserController {
         } else {
             message = userService.changePassword(currentUser, oldPassword, newPassword1);
         }
-        return "/jsp/userInformation";
+        return "/jsp/functions/userInformation";
     }
 
     @RequestMapping("updateEmailAction")
@@ -51,7 +51,7 @@ public class UserController {
         } else {
             message = userService.changeEmail(currentUser, newEmail);
         }
-        return "/jsp/userInformation";
+        return "/jsp/functions/userInformation";
     }
 
     @RequestMapping("loginAction")
@@ -73,9 +73,9 @@ public class UserController {
                 if (user.getUserPermission() == 1) {
                     return "/jsp/users/system";
                 } else if (user.getUserPermission() == 2) {
-                    return "/jsp/department";
+                    return "/jsp/users/department";
                 } else {
-                    return "/jsp/normal";
+                    return "/jsp/users/normal";
                 }
             } else {
                 return "/test/fail";
