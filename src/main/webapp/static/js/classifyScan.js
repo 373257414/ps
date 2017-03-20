@@ -38,6 +38,16 @@ var container = new Vue({
     methods:{
         handleCurrentChange:function(val){
             this.pagination.currentPage = val;
+            $.get({
+                url:'getPicInCat',
+                data:{
+                    categoryId:this.categoryId,
+                    currentPage:this.pagination.currentPage
+                },
+                success:function(response){
+                    console.log(response);
+                }
+            })
         },
         handleCategoryChange:function(){
             this.categoryId = $("#myCategory").val();
@@ -47,22 +57,20 @@ var container = new Vue({
                     categoryId:this.categoryId,
                 },
                 success:function(response){
-                    console.log(response)
-                    //this.pagination.total = response
+                    container.pagination.total = response;
                     $.get({
                         url:'getPicInCat',
                         data:{
-                            cateforyId:this.categoryId,
+                            categoryId:container.categoryId,
                             currentPage:1
                         },
                         success:function(responsePic){
                             console.log(responsePic);
-                            this.pagination.currentPage = 1;
+                            container.pagination.currentPage = 1;
                         }
                     })
                 }
             });
-
         }
     }
 });

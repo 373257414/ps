@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="/static/css/classifyScan.css" media="screen">
     <link rel="stylesheet" href="/static/css/reset.css" media="screen">
       <script src="/static/js/jquery-2.2.4.js" type="text/javascript"></script>
-      <script src="https://unpkg.com/vue/dist/vue.js"></script>
+      <script src="https://unpkg.com/vue@2.2.4/dist/vue.js"></script>
       <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
   </head>
