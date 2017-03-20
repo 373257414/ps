@@ -57,6 +57,7 @@ public class PictureEsDAO {
     }
 
 
+
     /*public void search(){
         QueryBuilder queryBuilde
         SearchResponse searchResponse = client.prepareSearch(INDEX_NAME).setTypes(TYPE).setQuery(queryBuilder).execute().actionGet();

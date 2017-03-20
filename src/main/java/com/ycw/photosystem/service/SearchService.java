@@ -45,14 +45,12 @@ public class SearchService {
         }
     }
 
-    public List displayByPage(Page page){
+    public List displayByPage(Page page) {
         return pictureDAO.findByPage(page);
     }
 
-    public void totalUpdate() {
-        Long endId = pictureDAO.getMaxId();
-        Long startId = pictureDAO.getMinId();
-        int perCount = 10;
+    public void index(Long startId, Long endId, int perCount) {
+
         while (startId < endId) {
             List list = pictureDAO.findFromTO(startId, startId + perCount);
             startId = startId + perCount;
@@ -70,7 +68,7 @@ public class SearchService {
     public void esSearch(String field, String text) {
         Object[] resultArray = pictureEsDAO.findIdByMatchQuery(field, text);
         for (Object o : resultArray) {
-            Long id = Long.valueOf((String) o);
+            String id = o.toString();
             System.out.println(id);
         }
     }

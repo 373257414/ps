@@ -1,6 +1,7 @@
 package com.ycw.photosystem.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.ycw.photosystem.bean.es.PictureEsBean;
 import com.ycw.photosystem.bean.mysql.Picture;
 import com.ycw.photosystem.dao.es.PictureEsDAO;
 import com.ycw.photosystem.dao.mysql.PictureDAO;
@@ -43,6 +44,15 @@ public class TestService {
 
     public void save(Picture picture) {
         pictureDAO.save(picture);
+    }
+
+    public void oneUpdate(Picture picture){
+        PictureEsBean pictureEsBean = pictureTransform.transform(picture);
+        try {
+            pictureEsDAO.index(pictureEsBean);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
     public void totalUpdate() {
