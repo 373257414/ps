@@ -35,9 +35,9 @@ public class PictureService {
     private SupportDAO supportDAO;
 
 
-    private static final String CHECK_DIC = "e:/checkpicture/";
-    private static final String PATH_DIC = "e:/picture/";
-    private static final String WATERMARK_PATH_DIC = "e:/watermarkpicture/";
+    private static final String CHECK_DIC = "./checkpicture/";
+    private static final String PATH_DIC = "./picture/";
+    private static final String WATERMARK_PATH_DIC = "./watermarkpicture/";
 
 
     /*上传到待审核库*/
@@ -59,7 +59,6 @@ public class PictureService {
                 parameterSetter(picture, parameter.getKey(), parameter.getValue());
             }
             picture.setName(file.getOriginalFilename());//图片名
-            picture.setPath(CHECK_DIC + file.getOriginalFilename());//图片路径
             picture.setCreateTime(new Timestamp(System.currentTimeMillis()));//创建时间
             picture.setHeight(image.getHeight());//图片高度
             picture.setWidth(image.getWidth());//图片宽度
@@ -149,7 +148,7 @@ public class PictureService {
     }
 
     private boolean generatePicFile(Picture picture, String fileName) {
-        File oldFile = new File(picture.getPath());
+        File oldFile = new File(CHECK_DIC+picture.getName());
         if (!oldFile.exists()) {
             return false;
         }
@@ -163,7 +162,6 @@ public class PictureService {
         } else {
             oldFile.renameTo(newFile);
             picture.setName(fileName);
-            picture.setPath(PATH_DIC + fileName);
             return true;
         }
     }
@@ -173,9 +171,8 @@ public class PictureService {
         if (!wmPicDic.exists() && !wmPicDic.isDirectory()) {
             wmPicDic.mkdir();
         }
-        File sourcePicFile = new File(picture.getPath());
-        picture.setWatermarkPath(WATERMARK_PATH_DIC + fileName);
-        File wmPicFile = new File(picture.getWatermarkPath());
+        File sourcePicFile = new File(PATH_DIC+picture.getName());
+        File wmPicFile = new File(WATERMARK_PATH_DIC+picture.getName());
         try {
             Image image = ImageIO.read(sourcePicFile);
             BufferedImage bufferedImage = ImageIO.read(sourcePicFile);

@@ -18,9 +18,8 @@ public class WaterMark {
 
 
     public static void main(String[] args) throws IOException {
-
-        File file = new File("e:\\picture\\5.jpg");
-        File wmFile = new File("e:\\picture\\WM5.png");
+        File file = new File("./picture/test.jpg");
+        File wmFile = new File("./picture/wmtest.jpg");
         Image image = ImageIO.read(file);
         BufferedImage bufferedImage = ImageIO.read(file);
         String format = "JPEG";
