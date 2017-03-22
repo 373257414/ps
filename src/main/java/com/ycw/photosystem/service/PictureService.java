@@ -46,7 +46,7 @@ public class PictureService {
         if (parameterMap.get("department").length == 0) {
             return false;
         }
-        MultipartFile file = fileMap.get("picture");
+        MultipartFile file = fileMap.get("file");
         //上传文件，名字为原名称
         try {
             BufferedImage image = ImageIO.read(file.getInputStream());

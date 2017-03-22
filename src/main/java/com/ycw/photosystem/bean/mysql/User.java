@@ -1,5 +1,7 @@
 package com.ycw.photosystem.bean.mysql;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 

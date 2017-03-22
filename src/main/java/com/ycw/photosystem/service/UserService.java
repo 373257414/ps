@@ -124,7 +124,7 @@ public class UserService {
     //省略成员方法
 
 
-    public List findAll() {
+    public List getAll() {
         return userDAO.findAll();
     }
 }
