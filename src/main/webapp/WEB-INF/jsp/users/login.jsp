@@ -82,12 +82,12 @@
                         <li><a href="#" target="main" title="毕业生合影">毕业生合影</a></li>
                         <li><a href="#" target="main" title="教工活动">教工活动</a></li>
                         <li><a href="#" target="main" title="运动会">运动会</a></li>
-                        <li><a href="#" target="main" title="领导视察">领导视察</a></li>
+                        <li><a href="/uploadPictureJsp" target="main" title="领导视察">uploadPicture</a></li>
                     </ul>
                 </div>
             </div>
             <div id="rightSection">
-                <iframe src="/uploadPictureJsp" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
+                <iframe src="/classifyScanJsp" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
                 </iframe>
             </div> 
         </div>

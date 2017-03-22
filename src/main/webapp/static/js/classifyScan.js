@@ -71,6 +71,9 @@ var container = new Vue({
                     })
                 }
             });
+        },
+        showPicture:function(){
+
         }
     }
 });
