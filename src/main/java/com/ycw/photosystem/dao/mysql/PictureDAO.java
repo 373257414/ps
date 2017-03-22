@@ -149,7 +149,7 @@ public class PictureDAO {
         }
     }
 
-    public List findByPropertiesAnd(Map<String, String> propertiesMap) {
+    public List findByPropertiesAnd(Map<String, Object> propertiesMap) {
         try {
         return sessionFactory.getCurrentSession().createCriteria(Picture.class).add(Restrictions.allEq(propertiesMap)).list();
         }catch (RuntimeException re){
@@ -157,12 +157,12 @@ public class PictureDAO {
         }
     }
 
-    public List findByPropertiesOr(Map<String, String> propertiesMap) {
+    public List findByPropertiesOr(Map<String, Object> propertiesMap) {
         try {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Picture.class);
-            Set<Map.Entry<String, String>> propertiesEntrySet = propertiesMap.entrySet();
+            Set<Map.Entry<String, Object>> propertiesEntrySet = propertiesMap.entrySet();
             Disjunction disjunction = Restrictions.disjunction();
-            for (Map.Entry<String, String> entry : propertiesEntrySet) {
+            for (Map.Entry<String, Object> entry : propertiesEntrySet) {
                 disjunction.add(Restrictions.eq(entry.getKey(), entry.getValue()));
             }
             return criteria.add(disjunction).list();

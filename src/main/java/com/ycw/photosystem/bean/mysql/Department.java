@@ -1,5 +1,6 @@
 package com.ycw.photosystem.bean.mysql;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -37,7 +38,7 @@ public class Department {
     }
 
     @Basic
-    @Column(name = "address", nullable = true, length = 255)
+    @Column(name = "address")
     public String getAddress() {
         return address;
     }
@@ -46,7 +47,7 @@ public class Department {
         this.address = address;
     }
 
-    @Column(name = "charger", nullable = true, length = 45)
+    @Column(name = "charger", length = 45)
     public String getCharger() {
         return charger;
     }
@@ -55,7 +56,7 @@ public class Department {
         this.charger = charger;
     }
 
-    @Column(name = "email", nullable = true, length = 45)
+    @Column(name = "email", length = 45)
     public String getEmail() {
         return email;
     }
@@ -90,6 +91,7 @@ public class Department {
         return result;
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "userDepartment")
     @LazyCollection(LazyCollectionOption.FALSE)
     public Collection<User> getUsers() {

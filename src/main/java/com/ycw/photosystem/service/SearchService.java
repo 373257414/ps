@@ -29,7 +29,7 @@ public class SearchService {
         this.pictureTransform = pictureTransform;
     }
 
-    public List simpleSearch(String field, String condition) {
+    public List simpleSearch(String field, Object condition) {
         if (field.equals(null)) {
             return null;
         } else {
@@ -37,7 +37,7 @@ public class SearchService {
         }
     }
 
-    public List complexSearch(Map<String, String> conditionMap, Boolean mode) {
+    public List complexSearch(Map<String, Object> conditionMap, Boolean mode) {
         if (mode.equals(true)) {
             return pictureDAO.findByPropertiesAnd(conditionMap);
         } else {

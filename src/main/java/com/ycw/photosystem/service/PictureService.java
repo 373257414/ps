@@ -14,7 +14,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -46,7 +48,7 @@ public class PictureService {
         if (parameterMap.get("department").length == 0) {
             return false;
         }
-        MultipartFile file = fileMap.get("picture");
+        MultipartFile file = fileMap.get("file");
         //上传文件，名字为原名称
         try {
             BufferedImage image = ImageIO.read(file.getInputStream());
@@ -209,7 +211,8 @@ public class PictureService {
         } else if (key.equals("keyPerson")) {
             picture.setKeyPerson(value);
         } else if (key.equals("photoDate")) {
-            picture.setPhotoDate(Timestamp.valueOf(value));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            picture.setPhotoDate(Timestamp.valueOf(sdf.format(Date.valueOf(value))));
         }
     }
 
