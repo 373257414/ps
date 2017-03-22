@@ -5,8 +5,8 @@ import com.ycw.photosystem.dao.mysql.DepartmentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,28 +16,53 @@ public class DepartmentService {
     @Autowired
     private DepartmentDAO departmentDAO;
 
-    public void add(Department department) {
-        if (department.equals(null)) {
-            return;
-        }
-        departmentDAO.save(department);
-    }
-    public void update(Department department){
+    public Department add(Map parametersMap) {
+        Department department = new Department();
+        departmentDAO.save(parametersSetter(parametersMap, department));
+        return department;
     }
 
-    public List<Department> getDepartments() {
+    public Department update(Map parametersMap) {
+        int id = (int) parametersMap.get("id");
+        Department department = departmentDAO.findById(id);
+        if (department != null) {
+            departmentDAO.save(parametersSetter(parametersMap, department));
+            return department;
+        } else {
+            return null;
+        }
+    }
+
+    public List getAll() {
         return departmentDAO.findAll();
     }
 
-    public Map getNamesMap() {
-        List<Department> list = departmentDAO.findAll();
-        if (list.isEmpty()) {
+    public List getUsersByDepartmentId(int departmentId) {
+        Department department = departmentDAO.findById(departmentId);
+        if (department != null) {
+            return (List) department.getUsers();
+        } else {
             return null;
         }
-        HashMap map = new HashMap();
-        for (Department d : list) {
-            map.put(d.getId(), d.getName());
+    }
+
+    private Department parametersSetter(Map parametersMap, Department department) {
+        String name = (String) parametersMap.get("name");
+        if (StringUtils.isEmpty(name)) {
+            department.setName(name);
         }
-        return map;
+        String address = (String) parametersMap.get("address");
+        if (StringUtils.isEmpty(address)) {
+            department.setAddress(address);
+        }
+        String charger = (String) parametersMap.get("charger");
+        if (StringUtils.isEmpty(charger)) {
+            department.setCharger(charger);
+        }
+        String email = (String) parametersMap.get("email");
+        if (StringUtils.isEmpty(email)) {
+            department.setEmail(email);
+        }
+        return department;
     }
 }

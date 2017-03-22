@@ -56,8 +56,8 @@ public class TestService {
     }
 
     public void totalUpdate() {
-        Long endId = pictureDAO.getMaxId();
-        Long startId = pictureDAO.getMinId();
+        Long endId = pictureDAO.findMaxId();
+        Long startId = pictureDAO.findMinId();
         int perCount = 10;
         while (startId < endId) {
             List list = pictureDAO.findFromTO(startId, startId + perCount);

@@ -16,11 +16,11 @@ public class CategoryService {
     @Autowired
     PictureDAO pictureDAO;
 
-    public List findAll() {
+    public List getAll() {
         return categoryDAO.findAll();
     }
 
     public Long getPictureCount(int categoryId) {
-        return pictureDAO.getPicSumInCategory(categoryId);
+        return pictureDAO.findSumByCategoryId(categoryId);
     }
 }
