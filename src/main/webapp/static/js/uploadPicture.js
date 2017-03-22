@@ -16,18 +16,12 @@ var container = new Vue({
                 name:'department',
                 change:'handleDepChange',
                 title:'归档部门',
-                options:[
-                    {label:'教务处',value:'0'},
-                    {label:'教学处',value:'1'}
-                ]
+                options:[]
             }, {
                 name:'category',
                 change:'handleCatChange',
                 title:'图片种类',
-                options:[
-                    {label:'校园',value:'1'},
-                    {label:'校庆',value:'2'}
-                ]
+                options:[]
             }
         ],
         pickerOptions: {
@@ -48,6 +42,33 @@ var container = new Vue({
                 }
             }]
         }
+    },
+    mounted:function(){
+        $.get({
+            url:'getAllDepartment',
+            success:function(response){
+                for(var i in response) {
+                    container.selectInputs[0].options.push({
+                        label:response[i].name,
+                        value:response[i].id
+                    });
+                }
+            },
+            error:function(response){
+                container.$message.error(response.statusText);
+            }
+        });
+        $.get({
+            url:'getAllCategory',
+            success:function(response){
+                for(var i in response) {
+                    container.selectInputs[1].options.push({
+                        label:response[i].name,
+                        value:response[i].id
+                    });
+                }
+            }
+        });
     },
     methods:{
         handleDepChange:function(){},
