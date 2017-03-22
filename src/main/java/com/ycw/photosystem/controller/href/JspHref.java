@@ -16,6 +16,9 @@ public class JspHref {
     @RequestMapping("departmentJsp")
     public ModelAndView departmentJsp() { return new ModelAndView("/jsp/users/department"); }
 
+    @RequestMapping("checkPictureJsp")
+    public ModelAndView checkPictureJsp() { return new ModelAndView("/jsp/functions/checkPicture"); }
+
     @RequestMapping("depManageJsp")
     public ModelAndView depManageJsp() { return new ModelAndView("/jsp/functions/depManage"); }
 
