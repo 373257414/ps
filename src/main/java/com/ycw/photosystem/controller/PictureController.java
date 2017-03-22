@@ -9,7 +9,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -27,11 +26,19 @@ public class PictureController {
     SearchService searchService;
 
     @RequestMapping("simpleSearchAction")
-    public ModelAndView simpleSearch(String searchKeys, String keyWords) {
-        List result = searchService.simpleSearch(searchKeys, keyWords);
-        ModelAndView mav = new ModelAndView("/jsp/users/system");
-        mav.addObject(result);
-        return mav;
+    @ResponseBody
+    public List simpleSearch(String field, String condition) {
+        if (field.equals(null)) {
+            return null;
+        } else {
+            List result;
+            if (field.equals("pictureCategory") || field.equals("pictureDepartment")) {
+                result = searchService.simpleSearch(field, Integer.valueOf(condition));
+            } else {
+                result = searchService.simpleSearch(field, condition);
+            }
+            return result;
+        }
     }
 
     // TODO: 精确查找和模糊查找，与前端的配合
@@ -40,13 +47,17 @@ public class PictureController {
         Map<String, String[]> parameterMap = request.getParameterMap();
         parameterMap.remove("check");
         Set<String> fields = parameterMap.keySet();
-        Map<String, String> conditionMap = new HashMap<>();
+        Map<String, Object> conditionMap = new HashMap<>();
         for (String field : fields) {
             String condition = StringUtils.trimWhitespace(request.getParameter(field));
             if (StringUtils.isEmpty(condition)) {
                 continue;
             }
-            conditionMap.put(field, condition);
+            if (field.equals("pictureDepartment") ||field.equals("pictureCategory")){
+                conditionMap.put(field, Integer.valueOf(condition));
+            }else {
+                conditionMap.put(field, condition);
+            }
         }
         List result = searchService.complexSearch(conditionMap, true);
         return "/jsp/users/system";
