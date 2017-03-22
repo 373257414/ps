@@ -5,6 +5,8 @@ var container = new Vue({
     el: '#container',
     data: {
         categoryId:1,
+        dialogVisible:false,
+        dialogPictureSrc:'',
         categories:[],
         pictures:[
             {src:'/static/img/desert.jpg', fileNumber:'0', description:'lalala0', time:'2014.1.1'},
@@ -72,8 +74,9 @@ var container = new Vue({
                 }
             });
         },
-        showPicture:function(){
-
+        showPicture:function(event){
+            this.dialogPictureSrc = event.target.src;
+            this.dialogVisible = true;
         }
     }
 });
