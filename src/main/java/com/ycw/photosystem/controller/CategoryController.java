@@ -17,7 +17,7 @@ public class CategoryController {
     @RequestMapping("getAllCategory")
     @ResponseBody
     public List getAllCategory() {
-        return categoryService.findAll();
+        return categoryService.getAll();
     }
 
     @RequestMapping("getPicSumInCat")

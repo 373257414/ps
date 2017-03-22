@@ -125,6 +125,6 @@ public class UserService {
 
 
     public List findAll() {
-        return userDAO.findAllBySQL();
+        return userDAO.findAll();
     }
 }

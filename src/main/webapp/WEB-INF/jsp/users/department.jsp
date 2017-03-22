@@ -1,8 +1,4 @@
 <%@ page language="java" pageEncoding="utf-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 
 <!DOCTYPE>
 <html lang="en">
@@ -10,15 +6,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>北京邮电大学|图片档案馆|部门管理员</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <link rel="stylesheet" href="css/mainFrame.css" media="screen">
     <link rel="stylesheet" href="css/buttons.css" media="screen"/>

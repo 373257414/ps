@@ -12,7 +12,6 @@ import java.util.List;
 @Repository
 public class UserDAO {
 
-    public static final String USER_NAME = "name";
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -58,7 +57,7 @@ public class UserDAO {
 
     public List findByUserName(Object userName) {
         try {
-        return findByProperty(USER_NAME, userName);
+        return findByProperty("name", userName);
         }catch (RuntimeException re){
             throw re;
         }
@@ -67,15 +66,6 @@ public class UserDAO {
     public List findAll() {
         try {
         return sessionFactory.getCurrentSession().createCriteria(User.class).list();
-        }catch (RuntimeException re){
-            throw re;
-        }
-    }
-    public List findAllBySQL(){
-        try {
-        String queryString = "from User";
-            Query query = sessionFactory.getCurrentSession().createQuery(queryString);
-            return query.list();
         }catch (RuntimeException re){
             throw re;
         }

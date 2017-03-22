@@ -29,7 +29,7 @@ public class PictureController {
     @RequestMapping("simpleSearchAction")
     public ModelAndView simpleSearch(String searchKeys, String keyWords) {
         List result = searchService.simpleSearch(searchKeys, keyWords);
-        ModelAndView mav = new ModelAndView("/jsp/system");
+        ModelAndView mav = new ModelAndView("/jsp/users/system");
         mav.addObject(result);
         return mav;
     }
@@ -49,7 +49,7 @@ public class PictureController {
             conditionMap.put(field, condition);
         }
         List result = searchService.complexSearch(conditionMap, true);
-        return "/jsp/system";
+        return "/jsp/users/system";
     }
 
     @RequestMapping("getPicInCat")
