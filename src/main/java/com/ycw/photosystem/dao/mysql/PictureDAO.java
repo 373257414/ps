@@ -135,6 +135,9 @@ public class PictureDAO {
             if (page.isDescOrder() == true) {
                 criteria.addOrder(Order.desc("id"));
             }
+            if (page.getConditionMap()!=null){
+                criteria.add(Restrictions.allEq(page.getConditionMap()));
+            }
             return criteria.setFirstResult(from).setMaxResults(count).list();
         } catch (RuntimeException re) {
             throw re;

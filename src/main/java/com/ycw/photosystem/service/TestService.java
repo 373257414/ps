@@ -73,13 +73,5 @@ public class TestService {
         }
     }
 
-    public void esSearch(String field, String text) {
-        Object[] resultArray = pictureEsDAO.findIdByMatchQuery(field, text);
-        for (Object o : resultArray) {
-            Long id = Long.valueOf((String) o);
-            System.out.println(id);
-        }
-    }
-
 }
 

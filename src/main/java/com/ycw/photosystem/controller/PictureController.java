@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Controller
 public class PictureController {
@@ -33,19 +32,19 @@ public class PictureController {
         } else {
             List result;
             if (field.equals("pictureCategory") || field.equals("pictureDepartment")) {
-                result = searchService.simpleSearch(field, Integer.valueOf(condition));
+                result = searchService.singleSQLSearch(field, Integer.valueOf(condition));
             } else {
-                result = searchService.simpleSearch(field, condition);
+                result = searchService.singleSQLSearch(field, condition);
             }
             return result;
         }
     }
 
     // TODO: 精确查找和模糊查找，与前端的配合
-    @RequestMapping("complexSearchAction")
-    public String complexSearch(String check, HttpServletRequest request) {
+    /*@RequestMapping("complexSearchAction")
+    @ResponseBody
+    public List complexSearch(HttpServletRequest request) {
         Map<String, String[]> parameterMap = request.getParameterMap();
-        parameterMap.remove("check");
         Set<String> fields = parameterMap.keySet();
         Map<String, Object> conditionMap = new HashMap<>();
         for (String field : fields) {
@@ -59,9 +58,48 @@ public class PictureController {
                 conditionMap.put(field, condition);
             }
         }
-        List result = searchService.complexSearch(conditionMap, true);
-        return "/jsp/users/system";
+        conditionMap.remove("currentPage");
+        Page page = new Page();
+        page.setCurrentPage(Integer.valueOf(request.getParameter("currentPage")));
+        page.setConditionMap(conditionMap);
+        List result = searchService.searchByPage(page);
+        return result;
+    }*/
+
+    @RequestMapping("complexSearchAction")
+    @ResponseBody
+    public List complexSearch(HttpServletRequest request) {
+        Map<String, Object> conditionMap = new HashMap<>();
+        if (!StringUtils.isEmpty(request.getParameter("description"))) {
+            conditionMap.put("description", request.getParameter("description"));
+        }
+        if (!StringUtils.isEmpty(request.getParameter("fileNumber"))) {
+            conditionMap.put("fileNumber", request.getParameter("fileNumber"));
+        }
+        if (!StringUtils.isEmpty(request.getParameter("keyPerson"))) {
+            conditionMap.put("keyPerson", request.getParameter("keyPerson"));
+        }
+        if (!StringUtils.isEmpty(request.getParameter("author"))) {
+            conditionMap.put("author", request.getParameter("author"));
+        }
+        if (!StringUtils.isEmpty(request.getParameter("place"))) {
+            conditionMap.put("place", request.getParameter("place"));
+        }
+        Page page = new Page();
+        if (!StringUtils.isEmpty(request.getParameter("currentPage"))) {
+            page.setCurrentPage(Integer.valueOf(request.getParameter("currentPage")));
+        }
+        if (!StringUtils.isEmpty(request.getParameter("pictureCategory"))) {
+            page.setCategoryId(Integer.parseInt(request.getParameter("pictureCategory")));
+        }
+        if (!StringUtils.isEmpty(request.getParameter("pictureDepartment"))) {
+            page.setDepartmentId(Integer.parseInt(request.getParameter("pictureDepartment")));
+        }
+        page.setConditionMap(conditionMap);
+        List result = searchService.unionSearch(page);
+        return result;
     }
+
 
     @RequestMapping("getPicInCat")
     @ResponseBody
@@ -69,7 +107,7 @@ public class PictureController {
         Page page = new Page();
         page.setCategoryId(categoryId);
         page.setCurrentPage(currentPage);
-        return searchService.displayByPage(page);
+        return searchService.searchByPage(page);
     }
 
 

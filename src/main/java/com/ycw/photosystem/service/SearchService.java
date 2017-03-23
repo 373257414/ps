@@ -29,7 +29,7 @@ public class SearchService {
         this.pictureTransform = pictureTransform;
     }
 
-    public List simpleSearch(String field, Object condition) {
+    public List singleSQLSearch(String field, Object condition) {
         if (field.equals(null)) {
             return null;
         } else {
@@ -37,7 +37,9 @@ public class SearchService {
         }
     }
 
-    public List complexSearch(Map<String, Object> conditionMap, Boolean mode) {
+    public List complexSQLSearch(Map<String, Object> conditionMap, Boolean mode) {
+        Page page = new Page();
+        page.setConditionMap(conditionMap);
         if (mode.equals(true)) {
             return pictureDAO.findByPropertiesAnd(conditionMap);
         } else {
@@ -45,8 +47,23 @@ public class SearchService {
         }
     }
 
-    public List displayByPage(Page page) {
+    public List searchByPage(Page page) {
         return pictureDAO.findByPage(page);
+    }
+
+    public List unionSearch(Page page) {
+        List ids = complexEsSearch(page.getConditionMap());
+        page.setIds(ids);
+        page.setConditionMap(null);
+        return pictureDAO.findByPage(page);
+    }
+
+    public List singleEsSearch(String field, String text) {
+        return pictureEsDAO.findIdsByMatchQuery(field, text);
+    }
+
+    public List complexEsSearch(Map<String, String> conditionMap) {
+        return pictureEsDAO.findIdsByMatchQuery(conditionMap);
     }
 
     public void index(Long startId, Long endId, int perCount) {
@@ -65,12 +82,5 @@ public class SearchService {
         }
     }
 
-    public void esSearch(String field, String text) {
-        Object[] resultArray = pictureEsDAO.findIdByMatchQuery(field, text);
-        for (Object o : resultArray) {
-            String id = o.toString();
-            System.out.println(id);
-        }
-    }
 
 }

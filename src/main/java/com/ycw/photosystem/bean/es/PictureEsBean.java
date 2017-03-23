@@ -10,15 +10,11 @@ public class PictureEsBean {
     private String name;
     private Timestamp createTime;
     private Timestamp photoDate;
-    private String pictureLoader;
-    private String pictureDepartment;
-    private String pictureCategory;
     private String keyPerson;
     private String author;
     private String description;
     private String fileNumber;
-
-
+    private String place;
 
 
     public Long getId() {
@@ -53,30 +49,6 @@ public class PictureEsBean {
         this.photoDate = photoDate;
     }
 
-    public String getPictureLoader() {
-        return pictureLoader;
-    }
-
-    public void setPictureLoader(String pictureLoader) {
-        this.pictureLoader = pictureLoader;
-    }
-
-    public String getPictureDepartment() {
-        return pictureDepartment;
-    }
-
-    public void setPictureDepartment(String pictureDepartment) {
-        this.pictureDepartment = pictureDepartment;
-    }
-
-    public String getPictureCategory() {
-        return pictureCategory;
-    }
-
-    public void setPictureCategory(String pictureCategory) {
-        this.pictureCategory = pictureCategory;
-    }
-
     public String getKeyPerson() {
         return keyPerson;
     }
@@ -107,5 +79,13 @@ public class PictureEsBean {
 
     public void setFileNumber(String fileNumber) {
         this.fileNumber = fileNumber;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
     }
 }

@@ -7,7 +7,6 @@ import com.ycw.photosystem.dao.tranform.PictureTransform;
 import com.ycw.photosystem.service.SearchService;
 import com.ycw.photosystem.service.TestService;
 import com.ycw.photosystem.service.UserService;
-import com.ycw.photosystem.tool.RandomString;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -41,7 +40,7 @@ public class Main {
         testService.oneUpdate(picture);*/
         /*double start = System.currentTimeMillis();
         searchService.esSearch("description", "教四");
-        //searchService.simpleSearch("description", "教四");
+        //searchService.singleSQLSearch("description", "教四");
         double end = System.currentTimeMillis();
         System.out.println(end - start);*/
         //searchService.totalUpdate();
@@ -121,17 +120,22 @@ public class Main {
     private static void totalUpdate() {
         int threadCount = 20;
         ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
-        Long MaxId = 1000000L;
-        Long MinId = 521504L;
+        Long MaxId = 5L;
+        Long MinId = 0L;
         Long threadRange = (MaxId - MinId) / threadCount;
+        if (threadRange < 1) {
+            threadRange = MaxId - MinId;
+            threadCount = 1;
+        }
+        final Long innerRange = threadRange;
         for (int i = 0; i < threadCount; i++) {
             int innerI = i;//thisThreadNum在内部，传值
             executorService.execute(new Runnable() {
                 @Override
                 public void run() {
-                    Long startId = MinId + threadRange * innerI;
-                    Long endId = startId + threadRange;
-                    generate1000000(startId, endId);
+                    Long startId = MinId + innerRange * innerI;
+                    Long endId = startId + innerRange;
+                    searchService.index(startId,endId,10);
                 }
             });
         }
