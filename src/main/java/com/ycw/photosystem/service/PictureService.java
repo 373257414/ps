@@ -112,6 +112,43 @@ public class PictureService {
         return true;
     }
 
+    public String getPicturePath(int dic, String fileName) {
+        File picFile;
+        if (dic == 1) {
+            picFile = new File(CHECK_DIC + fileName);
+        } else if (dic == 2) {
+            picFile = new File(PATH_DIC + fileName);
+        } else if (dic == 3) {
+            picFile = new File(WATERMARK_PATH_DIC + fileName);
+        } else {
+            return null;
+        }
+        if (picFile.exists()) {
+            return picFile.getPath();
+        } else {
+            return null;
+        }
+    }
+
+    public File getPictureFile(int dic, String fileName) {
+        File picFile;
+        if (dic == 1) {
+            picFile = new File(CHECK_DIC + fileName);
+        } else if (dic == 2) {
+            picFile = new File(PATH_DIC + fileName);
+        } else if (dic == 3) {
+            picFile = new File(WATERMARK_PATH_DIC + fileName);
+        } else {
+            return null;
+        }
+        if (picFile.exists()) {
+            return picFile;
+        } else {
+            return null;
+        }
+    }
+
+
     private File uploadPicFile(MultipartFile file) {
         System.out.print(System.getProperty("user.dir"));
         File pictureDic = new File(CHECK_DIC);
