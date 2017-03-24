@@ -35,6 +35,21 @@ var container = new Vue({
                 console.log(response);
             }
         });
+        $.get({
+            url:'getPicInCat',
+            data:{
+                categoryId:this.categoryId,
+                currentPage:this.pagination.currentPage
+            },
+            success:function(response){
+                console.log(response);
+                for(var i in response){
+                    container.pictures.push({
+                        src:'F:/checkpicture/'+response[i].name
+                    })
+                }
+            }
+        });
         $('.image').width($('.el-card').width());
     },
     methods:{
