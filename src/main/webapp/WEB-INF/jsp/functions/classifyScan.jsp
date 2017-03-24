@@ -20,9 +20,9 @@
             <h1>分类浏览</h1>
         </header>
         <div id="classSection">
-            <select id="myCategory" @change="handleCategoryChange">
-                <option v-for="category in categories" :value="category.id">{{category.name}}</option>
-            </select>
+            <el-select v-model="categoryId" placeholder="请选择" @change="handleCategoryChange">
+                <el-option v-for="category in categories" :label="category.name" :value="category.id"></el-option>
+            </el-select>
         </div>
         <div id="scanSection">
             <el-dialog v-model="dialogVisible" custom-class="dialog" size="large">

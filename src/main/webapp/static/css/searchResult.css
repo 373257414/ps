@@ -1,0 +1,27 @@
+#container {
+    width: 785px;
+    height: 700px;
+    background-color: transparent;
+    margin: 0 auto;
+}
+header{
+    height:50px;
+}
+header h1{
+    text-align:center;
+    width: 300px;
+    background:#00A1F1;
+    font-size: 24px;
+    font-family: '΢���ź�','����',sans-serif;
+    float: left;
+    margin-top: 0px;
+    margin-left: 230px;
+    line-height: 40px;
+    color:white;
+}
+#scanSection{
+    margin-top:20px;
+}
+.image{
+    height:140px;
+}

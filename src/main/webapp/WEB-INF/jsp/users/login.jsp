@@ -79,7 +79,7 @@
                 <div id="functions">
                     <ul type="none">
                         <li><a href="#" target="main" title="校园建设及风光">校园建设及风光</a></li>
-                        <li><a href="#" target="main" title="毕业生合影">毕业生合影</a></li>
+                        <li><a href="/searchResultJsp" target="main" title="毕业生合影">searchResult</a></li>
                         <li><a href="/classifyScanJsp" target="main" title="教工活动">classifyScan</a></li>
                         <li><a href="/checkPictureJsp" target="main" title="运动会">checkPicture</a></li>
                         <li><a href="/uploadPictureJsp" target="main" title="领导视察">uploadPicture</a></li>

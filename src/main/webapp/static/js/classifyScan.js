@@ -10,9 +10,7 @@ var container = new Vue({
         categories:[],
         pictures:[
             {src:'/static/img/desert.jpg', fileNumber:'0', description:'lalala0', time:'2014.1.1'},
-            {src:'/static/img/background.jpg', fileNumber:'1', description:'lalala1', time:'2014.1.2'},
-            {src:'/static/img/penguin.jpg', fileNumber:'2', description:'lalala2', time:'2014.1.3'},
-            {src:'/static/img/penguin.jpg', fileNumber:'3', description:'lalala3', time:'2014.1.4'}
+            {src:'/static/img/background.jpg', fileNumber:'1', description:'lalala1', time:'2014.1.2'}
         ],
         pagination:{
             currentPage:1,
@@ -45,7 +43,7 @@ var container = new Vue({
                 console.log(response);
                 for(var i in response){
                     container.pictures.push({
-                        src:'F:/checkpicture/'+response[i].name
+                        src:'/pic/checkpicture/' + response[i].name
                     })
                 }
             }
@@ -67,7 +65,6 @@ var container = new Vue({
             })
         },
         handleCategoryChange:function(){
-            this.categoryId = $("#myCategory").val();
             $.get({
                 url:'getPicSumInCat',
                 data:{
@@ -84,8 +81,24 @@ var container = new Vue({
                         success:function(responsePic){
                             console.log(responsePic);
                             container.pagination.currentPage = 1;
+                            if(responsePic.length !== 0){
+                                container.pictures = [];
+                                for(var i in responsePic){
+                                    container.pictures.push({
+                                        src:'/checkpicture/' + responsePic[i].name
+                                    })
+                                }
+                            }else{
+                                container.$message.error('此类别中无图片');
+                            }
+                        },
+                        error:function(responsePic){
+                            container.$message.error("获取图片失败");
                         }
                     })
+                },
+                error:function(response){
+                    container.$message.error("获取个数失败")
                 }
             });
         },

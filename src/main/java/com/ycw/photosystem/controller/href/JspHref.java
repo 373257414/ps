@@ -39,4 +39,7 @@ public class JspHref {
 
     @RequestMapping("userManageJsp")
     public ModelAndView userManageJsp() { return new ModelAndView("/jsp/functions/userManage"); }
+
+    @RequestMapping("searchResultJsp")
+    public ModelAndView searchResultJsp() { return new ModelAndView("/jsp/functions/searchResult"); }
 }
