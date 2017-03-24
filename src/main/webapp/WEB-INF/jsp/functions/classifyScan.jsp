@@ -25,6 +25,9 @@
             </select>
         </div>
         <div id="scanSection">
+            <el-dialog v-model="dialogVisible" custom-class="dialog" size="large">
+                <img :src="dialogPictureSrc" style="width:300px;height:300px">
+            </el-dialog>
             <el-row>
                 <el-col :span="8" v-for="picture in pictures">
                     <el-card :body-style="{ padding: '0px' }">
