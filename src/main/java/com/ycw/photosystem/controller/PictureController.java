@@ -129,11 +129,6 @@ public class PictureController {
         return;
     }
 
-    @RequestMapping("getPicturePath")
-    @ResponseBody
-    public String getPicturePath(int dic, String fileName) {
-        return pictureService.getPicturePath(dic, fileName);
-    }
     @RequestMapping("getPictureFile")
     public void getPictureFile(int dic, String fileName ,HttpServletResponse response) {
         FileInputStream fis = null;

@@ -20,26 +20,26 @@
         <img src="/static/img/topbackground.jpg" align="middle" alt="北京邮电大学照片档案管理系统" id="topBackground">
         <nav id="navBar">
             <ul>
-                <li><a href="/systemJsp" title="首页">首页</a></li>
-                <li><a href="#" title="人气排行">人气排行</a></li>
+                <li><button title="首页">首页</button></li>
+                <li><button title="人气排行">人气排行</button></li>
             </ul>
         </nav>
     </header>
     <div id="mainSection">
         <div id="leftSection">
             <header class="leftHeader">
-                <a href="#" class="lHeader">用户信息</a>
+                <button class="lHeader">用户信息</button>
             </header>
             <div id="userSection" class="firstSection">
                 <div id="information">
                     <p>欢迎：<a href="/userInformationJsp" target="main">${sessionScope.currentUser.nickname}</a></p>
                     <p>权限：系统管理员</p>
-                    <p><a href="/userInformationJsp" target="main" class="button button-glow button-border button-rounded button-tiny button-primary"/>查看</a></p>
+                    <p><a href="/userInformationJsp" target="main" class="button button-glow button-border button-rounded button-tiny button-primary"/>查看</p>
                 </div>
                 <a href="/loginJsp" id="logout"><img src="/static/img/ZHYlogout32.png" alt="注销" title="注销"/></a>
             </div>
             <header class="leftHeader">
-                <a href="#" class="lHeader">图片搜索</a>
+                <button class="lHeader">图片搜索</button>
             </header>
             <div id="searchSection">
                 <form id="Q_searchForm" action="">
@@ -60,7 +60,7 @@
                         <input type="reset" value="清空" name="reset" class="button button-3d button-caution button-pill button-tiny"/>
                     </div>
                 </form>
-                <a href="#" title="高级搜索" id="A_Search_link"><img src="/static/img/ZHYgodown16.png" class="icon_inline icon_change_search"/>高级搜索<img src="/static/img/ZHYgodown16.png" class="icon_inline icon_change_search"/></a>
+                <button title="高级搜索" id="A_Search_link"><img src="/static/img/ZHYgodown16.png" class="icon_inline icon_change_search"/>高级搜索<img src="/static/img/ZHYgodown16.png" class="icon_inline icon_change_search"/></button>
                 <div id="A_SearchSection">
                     <form id="A_searchForm">
                         <div id="A_inputSec">
@@ -105,21 +105,21 @@
                 </div>
             </div>
             <header class="leftHeader">
-                <a href="#" class="lHeader">用户功能</a>
+                <button class="lHeader">用户功能</button>
             </header>
             <div id="functions">
                 <ul type="none">
                     <li><a href="/classifyScanJsp" target="main" title="分类浏览">分类浏览</a></li>
-                    <li><a href="#" target="main" title="下载照片-系统管理员">下载照片</a></li>
+                    <li><a href="/classifyScanJsp" target="main" title="下载照片-系统管理员">下载照片</a></li>
                     <li><a href="/depManageJsp" target="main" title="部门管理">部门管理</a></li>
-                    <li><a href="#" target="main" title="照片类别管理">照片类别管理</a></li>
+                    <li><a href="/classifyScanJsp" target="main" title="照片类别管理">照片类别管理</a></li>
                     <li><a href="/userManageJsp" target="main" title="用户管理">用户管理</a></li>
-                    <li><a href="#" target="main" title="图片管理">图片管理</a></li>
+                    <li><a href="/classifyScanJsp" target="main" title="图片管理">图片管理</a></li>
                 </ul>
             </div>
         </div>
         <div id="rightSection">
-            <iframe src="#" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
+            <iframe name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
             </iframe>
         </div>
     </div>
