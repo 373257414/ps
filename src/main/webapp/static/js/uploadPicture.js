@@ -72,6 +72,6 @@ var container = new Vue({
     },
     methods:{
         handleDepChange:function(){},
-        handleCatChange:function(){}
+        handleCatChange:function(){},
     }
 });
