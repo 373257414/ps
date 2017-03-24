@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -124,6 +128,37 @@ public class PictureController {
         }
         return;
     }
+
+    @RequestMapping("getPicturePath")
+    @ResponseBody
+    public String getPicturePath(int dic, String fileName) {
+        return pictureService.getPicturePath(dic, fileName);
+    }
+    @RequestMapping("getPictureFile")
+    public void getPictureFile(int dic, String fileName ,HttpServletResponse response) {
+        FileInputStream fis = null;
+        response.setContentType("image/jpeg");
+        try {
+            OutputStream out = response.getOutputStream();
+            File file = pictureService.getPictureFile(dic,fileName);
+            fis = new FileInputStream(file);
+            byte[] b = new byte[fis.available()];
+            fis.read(b);
+            out.write(b);
+            out.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 /*
     @RequestMapping("searchAction")
     @ResponseBody
