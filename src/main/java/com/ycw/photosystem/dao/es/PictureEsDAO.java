@@ -3,15 +3,24 @@ package com.ycw.photosystem.dao.es;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ycw.photosystem.bean.es.PictureEsBean;
+import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static org.elasticsearch.index.query.QueryBuilders.matchQuery;
+import static org.elasticsearch.index.query.QueryBuilders.spanMultiTermQueryBuilder;
 
 @Component
 public class PictureEsDAO {
@@ -41,17 +50,34 @@ public class PictureEsDAO {
     }
 
 
-
-    public Long[] findIdByMatchQuery(String field, String text) {
-        QueryBuilder qb = matchQuery(field, text);
+    public List findIdsByMatchQuery(String field, String text) {
+        QueryBuilder qb = matchQuery(field, text).operator(MatchQueryBuilder.Operator.AND);
         SearchResponse searchResponse = client.prepareSearch(INDEX_NAME)
                 .setTypes(TYPE)
                 .setQuery(qb).execute().actionGet();
         SearchHits searchHits = searchResponse.getHits();
-        Long[] ids = new Long[Math.toIntExact(searchHits.getTotalHits())];
-        int i = 0;
+        List ids = new ArrayList(Math.toIntExact(searchHits.getTotalHits()));
         for (SearchHit searchHit : searchHits) {
-            ids[i] = Long.valueOf(searchHit.getId());
+            ids.add(Long.valueOf(searchHit.getId()));
+        }
+        return ids;
+    }
+
+    public List findIdsByMatchQuery(Map<String, String> conditionMap) {
+        SearchRequestBuilder srb = client.prepareSearch(INDEX_NAME).setTypes(TYPE);
+        Set<Map.Entry<String, String>> entrySet = conditionMap.entrySet();
+        for (Map.Entry<String, String> entry : entrySet) {
+            if (StringUtils.isEmpty(entry.getValue())){
+                continue;
+            }
+            QueryBuilder qb = matchQuery(entry.getKey(), entry.getValue()).operator(MatchQueryBuilder.Operator.AND);
+            srb.setQuery(qb);
+        }
+        SearchResponse searchResponse = srb.execute().actionGet();
+        SearchHits searchHits = searchResponse.getHits();
+        List ids = new ArrayList(Math.toIntExact(searchHits.getTotalHits()));
+        for (SearchHit searchHit : searchHits) {
+            ids.add(Long.valueOf(searchHit.getId()));
         }
         return ids;
     }
