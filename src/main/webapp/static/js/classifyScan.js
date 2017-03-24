@@ -8,14 +8,11 @@ var container = new Vue({
         dialogVisible:false,
         dialogPictureSrc:'',
         categories:[],
-        pictures:[
-            {src:'/static/img/desert.jpg', fileNumber:'0', description:'lalala0', time:'2014.1.1'},
-            {src:'/static/img/background.jpg', fileNumber:'1', description:'lalala1', time:'2014.1.2'}
-        ],
+        pictures:[],
         pagination:{
             currentPage:1,
             pageSize:6,
-            total:100
+            total:0
         }
     },
     mounted:function(){
@@ -33,22 +30,7 @@ var container = new Vue({
                 console.log(response);
             }
         });
-        $.get({
-            url:'getPicInCat',
-            data:{
-                categoryId:this.categoryId,
-                currentPage:this.pagination.currentPage
-            },
-            success:function(response){
-                console.log(response);
-                for(var i in response){
-                    container.pictures.push({
-                        src:'/pic/checkpicture/' + response[i].name
-                    })
-                }
-            }
-        });
-        $('.image').width($('.el-card').width());
+        this.getPicture();
     },
     methods:{
         handleCurrentChange:function(val){
@@ -65,6 +47,9 @@ var container = new Vue({
             })
         },
         handleCategoryChange:function(){
+            this.getPicture();
+        },
+        getPicture:function(){
             $.get({
                 url:'getPicSumInCat',
                 data:{
@@ -85,9 +70,13 @@ var container = new Vue({
                                 container.pictures = [];
                                 for(var i in responsePic){
                                     container.pictures.push({
-                                        src:'/checkpicture/' + responsePic[i].name
+                                        src:'/pspic/checkpicture/' + responsePic[i].name,
+                                        fileNumber:responsePic[i].fileNumber,
+                                        description:responsePic[i].description,
+                                        time:responsePic[i].photoDate.toString()
                                     })
                                 }
+                                $('.image').width($('.el-card').width());
                             }else{
                                 container.$message.error('此类别中无图片');
                             }
