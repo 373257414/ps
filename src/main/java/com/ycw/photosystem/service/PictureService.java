@@ -38,9 +38,9 @@ public class PictureService {
     private SupportDAO supportDAO;
 
 
-    private static final String CHECK_DIC = "/checkpicture/";
-    private static final String PATH_DIC = "/picture/";
-    private static final String WATERMARK_PATH_DIC = "/watermarkpicture/";
+    private static final String CHECK_DIC = "/pspic/checkpicture/";
+    private static final String PATH_DIC = "/pspic/picture/";
+    private static final String WATERMARK_PATH_DIC = "/pspic/watermarkpicture/";
 
 
     /*上传到待审核库*/
