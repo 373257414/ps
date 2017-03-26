@@ -6,7 +6,14 @@ var container = new Vue({
     data: {
         categoryId:1,
         dialogVisible:false,
-        dialogPictureSrc:'',
+        dialogPictureInfo:{
+            src:'',
+            author:'',
+            keyPerson:'',
+            description:'',
+            name:'',
+            time:''
+        },
         categories:[],
         pictures:[],
         picturesInfo:{},
@@ -43,7 +50,18 @@ var container = new Vue({
                     currentPage:this.pagination.currentPage
                 },
                 success:function(response){
-                    console.log(response);
+                    container.pictures = [];
+                    for(var i in response){
+                        container.pictures.push({
+                            src:'pspic/checkpicture/' + response[i].name,
+                            fileNumber:response[i].fileNumber,
+                            description:response[i].description,
+                            time:response[i].photoDate.toString(),
+                            author:response[i].author,
+                            keyPerson:response[i].keyPerson,
+                            name:response[i].name
+                        })
+                    }
                 }
             })
         },
@@ -71,7 +89,7 @@ var container = new Vue({
                                 container.pictures = [];
                                 for(var i in responsePic){
                                     container.pictures.push({
-                                        src:'/pspic/checkpicture/' + responsePic[i].name,
+                                        src:'pspic/checkpicture/' + responsePic[i].name,
                                         fileNumber:responsePic[i].fileNumber,
                                         description:responsePic[i].description,
                                         time:responsePic[i].photoDate.toString()
@@ -93,8 +111,12 @@ var container = new Vue({
             });
         },
         showPicture:function(event){
-            this.dialogPictureSrc = event.target.src;
-
+            this.dialogPictureInfo.src = event.target.src;
+            /*this.dialogPictureInfo.author = event.target.author;
+             this.dialogPictureInfo.keyPerson = event.target.keyPerson;
+             this.dialogPictureInfo.description = event.target.description;
+             this.dialogPictureInfo.name = event.target.name;
+             this.dialogPictureInfo.time = event.target.time;*/
             this.dialogVisible = true;
         },
         submitPic:function(){},

@@ -4,11 +4,11 @@
 <head>
 
     <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-    <title>北京邮电大学|图片档案馆|游客登录|分类浏览</title>
+    <title>北京邮电大学|图片档案馆|搜索结果</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
-    <link rel="stylesheet" href="/static/css/searchResult.css" media="screen">
-    <link rel="stylesheet" href="/static/css/reset.css" media="screen">
-    <script src="/static/js/jquery-2.2.4.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="static/css/searchResult.css" media="screen">
+    <link rel="stylesheet" href="static/css/reset.css" media="screen">
+    <script src="static/js/jquery-2.2.4.js" type="text/javascript"></script>
     <script src="https://unpkg.com/vue@2.2.4/dist/vue.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
@@ -21,7 +21,7 @@
     </header>
     <div id="scanSection">
         <el-dialog v-model="dialogVisible" custom-class="dialog" size="large">
-            <img :src="dialogPictureSrc" style="width:300px;height:300px">
+            <img :src="dialogPictureSrc" style="width:300px">
         </el-dialog>
         <el-row>
             <el-col :span="8" v-for="picture in pictures">
@@ -40,6 +40,6 @@
         </el-col>
     </div>
 </div>
-<script src="/static/js/classifyScan.js" type="text/javascript"></script>
+<script src="static/js/searchResult.js" type="text/javascript"></script>
 </body>
 </html>

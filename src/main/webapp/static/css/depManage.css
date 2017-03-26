@@ -1,57 +1,21 @@
 #container {
-    width: 785px;
-    height: 600px;
-    background-color: transparent;
-    margin: 0 auto;
+	width: 785px;
+	height: 700px;
+	background-color: transparent;
+	margin: 0 auto;
 }
 header{
-    height:50px;
+	height:50px;
 }
 header h1{
-    text-align:center;
-    width: 300px;
-    background:#00A1F1;
-    font-size: 24px;
-    font-family: '微软雅黑','黑体',sans-serif;
-    float: left;
-    margin-top: 0px;
-    margin-left: 230px;
-    line-height: 40px;
-    color:white;
-}
-#leftSection{		/*左部区域*/
-	position:absolute;
-}
-#departments{		/*部门列表*/
-	font-size:15px;
-	width:100px;
-	margin-top:50px;
-	margin-left:100px;
-}
-.buttons{		/*按钮区域*/
-	margin-top:20px;
-	margin-left:30px;
-}
-.buttons input{		/*按钮*/
-	font-size:15px;
-	margin-left:15px;
-}
-#rightSection{		/*右部区域*/
-	margin-left:350px;
-	margin-top:0px;
-	position:absolute;
-}
-#depInfo{		/*部门信息区域*/
-	margin-top:50px;
-}
-#depInfo p{		/*部门信息部分文字*/
-	font-size:14px;
-	margin-top:13px;
-}
-#depEdit{		/*部门编辑区域*/
-	margin-top:90px;
-}
-#depEdit p{
-	font-size:14px;
-	margin-top:13px;
+	text-align:center;
+	width: 300px;
+	background:#00A1F1;
+	font-size: 24px;
+	font-family: '微锟斤拷锟脚猴拷','锟斤拷锟斤拷',sans-serif;
+	float: left;
+	margin-top: 0px;
+	margin-left: 230px;
+	line-height: 40px;
+	color:white;
 }

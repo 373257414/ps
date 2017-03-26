@@ -12,52 +12,10 @@ header h1{
     width: 300px;
     background:#00A1F1;
     font-size: 24px;
-    font-family: '微软雅黑','黑体',sans-serif;
+    font-family: '微锟斤拷锟脚猴拷','锟斤拷锟斤拷',sans-serif;
     float: left;
     margin-top: 0px;
     margin-left: 230px;
     line-height: 40px;
     color:white;
-}
-#leftSection{		/*左部区域*/
-	float:left;
-	width:392.5px;
-}
-#users{		/*用户列表*/
-	font-size:14px;
-	width:150px;
-	margin-left:100px;
-}
-.buttons{		/*所有按钮区域*/
-	margin-top:10px;
-	margin-left:30px;
-}
-.buttons input{		/*所有按钮*/
-	font-size:15px;
-	margin-left:15px;
-}
-#rightSection{		/*右部区域*/
-	float:right;
-	width:392.5px;
-}
-#userInfo p{		/*用户信息区域文字*/
-	font-size:14px;
-	margin-top:13px;
-}
-#userEdit{		/*用户编辑区域*/
-	margin-top:60px;
-}
-h2{		/*小标题*/
-	text-align:center;
-    width: 150px;
-    background:#00A1F1;
-    font-size: 18px;
-    font-family: '微软雅黑','黑体',sans-serif;
-    margin: 0px 0px 0px 50px;
-    line-height: 40px;
-    color:white;
-}
-#userEdit p{		/*用户编辑区文字*/
-	font-size:14px;
-	margin-top:13px;
 }

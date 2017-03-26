@@ -1,58 +1,128 @@
-$(document).ready(function()
-{
-	$("#userEdit").hide();		//³õÊ¼Ê±½«±à¼­ÇøÓòÒş²Ø
-	var counter_addUser = 0;
-	/*µã»÷Ìí¼ÓÓÃ»§½«±à¼­ÇøÏÔÊ¾*/
-	$("#addUserBtn").click(function()
-	{
-		counter_addUser++;
-		if(counter_addUser%2 == 1)
-		{
-			$("#userEdit").show();
+var container = new Vue({
+	el:'#container',
+	data:{
+        addUserDialog:false,
+        editUserDialog:false,
+        editDialogTitle:'',
+        addForm:{
+        	username:'',
+            nickname:'',
+            password:'',
+            email:'',
+            department:'',
+            permission:''
+        },
+		editForm:{
+        	userId:'',
+			department:'',
+			permission:''
+		},
+		departments:[],
+		permissions:[],
+		userData:[
+			{userId:'1',username:'asd',nickname:'feafe',password:'qwe',email:'adewfe',department:'1',permission:'2'}
+		],
+		pagination:{
+			currentPage:1,
+			total:0,
+			size:20
 		}
-		else if(counter_addUser%2 == 0)
-		{
-			$("#userEdit").hide();
-		}	
-	})
-	/*µ±ÊäÈë¿ò»ñµÃ½¹µãÊ±ÖØÖÃºìÉ«ÌáÊ¾±ß¿ò*/
-	$(".username,.password,select").focus(function()
-	{
-			$(this).css("border-color","");
-	})
-	/*µã»÷Ìá½»°´Å¥½øĞĞ±íµ¥ÑéÖ¤*/
-	$("#submitBtn").click(function()
-	{
-		if($("#edit_username").val().trim() == "")
-		{
-			$("#edit_username").css("border-color","red");
-			return false;
-		}
-		else if($("#edit_password").val() == "" || $("#edit_password").val().length<6 || $("#edit_password").val().length>15)
-		{
-			$("#edit_password").css("border-color","red");
-		}
-		else if($("#edit_departmentId").val() == "")
-		{
-			$("#edit_departmentId").css("border-color","red");
-			return false;
-		}
-		else if($("#edit_permissionId").val() == "")
-		{
-			$("#edit_permissionId").css("border-color","red");
-			return false;
-		}
-		else
-		{
-			var reg = confirm("Ìí¼ÓÕË»§Îª£º" + $('#edit_username').val() + "\n"
-					+ "Ìí¼ÓÃÜÂëÎª£º" + $('#edit_password').val() + "\n"
-					+ "Ìí¼Ó²¿ÃÅÎª£º" + $('#edit_departmentId option:selected').text() + "\n"
-					+ "Ìí¼ÓÈ¨ÏŞÎª£º" + $('#edit_permissionId option:selected').text() + "\n"
-					+ "ÊÇ·ñÈ·ÈÏÌí¼ÓĞÂÓÃ»§£¿")
-			if(reg == true)
-			{
-				$("#editForm").submit();
-			}
-		}
-	})
+	},
+	mounted:function(){
+		this.getDepartments();
+		this.getUserData();
+	},
+	methods:{
+		getUserData:function(){
+			$.get({
+				url:'getUserData',
+				data:{
+					currentPage:this.pagination.currentPage
+				},
+				success:function(response){
+					console.log(response);
+				},
+				error:function(response){
+					container.$message.error('è·å–ç”¨æˆ·æ•°æ®å¤±è´¥');
+				}
+			})
+		},
+		getPermission:function(){
+			$.get({
+				url:'getAllPermission',
+				success:function(response){
+					console.log(response);
+				},
+				error:function(response){
+					container.$message.error('è·å–æƒé™å¤±è´¥');
+				}
+			})
+		},
+		getDepartments:function(){
+            $.get({
+                url:'getAllDepartment',
+                success:function(response){
+                    for(var i in response) {
+                        container.departments.push({
+                            label:response[i].name,
+                            value:response[i].id
+                        });
+                    }
+                },
+                error:function(response){
+                    container.$message.error('è·å–éƒ¨é—¨å¤±è´¥');
+                }
+            });
+		},
+        onAdd:function(){
+			$.post({
+				url:'addUser',
+				data:this.addForm,
+				success:function(response){
+					container.$message.success('æ·»åŠ ç”¨æˆ·æˆåŠŸ');
+				},
+				error:function(response){
+					container.$message.error('æ·»åŠ ç”¨æˆ·å¤±è´¥');
+				}
+			})
+		},
+		editUser:function(index,row){
+        	this.editForm.userId = row.userId;
+        	this.editDialogTitle = 'ä¿®æ”¹ç”¨æˆ·ï¼š' + row.username;
+        	this.editForm.department = row.department;
+        	this.editForm.permission = row.permission;
+        	this.editUserDialog = true;
+		},
+		onEdit:function(){
+            $.ajax({
+                url:'editUser',
+				type:'PUT',
+                data:this.editForm,
+                success:function(response){
+                    container.$message.success('ä¿®æ”¹ç”¨æˆ·æˆåŠŸ');
+                },
+                error:function(response){
+                    container.$message.error('ä¿®æ”¹ç”¨æˆ·å¤±è´¥');
+                }
+            })
+		},
+		deleteUser:function(index,row){
+        	console.log(index,row);
+        	$.ajax({
+        		url:'deleteUser',
+				type:'DELETE',
+				data:row.userId,
+				success:function(response){
+        			container.$message.success('åˆ é™¤ç”¨æˆ·ï¼š' + row.nickname + 'æˆåŠŸ');
+				},
+				error:function(response){
+                    container.$message.error('åˆ é™¤ç”¨æˆ·ï¼š' + row.nickname + 'å¤±è´¥');
+				}
+			})
+		},
+		onCancel:function(){
+
+		},
+		handleCurrentChange:function(){}
+	}
 });

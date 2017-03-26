@@ -6,9 +6,9 @@
 
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
-    <link rel="stylesheet" href="/static/css/uploadPicture.css" media="screen">
-    <link rel="stylesheet" href="/static/css/reset.css" media="screen">
-    <script src="/static/js/jquery-2.2.4.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="static/css/uploadPicture.css" media="screen">
+    <link rel="stylesheet" href="static/css/reset.css" media="screen">
+    <script src="static/js/jquery-2.2.4.js" type="text/javascript"></script>
     <script src="https://unpkg.com/vue@2.2.4/dist/vue.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
@@ -27,11 +27,11 @@
                 <input :type="textInput.type" :id="textInput.value" :name="textInput.value" size="15" maxlength="20">
             </el-row>
             <el-row v-for="select in selectInputs">
-                <label :for="select.name" @change="select.change">{{select.title}}</label>
-                <select :name="select.name" :id="select.name">
-                    <option v-for="option in select.options" :value="option.value">{{option.label}}</option>
-                </select>
-            </el-row>
+            <label :for="select.name">{{select.title}}</label>
+            <select :name="select.name" :id="select.name">
+                <option v-for="option in select.options" :value="option.value">{{option.label}}</option>
+            </select>
+        </el-row>
             <el-row>
                 <label for="file">图片上传</label>
                 <input type="file" id="file" name="file" size="15" maxlength="20">
@@ -42,7 +42,7 @@
         </el-col>
     </div>
 </div>
-<script src="/static/js/uploadPicture.js" type="text/javascript"></script>
+<script src="static/js/uploadPicture.js" type="text/javascript"></script>
 </body>
 </html>
 

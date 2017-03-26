@@ -7,11 +7,12 @@
     
     <title>北京邮电大学|系统管理员|用户管理</title>
 
-	<link rel="stylesheet" href="/static/css/reset.css" media="screen">
-	<link rel="stylesheet" href="/static/css/buttons.css" media="screen">
-	<link rel="stylesheet" href="/static/css/userManage.css" media="screen">
-	<script src="/static/js/jquery-2.2.4.js" type="text/javascript"></script>
-	<script src="/static/js/userManage.js" type="text/javascript" charset="gbk"></script>
+	  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+	<link rel="stylesheet" href="static/css/reset.css" media="screen">
+	<link rel="stylesheet" href="static/css/userManage.css" media="screen">
+	<script src="static/js/jquery-2.2.4.js" type="text/javascript"></script>
+	  <script src="https://unpkg.com/vue@2.2.4/dist/vue.js"></script>
+	  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
   </head>
   
@@ -21,75 +22,58 @@
  			<h1>用户管理</h1>
  		</header>
  		<div id="mainSection">
- 			<div id="leftSection">
-	    		<select multiple id="users" size="28">
-	    			<option value="1">刘润泽</option>
-	    			<option value="2">张华一</option>
-	    			<option value="3">王敏</option>
-	    		</select>
-	    		<div id="LeftBtn" class="buttons">
-		    		<button  name="editUserBtn" id="editUserBtn" class="button button-raised button-action button-pill button-small">编辑用户</button>
-		    		<button  name="addUserBtn" id="addUserBtn" class="button button-raised button-highlight button-pill button-small">添加用户</button>
-		    		<button  name="deleteUserBtn" class="button button-raised button-caution button-pill button-small">删除用户</button>
-	    		</div>
-    		</div>
-    		<div id="rightSection">
-    			<div id="userInfo">
-    				<h2>用户信息</h2>
-	    			<p>
-	    				<label for="info_username">用户名称</label>
-	    				<input type="text" id="info_username" size="20" readonly/>
-	    			</p>
-	    			<p>
-	    				<label for="info_password">用户密码</label>
-	    				<input type="text" id="info_password" size="20" readonly/>
-	    			</p>
-	    			<P>
-	    				<label for="info_department">用户部门</label>
-	    				<input type="text" id="info_department" size="20" readonly/>
-	    			</p>
-	    			<p>
-	    				<label for="info_permission">用户权限</label>
-	    				<input type="text" id="info_permission" size="20" readonly/>
-	    			</p>	
-    			</div>
-    			<div id="userEdit">
-    				<h2>添加用户</h2>
-    				<form id="editForm" action="addUserAction" method="post" enctype="application/x-www-form-urlencoded">
-    					<p>
-    						<label for="edit_username">输入用户名</label>
-    						<input type="text" id="edit_username" name="userName" class="username" size="20"/>
-    					</p>
-    					<P>
-    						<label for="edit_password">输入密码</label>
-    						<input type="text" id="edit_password" name="password" class="password" size="20"/>
-    					</P>
-    					<p>
-    						<label for="edit_departmentId">输入用户部门</label>
-    						<select id="edit_departmentId" name="departmentId" size="1">
-    							<option value="">--请选择--</option>
-    							<option value="1">部门1</option>
-    							<option value="2">部门2</option>
-    							<option value="3">部门3</option>
-    						</select>
-    					</p>
-    					<p>
-    						<label for="edit_permissionId">输入用户权限</label>
-    						<select id="edit_permissionId" name="permissionId" size="1">
-    							<option value="">--请选择--</option>
-    							<option value="3">普通用户</option>
-    							<option value="2">部门管理员</option>
-    							<option value="1">系统管理员</option>
-    						</select>
-    					</p>
-    					<div class="buttons" id="editBtn">
-    						<input type="button" value="提交" id="submitBtn" name="submitBtn" class="button button-3d button-action button-pill button-tiny"/>
-    						<input type="reset" value="清空" id="resetBtn" name="resetBtn" class="button button-3d button-caution button-pill button-tiny"/>
-    					</div>
-    				</form>
-    			</div>
-    		</div>
+			<el-dialog title="添加用户" v-model="addUserDialog" size="small">
+				<el-form :model="addForm" label-width="80px">
+					<el-form-item label="用户"><el-input v-model="addForm.username"></el-input></el-form-item>
+					<el-form-item label="昵称"><el-input v-model="addForm.nickname"></el-input></el-form-item>
+					<el-form-item label="密码"><el-input v-model="addForm.password"></el-input></el-form-item>
+					<el-form-item label="邮箱"><el-input v-model="addForm.email"></el-input></el-form-item>
+					<el-form-item label="部门"><el-select v-model="addForm.department" placeholder="请选择部门">
+						<el-option  v-for="department in departments" :label="department.label" :value="department.value"></el-option>
+					</el-select></el-form-item>
+					<el-form-item label="权限"><el-select v-model="addForm.permission" placeholder="请选择权限">
+							<el-option  v-for="permission in permissions" :label="permission.label" :value="permission.value"></el-option>
+					</el-select></el-form-item>
+					<el-form-item>
+						<el-button type="primary" @click="onAdd">提交</el-button>
+						<el-button @click="onCancel">取消</el-button>
+					</el-form-item>
+				</el-form>
+			</el-dialog>
+			<el-dialog :title="editDialogTitle" v-model="editUserDialog" size="small">
+				<el-form :model="editForm" label-width="80px">
+					<el-form-item label="部门"><el-select v-model="editForm.department" placeholder="请选择部门">
+						<el-option  v-for="department in departments" :label="department.label" :value="department.value"></el-option>
+					</el-select></el-form-item>
+					<el-form-item label="权限"><el-select v-model="editForm.permission" placeholder="请选择权限">
+						<el-option  v-for="permission in permissions" :label="permission.label" :value="permission.value"></el-option>
+					</el-select></el-form-item>
+					<el-form-item>
+						<el-button type="primary" @click="onEdit">提交</el-button>
+						<el-button @click="onCancel">取消</el-button>
+					</el-form-item>
+				</el-form>
+			</el-dialog>
+			<el-row><el-col :span="3"><el-button @click="addUserDialog=true" icon="plus">添加</el-button></el-col></el-row>
+			<el-row>
+					<el-table :data="userData" border>
+						<el-table-column prop="username" label="用户名" fixed="left" width="120"></el-table-column>
+						<el-table-column prop="nickname" label="昵称" width="120"></el-table-column>
+						<el-table-column prop="password" label="密码" width="150"></el-table-column>
+						<el-table-column prop="email" label="邮箱" width="150"></el-table-column>
+						<el-table-column prop="department" label="部门" width="80"></el-table-column>
+						<el-table-column prop="permission" label="权限" width="80"></el-table-column>
+						<el-table-column fixed="right" label="操作" width="100">
+							<template scope="scope"><el-button-group>
+								<el-tooltip class="item" effect="dark" content="修改" placement="top"><el-button type="primary" size="small" icon="edit" @click="editUser(scope.$index, scope.row)"></el-button></el-tooltip>
+								<el-tooltip class="item" effect="dark" content="删除" placement="top"><el-button type="danger" size="small" icon="delete" @click="deleteUser(scope.$index, scope.row)"></el-button></el-tooltip>
+							</el-button-group></template>
+						</el-table-column>
+					</el-table>
+			</el-row>
+			<el-pagination @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-size="pagination.size" layout="total, prev, pager, next, jumper" :total="pagination.total"></el-pagination>
  		</div>
     </div>
+	<script src="static/js/userManage.js" type="text/javascript"></script>
   </body>
 </html>

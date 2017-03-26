@@ -23,9 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <a href="jsp/passerbyMain.jsp">passerbyMain.jsp</a><br/><br/>
   <a href="jsp/quickSearch.jsp">quickSearch.jsp</a><br/><br/>
   <a href="jsp/Function.jsp">Function.jsp</a><br/><br/>
-  <a href="jsp/normalUser.jsp">normalUser.jsp</a><br/><br/>
-  <a href="jsp/liurunze.jsp">liurunze.jsp</a><br/><br/>
-  <a href="jsp/systemManager.jsp">systemAdmin.jsp</a><br/><br/>
+  <a href="departmentJsp">departmentJsp</a><br/><br/>
+  <a href="normalJsp">normalJsp</a><br/><br/>
+  <a href="systemJsp">systemJsp</a><br/><br/>
   <p>hello world</p>
   <button onclick=window.close()>key</button>
   </div>
