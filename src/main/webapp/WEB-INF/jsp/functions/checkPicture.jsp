@@ -6,9 +6,9 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
     <title>北京邮电大学|图片档案馆|游客登录|审核图片</title>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
-    <link rel="stylesheet" href="/static/css/classifyScan.css" media="screen">
-    <link rel="stylesheet" href="/static/css/reset.css" media="screen">
-    <script src="/static/js/jquery-2.2.4.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="static/css/classifyScan.css" media="screen">
+    <link rel="stylesheet" href="static/css/reset.css" media="screen">
+    <script src="static/js/jquery-2.2.4.js" type="text/javascript"></script>
     <script src="https://unpkg.com/vue@2.2.4/dist/vue.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
@@ -20,13 +20,13 @@
         <h1>审核图片</h1>
     </header>
     <div id="classSection">
-        <el-select v-model="categoryId" placeholder="请选择" @change="handleCategoryChange">
+        <el-select v-model="categoryId" placeholder="请选择" @change="getPicture">
             <el-option v-for="category in categories" :label="category.name" :value="category.id"></el-option>
         </el-select>
     </div>
     <div id="scanSection">
         <el-dialog v-model="dialogVisible" custom-class="dialog" size="large">
-            <img :src="dialogPictureSrc" style="width:300px;height:300px">
+            <img :src="dialogPictureInfo.src" style="width:300px">
             <div>
                 <div id="pictureInfo">
 
@@ -54,6 +54,6 @@
         </el-col>
     </div>
 </div>
-<script src="/static/js/classifyScan.js" type="text/javascript"></script>
+<script src="static/js/checkPicture.js" type="text/javascript"></script>
 </body>
 </html>

@@ -83,10 +83,10 @@ body{
     margin-top:3px;
 }
 #loginBtn{		/*登录按钮*/
-    margin:5px 0 0 65px ;
+    margin-left:75px;
 }
 #userSection{		/*信息区域*/
-    height:95px;
+    height:90px;
 }
 #information{		/*信息区*/
 }
@@ -94,9 +94,6 @@ body{
     font-size:14px;
     text-align:center;
     margin-top:2px;
-}
-#logout{		/*信息区注销按钮*/
-    float:right;
 }
 #Q_searchForm{		/*快速搜索表单*/
     height:70px;
@@ -114,10 +111,7 @@ select{		/*快速搜索区下拉菜单*/
     width:120px;
 }
 #Q_searchBtn{		/*快速搜索按钮区*/
-    margin:8px 0 0 10px;
-}
-#Q_searchBtn input{		/*快速搜索按钮*/
-    margin-left:15px;
+    margin-top:8px;
 }
 #A_Search_link{		/*搜索区“高级搜索”链接*/
     font-size:16px;
@@ -143,7 +137,7 @@ select{		/*快速搜索区下拉菜单*/
     margin-left:10px;
 }
 #A_searchBtn{		/*高级搜索按钮区*/
-    margin:5px 0 0 10px;
+    margin:5px;
 }
 #A_searchBtn input{		/*高级搜索按钮*/
     margin-left:15px;

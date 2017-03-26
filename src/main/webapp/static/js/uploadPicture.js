@@ -14,12 +14,10 @@ var container = new Vue({
         selectInputs:[
             {
                 name:'department',
-                change:'handleDepChange',
                 title:'归档部门',
                 options:[]
             }, {
                 name:'category',
-                change:'handleCatChange',
                 title:'图片种类',
                 options:[]
             }

@@ -1,96 +1,74 @@
 <%@ page language="java" pageEncoding="utf-8"%>
 
-
 <!DOCTYPE>
 <html>
 <head>
-    <title>北京邮电大学|图片档案馆|系统管理员</title>
+    <title>北京邮电大学|图片管理系统|系统管理员</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <link rel="stylesheet" href="/static/css/reset.css" media="screen">
-    <link rel="stylesheet" href="/static/css/buttons.css" media="screen"/>
-    <link rel="stylesheet" href="/static/css/mainFrame.css" media="screen">
-    <script src="/static/js/jquery-2.2.4.js" type="text/javascript"></script>
-    <script src="/static/js/advancedSearch.js" type="text/javascript" charset="gbk"></script>
-    <script src="/static/js/slideToggle.js" type="text/javascript"></script>"
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+    <link rel="stylesheet" href="static/css/reset.css" media="screen">
+    <link rel="stylesheet" href="static/css/mainFrame.css" media="screen">
+    <script src="static/js/jquery-2.2.4.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
-
 <body>
 <div id="container">
     <header>
-        <img src="/static/img/topbackground.jpg" align="middle" alt="北京邮电大学照片档案管理系统" id="topBackground">
+        <img src="static/img/topbackground.jpg" align="middle" alt="北京邮电大学照片档案管理系统" id="topBackground">
         <nav id="navBar">
             <ul>
-                <li><button title="首页">首页</button></li>
-                <li><button title="人气排行">人气排行</button></li>
+                <li v-for="navBar in navBars"><a :href="navBar.href" :title="navBar.title">{{navBar.title}}</a></li>
             </ul>
         </nav>
     </header>
     <div id="mainSection">
         <div id="leftSection">
             <header class="leftHeader">
-                <button class="lHeader">用户信息</button>
+                <a href="javascript:;" class="lHeader" @click="headerToggle">用户信息</a>
             </header>
             <div id="userSection" class="firstSection">
                 <div id="information">
-                    <p>欢迎：<a href="/userInformationJsp" target="main">${sessionScope.currentUser.nickname}</a></p>
+                    <p>欢迎：<a href="userInformationJsp" target="main">${sessionScope.currentUser.nickname}</a></p>
                     <p>权限：系统管理员</p>
-                    <p><a href="/userInformationJsp" target="main" class="button button-glow button-border button-rounded button-tiny button-primary"/>查看</p>
+                    <p><el-button-group>
+                            <a href="userInformationJsp" target="main"><el-button type="primary" >查看</el-button></a>
+                            <a href="loginJsp"><el-button type="danger">注销</el-button></a>
+                    </el-button-group></p>
                 </div>
-                <a href="/loginJsp" id="logout"><img src="/static/img/ZHYlogout32.png" alt="注销" title="注销"/></a>
             </div>
             <header class="leftHeader">
-                <button class="lHeader">图片搜索</button>
+                <a href="javascript:;" class="lHeader" @click="headerToggle">图片搜索</a>
             </header>
             <div id="searchSection">
-                <form id="Q_searchForm" action="">
+                <form id="Q_searchForm">
                     <div id="Q_inputSec">
                         <select name="searchKeys" size="1" id="searchKeys">
-                            <option value="fileNumber" select="selected">档案号码</option>
-                            <option value="description">图片说明</option>
-                            <option value="keyPerson">关键人物</option>
-                            <option value="author">摄影人员</option>
-                            <option value="place">拍摄地点</option>
-                            <option value="department">归档部门</option>
-                            <option value="category">图片种类</option>
+                            <option v-for="searchKey in searchKeys" :value="searchKey.value">{{searchKey.title}}</option>
+                            <option v-for="selectInput in selectInputs" :value="selectInput.name">{{selectInput.title}}</option>
                         </select>
                         <input type="text" name="keywords" required="required"/>
                     </div>
                     <div id="Q_searchBtn">
-                        <input type="submit" value="搜索" name="search" class="button button-3d button-action button-pill button-tiny"/>
-                        <input type="reset" value="清空" name="reset" class="button button-3d button-caution button-pill button-tiny"/>
+                        <el-col :offset="5"><el-button-group>
+                            <el-button type="primary" native-type="submit" size="small" icon="search">搜索</el-button>
+                            <el-button type="danger" native-type="reset" size="small" icon="delete">清空</el-button>
+                        </el-button-group></el-col>
                     </div>
                 </form>
-                <button title="高级搜索" id="A_Search_link"><img src="/static/img/ZHYgodown16.png" class="icon_inline icon_change_search"/>高级搜索<img src="/static/img/ZHYgodown16.png" class="icon_inline icon_change_search"/></button>
+                <a href="javascript:;" title="高级搜索" id="A_Search_link" @click="advancedSearchToggle"><img src="static/img/ZHYgodown16.png" class="icon_inline icon_change_search"/>高级搜索<img src="static/img/ZHYgodown16.png" class="icon_inline icon_change_search"/></a>
                 <div id="A_SearchSection">
                     <form id="A_searchForm">
                         <div id="A_inputSec">
-                            <p>
-                                <label for="fileNumber">归档号码</label>
-                                <input type="text" id="fileNumber" name="fileNumber" size="15" maxlength="20"/>
+                            <p v-for="searchKey in searchKeys">
+                                <label :for="searchKey.value">{{searchKey.title}}</label>
+                                <input :type="searchKey.type" :id="searchKey.value" :name="searchKey.value" size="15" maxlength="20">
                             </p>
-                            <p>
-                                <label for="pictureIntro">图片说明</label>
-                                <input type="text" id="pictureIntro" name="description" size="15" maxlength="20"/>
-                            </p>
-                            <p>
-                                <label for="importantPerson">关键人物</label>
-                                <input type="text" id="importantPerson" name="keyPerson" size="15" maxlength="20"/>
-                            </p>
-                            <p>
-                                <label for="photographer">摄影人员</label>
-                                <input type="text" id="photographer" name="photographer" size="15" maxlength="20"/>
-                            </p>
-                            <p>
-                                <label for="placeOfTaken">拍摄地点</label>
-                                <input type="text" id="placeOfTaken" name="placeOfTaken" size="15" maxlength="20"/>
-                            </p>
-                            <p>
-                                <label for="fileDepartment">归档部门</label>
-                                <input type="text" id="fileDepartment" name="fileDepartment" size="15" maxlength="20"/>
-                            </p>
-                            <p>
-                                <label for="pictureKind">图片种类</label>
-                                <input type="text" id="pictureKind" name="pictureKind" size="15" maxlength="20"/>
+                            <p v-for="select in selectInputs">
+                                <label :for="select.name">{{select.title}}</label>
+                                <select :name="select.name" :id="select.name">
+                                    <option v-for="option in select.options" :value="option.value">{{option.label}}</option>
+                                </select>
                             </p>
                         </div>
                         <div id="A_check">
@@ -98,32 +76,30 @@
                             <input type="radio" value="blurySearch" name="check" title="照片符合任意一个选择条件即可"/>模糊搜索
                         </div>
                         <div id="A_searchBtn">
-                            <input type="submit" value="搜索" name="resetButton" class="button button-3d button-action button-pill button-tiny"/>
-                            <input type="reset" value="清空" name="search" class="button button-3d button-caution button-pill button-tiny"/>
+                            <el-col :offset="5"><el-button-group>
+                                <el-button type="primary" native-type="submit" size="small" icon="search">搜索</el-button>
+                                <el-button type="danger" native-type="reset" size="small" icon="delete">清空</el-button>
+                            </el-button-group></el-col>
                         </div>
                     </form>
                 </div>
             </div>
             <header class="leftHeader">
-                <button class="lHeader">用户功能</button>
+                <a href="javascript:;" class="lHeader" @click="headerToggle">用户功能</a>
             </header>
             <div id="functions">
                 <ul type="none">
-                    <li><a href="/classifyScanJsp" target="main" title="分类浏览">分类浏览</a></li>
-                    <li><a href="/classifyScanJsp" target="main" title="下载照片-系统管理员">下载照片</a></li>
-                    <li><a href="/depManageJsp" target="main" title="部门管理">部门管理</a></li>
-                    <li><a href="/classifyScanJsp" target="main" title="照片类别管理">照片类别管理</a></li>
-                    <li><a href="/userManageJsp" target="main" title="用户管理">用户管理</a></li>
-                    <li><a href="/classifyScanJsp" target="main" title="图片管理">图片管理</a></li>
+                    <li v-for="systemFunction in systemFunctions"><a :href="systemFunction.href" target="main" :title="systemFunction.title">{{systemFunction.title}}</a></li>
                 </ul>
             </div>
         </div>
         <div id="rightSection">
-            <iframe name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
+            <iframe src="classifyScanJsp" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
             </iframe>
         </div>
     </div>
     <footer><address>Beijing University of Posts and Telecommunications 2016 Photo Album</address></footer>
 </div>
+<script src="static/js/mainFrame.js" type="text/javascript" charset="gbk"></script>
 </body>
 </html>

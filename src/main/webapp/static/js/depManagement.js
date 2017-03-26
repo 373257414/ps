@@ -1,16 +1,128 @@
-$(document).ready(function()
-{
-	$("#depEdit").hide();
-	$("#departments>option").click(function()
-		{		/*selectµã»÷ÊÂ¼ş*/
-			var index = $("option").index(this);		/*»ñÈ¡selectÀïËùµã»÷µÄoptionÑ¡ÏîµÄË÷Òı,´Ó0¿ªÊ¼*/
-			$("#depId").attr("value",index+1);		/*ÊµÊ±ÏÔÊ¾²¿ÃÅ±àºÅĞÅÏ¢*/
-			var name = $(this).text();		/*»ñÈ¡Ëùµã»÷µÄoptionÖĞµÄÎÄ±¾*/
-			$("#depName").attr("value",name);		/*ÊµÊ±ÏÔÊ¾²¿ÃÅÃû³ÆĞÅÏ¢*/
-			/*Ê£ÏÂµÄ²¿ÃÅµç»°ºÍ²¿ÃÅµØÖ·¸ù¾İÊı¾İ¿âÀ´µ÷ÓÃ*/
-		});
-	$("#editDepBtn").click(function()
-		{		/*±à¼­²¿ÃÅ°´Å¥µã»÷ÊÂ¼ş*/
-			$("#depEdit").show();		/*ÏÔÊ¾²¿ÃÅ±à¼­ÇøÓò*/
-		});
+var container = new Vue({
+    el:'#container',
+    data:{
+        addUserDialog:false,
+        editUserDialog:false,
+        editDialogTitle:'',
+        addForm:{
+            username:'',
+            nickname:'',
+            password:'',
+            email:'',
+            department:'',
+            permission:''
+        },
+        editForm:{
+            userId:'',
+            department:'',
+            permission:''
+        },
+        departments:[],
+        permissions:[],
+        userData:[
+            {userId:'1',username:'asd',nickname:'feafe',password:'qwe',email:'adewfe',department:'1',permission:'2'}
+        ],
+        pagination:{
+            currentPage:1,
+            total:0,
+            size:20
+        }
+    },
+    mounted:function(){
+        this.getDepartments();
+        this.getDepData();
+    },
+    methods:{
+        getDepData:function(){
+            $.get({
+                url:'getDepData',
+                data:{
+                    currentPage:this.pagination.currentPage
+                },
+                success:function(response){
+                    console.log(response);
+                },
+                error:function(response){
+                    container.$message.error('è·å–ç”¨æˆ·æ•°æ®å¤±è´¥');
+                }
+            })
+        },
+        getPermission:function(){
+            $.get({
+                url:'getAllPermission',
+                success:function(response){
+                    console.log(response);
+                },
+                error:function(response){
+                    container.$message.error('è·å–æƒé™å¤±è´¥');
+                }
+            })
+        },
+        getDepartments:function(){
+            $.get({
+                url:'getAllDepartment',
+                success:function(response){
+                    for(var i in response) {
+                        container.departments.push({
+                            label:response[i].name,
+                            value:response[i].id
+                        });
+                    }
+                },
+                error:function(response){
+                    container.$message.error('è·å–éƒ¨é—¨å¤±è´¥');
+                }
+            });
+        },
+        onAdd:function(){
+            $.post({
+                url:'addUser',
+                data:this.addForm,
+                success:function(response){
+                    container.$message.success('æ·»åŠ ç”¨æˆ·æˆåŠŸ');
+                },
+                error:function(response){
+                    container.$message.error('æ·»åŠ ç”¨æˆ·å¤±è´¥');
+                }
+            })
+        },
+        editUser:function(index,row){
+            this.editForm.userId = row.userId;
+            this.editDialogTitle = 'ä¿®æ”¹ç”¨æˆ·ï¼š' + row.username;
+            this.editForm.department = row.department;
+            this.editForm.permission = row.permission;
+            this.editUserDialog = true;
+        },
+        onEdit:function(){
+            $.ajax({
+                url:'editUser',
+                type:'PUT',
+                data:this.editForm,
+                success:function(response){
+                    container.$message.success('ä¿®æ”¹ç”¨æˆ·æˆåŠŸ');
+                },
+                error:function(response){
+                    container.$message.error('ä¿®æ”¹ç”¨æˆ·å¤±è´¥');
+                }
+            })
+        },
+        deleteUser:function(index,row){
+            console.log(index,row);
+            $.ajax({
+                url:'deleteUser',
+                type:'DELETE',
+                data:row.userId,
+                success:function(response){
+                    container.$message.success('åˆ é™¤ç”¨æˆ·ï¼š' + row.nickname + 'æˆåŠŸ');
+                },
+                error:function(response){
+                    container.$message.error('åˆ é™¤ç”¨æˆ·ï¼š' + row.nickname + 'å¤±è´¥');
+                }
+            })
+        },
+        onCancel:function(){
+
+        },
+        handleCurrentChange:function(){}
+    }
 });
