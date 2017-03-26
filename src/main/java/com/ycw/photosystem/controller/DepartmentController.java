@@ -30,11 +30,6 @@ public class DepartmentController {
         return departmentService.getAll();
     }
 
-    @RequestMapping("addDepartmentJsp")
-    public ModelAndView addJsp() {
-        return new ModelAndView("/department/add");
-    }
-
     @RequestMapping("addDepartmentAction")
     public void add(Map parametersMap) {
         departmentService.add(parametersMap);

@@ -16,16 +16,9 @@ public class PermissionService {
     @Autowired
     private PermissionDAO permissionDAO;
 
-    public Map getPermissionMap() {
+    public List getPermissionMap() {
         List<Permission> list = permissionDAO.findAll();
-        if (list.isEmpty()) {
-            return null;
-        }
-        HashMap map = new HashMap();
-        for (Permission p : list) {
-            map.put(p.getId(), p.getName());
-        }
-        return map;
+        return list;
     }
 
 }

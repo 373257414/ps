@@ -44,35 +44,37 @@ public class PictureService {
 
 
     /*上传到待审核库*/
-    public boolean addPic(Map<String, MultipartFile> fileMap, Map<String, String[]> parameterMap) throws IOException {
+    public boolean addPic(Map<String, MultipartFile> fileMap, Map<String, String[]> parameterMap) {
         if (parameterMap.get("department").length == 0) {
             return false;
         }
         MultipartFile file = fileMap.get("file");
         //上传文件，名字为原名称
+        BufferedImage image = null;
         try {
-            BufferedImage image = ImageIO.read(file.getInputStream());
-            Picture picture = new Picture();
-            Set<Entry<String, String[]>> set = parameterMap.entrySet();
-            for (Entry<String, String[]> parameter : set) {
-                parameterSetter(picture, parameter.getKey(), parameter.getValue());
-            }
-            picture.setName(file.getOriginalFilename());//图片名
-            picture.setCreateTime(new Timestamp(System.currentTimeMillis()));//创建时间
-            picture.setHeight(image.getHeight());//图片高度
-            picture.setWidth(image.getWidth());//图片宽度
-            picture.setDownloadCount(0);//下载量
-            picture.setVisitCount(0);//访问数
-            picture.setStatus((short) 1);//审核状态
-            File saveFile = uploadPicFile(file);//上传图片文件
-            if (saveFile == null) {
-                return false;
-            }
-            pictureDAO.save(picture);
-            return true;
-        } catch (Exception e) {
+            image = ImageIO.read(file.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Picture picture = new Picture();
+        Set<Entry<String, String[]>> set = parameterMap.entrySet();
+        for (Entry<String, String[]> parameter : set) {
+            parameterSetter(picture, parameter.getKey(), parameter.getValue());
+        }
+        picture.setName(file.getOriginalFilename());//图片名
+        picture.setCreateTime(new Timestamp(System.currentTimeMillis()));//创建时间
+        picture.setHeight(image.getHeight());//图片高度
+        picture.setWidth(image.getWidth());//图片宽度
+        picture.setDownloadCount(0);//下载量
+        picture.setVisitCount(0);//访问数
+        picture.setStatus((short) 1);//审核状态
+        File saveFile = uploadPicFile(file);//上传图片文件
+        if (saveFile == null) {
             return false;
         }
+        pictureDAO.save(picture);
+        return true;
+
     }
 
 
