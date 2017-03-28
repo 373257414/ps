@@ -140,6 +140,7 @@ public class Main {
             int innerI = i;//thisThreadNum在内部，传值
             executorService.execute(new Runnable() {
                 @Override
+                //test
                 public void run() {
                     Long startId = MinId + innerRange * innerI;
                     Long endId = startId + innerRange;
