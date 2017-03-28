@@ -38,12 +38,20 @@ public class PictureService {
     private SupportDAO supportDAO;
 
 
+    //服务器配置
+    private static final String CHECK_DIC = "/root/pspic/checkpicture/";
+    private static final String PATH_DIC = "/root/pspic/picture/";
+    private static final String WATERMARK_PATH_DIC = "/root/pspic/watermarkpicture/";
+    /*
+    //本地配置
     private static final String CHECK_DIC = "/pspic/checkpicture/";
     private static final String PATH_DIC = "/pspic/picture/";
     private static final String WATERMARK_PATH_DIC = "/pspic/watermarkpicture/";
+    */
 
 
     /*上传到待审核库*/
+
     public boolean addPic(Map<String, MultipartFile> fileMap, Map<String, String[]> parameterMap) {
         if (parameterMap.get("department").length == 0) {
             return false;
@@ -68,13 +76,14 @@ public class PictureService {
         picture.setDownloadCount(0);//下载量
         picture.setVisitCount(0);//访问数
         picture.setStatus((short) 1);//审核状态
+        System.out.println("here");
         File saveFile = uploadPicFile(file);//上传图片文件
+        System.out.print("after upload");
         if (saveFile == null) {
             return false;
         }
         pictureDAO.save(picture);
         return true;
-
     }
 
 

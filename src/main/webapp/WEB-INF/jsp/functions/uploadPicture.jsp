@@ -21,7 +21,7 @@
     </header>
     <div id="mainSection">
         <el-col :span="8" :offset="8">
-        <form action="/uploadAction" enctype="multipart/form-data" method="post">
+        <form action="uploadAction" enctype="multipart/form-data" method="post">
             <el-row v-for="textInput in textInputs">
                 <label :for="textInput.value">{{textInput.title}}</label>
                 <input :type="textInput.type" :id="textInput.value" :name="textInput.value" size="15" maxlength="20">
