@@ -30,6 +30,7 @@ public class Main {
     private static LogService logService;
 
     static {
+        //
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
         testService = (TestService) context.getBean("testService");
         searchService = (SearchService) context.getBean("searchService");
