@@ -1,22 +1,21 @@
 package com.ycw.photosystem.service;
 
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import com.ycw.photosystem.bean.mysql.Event;
+import com.ycw.photosystem.dao.mysql.EventDAO;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletRequest;
-
-@Aspect
+@Service
+@Transactional
 public class LogService {
 
-    /*@Pointcut("execution(* com.ycw.photosystem.controller.UserController.*(..))")
-    private void userMethod(){
-    }
+    @Autowired
+    private EventDAO eventDAO;
 
-
-    @After("userMethod()&&args(userName,password,request)")
-    public void doAfter(String userName, String password, HttpServletRequest request){
-        System.out.println("用户登录");
+    public void save(Event event) {
+        eventDAO.save(event);
     }
-*/
 
 }

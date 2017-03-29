@@ -4,6 +4,7 @@
 <html>
   <head>
     <title>北京邮电大学|登录界面</title>
+
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 	  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
 	<link rel="stylesheet" href="static/css/reset.css" media="screen">

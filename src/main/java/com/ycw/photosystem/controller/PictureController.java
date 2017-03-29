@@ -120,22 +120,17 @@ public class PictureController {
     public void upload(MultipartHttpServletRequest request) {
         Map fileMap = request.getFileMap();
         Map<String, String[]> parameterMap = request.getParameterMap();
-        try {
-            pictureService.addPic(fileMap, parameterMap);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
+        pictureService.addPic(fileMap, parameterMap);
         return;
     }
 
     @RequestMapping("getPictureFile")
-    public void getPictureFile(int dic, String fileName ,HttpServletResponse response) {
+    public void getPictureFile(int dic, String fileName, HttpServletResponse response) {
         FileInputStream fis = null;
         response.setContentType("image/jpeg");
         try {
             OutputStream out = response.getOutputStream();
-            File file = pictureService.getPictureFile(dic,fileName);
+            File file = pictureService.getPictureFile(dic, fileName);
             fis = new FileInputStream(file);
             byte[] b = new byte[fis.available()];
             fis.read(b);

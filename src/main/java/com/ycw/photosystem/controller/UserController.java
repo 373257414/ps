@@ -1,6 +1,9 @@
 package com.ycw.photosystem.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ycw.photosystem.bean.mysql.User;
+import com.ycw.photosystem.bean.page.Page;
 import com.ycw.photosystem.service.DepartmentService;
 import com.ycw.photosystem.service.PermissionService;
 import com.ycw.photosystem.service.UserService;
@@ -13,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -30,13 +35,66 @@ public class UserController {
 
     @RequestMapping("getAllUser")
     @ResponseBody
-    public List getAllUser(){
+    public List getAllUser() {
         return userService.getAll();
     }
 
+    @RequestMapping("getUserData")
+    @ResponseBody
+    public List getUserByPage(int currentPage) {
+        Page page = new Page();
+        page.setCurrentPage(currentPage);
+        page.setPageSize(20);
+        return userService.getUserByPage(page);
+    }
 
-    @RequestMapping("updatePasswordAction")
-    public String updatePassword(String oldPassword, String newPassword1, String newPassword2, HttpServletRequest request) {
+    @RequestMapping("addUser")
+    @ResponseBody
+    public String addUser(HttpServletRequest request) {
+        if (userService.isUserExisted(request.getParameter("username")) != null) {
+            return "username is not available";
+        }
+        Map infoMap = new HashMap();
+        infoMap.put("name", request.getParameter("username"));
+        infoMap.put("password", request.getParameter("password"));
+        infoMap.put("departmentId", request.getParameter("department"));
+        infoMap.put("permissionId", request.getParameter("permission"));
+        infoMap.put("nickname", request.getParameter("nickname"));
+        infoMap.put("email", request.getParameter("email"));
+        User user = userService.addUser(infoMap);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(user);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "error";
+        }
+    }
+    @RequestMapping("editUser")
+    @ResponseBody
+    public String updateUser(HttpServletRequest request) {
+        Map infoMap = new HashMap();
+        infoMap.put("id",request.getParameter("userId"));
+        infoMap.put("departmentId", request.getParameter("department"));
+        infoMap.put("permissionId", request.getParameter("permission"));
+        User user = userService.updateUser(infoMap);
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(user);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "error";
+        }
+    }
+
+
+
+    @RequestMapping("editSelfUserInfo")
+    public String updateSelfUser(HttpServletRequest request) {
+        String oldPassword = request.getParameter("oldPassword");
+        String newPassword1 = request.getParameter("newPassword1");
+        String newPassword2 = request.getParameter("newPassword2");
         User currentUser = (User) request.getSession().getAttribute("currentUser");
         if (currentUser.equals(null)) {
             message = "当前用户错误";
@@ -49,8 +107,11 @@ public class UserController {
         return "/jsp/functions/userInformation";
     }
 
+
     @RequestMapping("updateEmailAction")
-    public String updateEmail(String password, String newEmail, HttpServletRequest request) {
+    public String updateEmail(HttpServletRequest request) {
+        String password = request.getParameter("password");
+        String newEmail = request.getParameter("newEmail");
         User currentUser = (User) request.getSession().getAttribute("currentUser");
         if (currentUser.equals(null)) {
             message = "当前用户错误";
@@ -64,7 +125,9 @@ public class UserController {
     }
 
     @RequestMapping("loginAction")
-    public String login(String userName, String password, HttpServletRequest request) throws Exception {
+    public String login(HttpServletRequest request) throws Exception {
+        String userName = request.getParameter("userName");
+        String password = request.getParameter("password");
         message = new String("");
         User user = userService.isUserExisted(userName);
         if (user == null) {

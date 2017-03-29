@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Page {
     private int currentPage;
-    private static int pageSize;
+    private int pageSize;
     private int categoryId;
     private int departmentId;
     private boolean descOrder;
@@ -30,12 +30,12 @@ public class Page {
         this.currentPage = currentPage;
     }
 
-    public static int getPageSize() {
+    public  int getPageSize() {
         return pageSize;
     }
 
-    public static void setPageSize(int pageSize) {
-        Page.pageSize = pageSize;
+    public  void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
     }
 
     public int getCategoryId() {

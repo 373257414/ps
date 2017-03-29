@@ -1,9 +1,11 @@
 package com.ycw.photosystem;
 
+import com.ycw.photosystem.bean.mysql.Event;
 import com.ycw.photosystem.bean.mysql.Picture;
 import com.ycw.photosystem.dao.es.PictureEsDAO;
 import com.ycw.photosystem.dao.mysql.UserDAO;
 import com.ycw.photosystem.dao.tranform.PictureTransform;
+import com.ycw.photosystem.service.LogService;
 import com.ycw.photosystem.service.SearchService;
 import com.ycw.photosystem.service.TestService;
 import com.ycw.photosystem.service.UserService;
@@ -25,16 +27,22 @@ public class Main {
     private static UserDAO userDAO;
     private static PictureEsDAO pictureEsDAO;
     private static PictureTransform pictureTransform;
+    private static LogService logService;
 
     static {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
         testService = (TestService) context.getBean("testService");
         searchService = (SearchService) context.getBean("searchService");
         userService = (UserService) context.getBean("userService");
+        logService = (LogService) context.getBean("logService");
     }
 
     public static void main(String[] args) {
-        totalUpdate();
+        Event event = new Event();
+        event.setEventUser(1);
+        event.setEventTime(new Timestamp(System.currentTimeMillis()));
+        logService.save(event);
+        userService.getAll();
         /*
         Picture picture=generate1("特殊测试图片4","北京师范大学");
         testService.oneUpdate(picture);*/
@@ -132,10 +140,11 @@ public class Main {
             int innerI = i;//thisThreadNum在内部，传值
             executorService.execute(new Runnable() {
                 @Override
+                //test
                 public void run() {
                     Long startId = MinId + innerRange * innerI;
                     Long endId = startId + innerRange;
-                    searchService.index(startId,endId,10);
+                    searchService.index(startId, endId, 10);
                 }
             });
         }
