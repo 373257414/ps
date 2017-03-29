@@ -19,8 +19,9 @@ var container = new Vue({
         },
         departments:[],
         permissions:[],
-        userData:[
-            {userId:'1',username:'asd',nickname:'feafe',password:'qwe',email:'adewfe',department:'1',permission:'2'}
+        depData:[
+            {depName:'教务处',depId:2,depManagerSum:27,depTel:87654321},
+            {depName:'信通院',depId:1,depManagerSum:64,depTel:12345678}
         ],
         pagination:{
             currentPage:1,

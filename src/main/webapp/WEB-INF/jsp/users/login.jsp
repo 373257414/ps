@@ -85,18 +85,9 @@
 	                	</form>
 	                </div>
                 </div>
-                <header class="leftHeader">
-                	<a href="javascript:;" class="lHeader" @click="headerToggle">分类浏览</a>
-                </header>
-                <div id="functions">
-                    <ul type="none">
-						<li v-for="loginFunction in loginFunctions"><a :href="loginFunction.href" target="main" :title="loginFunction.title">{{loginFunction.title}}</a></li>
-                    </ul>
-                </div>
             </div>
             <div id="rightSection">
-                <iframe src="classifyScanJsp" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
-                </iframe>
+                <iframe src="classifyScanJsp" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0"></iframe>
             </div> 
         </div>
         <footer><address>Beijing University of Posts and Telecommunications 2016 Photo Album</address></footer>

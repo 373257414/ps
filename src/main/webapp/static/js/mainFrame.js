@@ -28,18 +28,11 @@ var container = new Vue({
                 options:[]
             }
         ],
-        loginFunctions:[
-            {href:'userManageJsp',title:'userManage'},
-            {href:'searchResultJsp',title:'searchResult'},
-            {href:'classifyScanJsp',title:'classifyScan'},
-            {href:'checkPictureJsp',title:'checkPicture'},
-            {href:'uploadPictureJsp',title:'uploadPicture'}
-        ],
         systemFunctions:[
             {href:'classifyScanJsp',title:'分类浏览'},
             {href:'classifyScanJsp',title:'下载照片'},
             {href:'depManageJsp',title:'部门管理'},
-            {href:'classifyScanJsp',title:'照片类别管理'},
+            {href:'checkPictureJsp',title:'照片类别管理'},
             {href:'userManageJsp',title:'用户管理'},
             {href:'classifyScanJsp',title:'图片管理'}
         ],

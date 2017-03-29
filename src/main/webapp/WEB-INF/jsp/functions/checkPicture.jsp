@@ -41,7 +41,7 @@
             <el-col :span="8" v-for="picture in pictures">
                 <el-card :body-style="{ padding: '0px' }">
                     <a href="javascript:;" @click="showPicture"><img :src="picture.src" class="image"></a>
-                    <div style="padding: 14px;">
+                    <div style="padding:14px;">
                         <p>档案号码：{{picture.fileNumber}}</p>
                         <p>图片说明：{{picture.description}}</p>
                         <p>拍摄时间：{{picture.time}}</p>
