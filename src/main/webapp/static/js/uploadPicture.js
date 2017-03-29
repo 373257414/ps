@@ -22,24 +22,6 @@ var container = new Vue({
                 options:[]
             }
         ],
-        pickerOptions: {
-            disabledDate:function(time) {
-                return time.getTime() > Date.now();
-            },
-            shortcuts: [{
-                text: '今天',
-                onClick:function(picker) {
-                    picker.$emit('pick', new Date());
-                }
-            },{
-                text: '一周前',
-                onClick:function(picker) {
-                    var date = new Date();
-                    date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-                    picker.$emit('pick', date);
-                }
-            }]
-        }
     },
     mounted:function(){
         $.get({
