@@ -4,6 +4,7 @@
 <html>
   <head>
     <title>北京邮电大学|登录界面</title>
+
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 	  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
 	<link rel="stylesheet" href="static/css/reset.css" media="screen">
@@ -85,18 +86,9 @@
 	                	</form>
 	                </div>
                 </div>
-                <header class="leftHeader">
-                	<a href="javascript:;" class="lHeader" @click="headerToggle">分类浏览</a>
-                </header>
-                <div id="functions">
-                    <ul type="none">
-						<li v-for="loginFunction in loginFunctions"><a :href="loginFunction.href" target="main" :title="loginFunction.title">{{loginFunction.title}}</a></li>
-                    </ul>
-                </div>
             </div>
             <div id="rightSection">
-                <iframe src="classifyScanJsp" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0">
-                </iframe>
+                <iframe src="classifyScanJsp" name="main" allowtransparency="true" scrolling="no" frameborder="0" marginwidth="0" marginheight="0"></iframe>
             </div> 
         </div>
         <footer><address>Beijing University of Posts and Telecommunications 2016 Photo Album</address></footer>

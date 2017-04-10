@@ -1,9 +1,13 @@
 var container = new Vue({
 	el:'#container',
 	data:{
+		//添加用户对话框
         addUserDialog:false,
+		//编辑用户对话框
         editUserDialog:false,
+		//编辑用户对话框标题
         editDialogTitle:'',
+		//添加用户表单
         addForm:{
         	username:'',
             nickname:'',
@@ -12,13 +16,17 @@ var container = new Vue({
             department:'',
             permission:''
         },
+		//编辑用户表单
 		editForm:{
         	userId:'',
 			department:'',
 			permission:''
 		},
+		//部门数组
 		departments:[],
+		//权限数组
 		permissions:[],
+		//用户信息数组，将获取到的用户数据放入这个数组，现在是假的数据
 		userData:[
 			{userId:'1',username:'asd',nickname:'feafe',password:'qwe',email:'adewfe',department:'1',permission:'2'}
 		],
@@ -33,6 +41,7 @@ var container = new Vue({
 		this.getUserData();
 	},
 	methods:{
+		//获取用户数据
 		getUserData:function(){
 			$.get({
 				url:'getUserData',
@@ -47,6 +56,7 @@ var container = new Vue({
 				}
 			})
 		},
+		//获取权限等级
 		getPermission:function(){
 			$.get({
 				url:'getAllPermission',
@@ -74,6 +84,7 @@ var container = new Vue({
                 }
             });
 		},
+		//提交添加
         onAdd:function(){
 			$.post({
 				url:'addUser',
@@ -86,6 +97,7 @@ var container = new Vue({
 				}
 			})
 		},
+		//修改用户时将所选用户的信息放入表单
 		editUser:function(index,row){
         	this.editForm.userId = row.userId;
         	this.editDialogTitle = '修改用户：' + row.username;
@@ -93,6 +105,7 @@ var container = new Vue({
         	this.editForm.permission = row.permission;
         	this.editUserDialog = true;
 		},
+		//提交修改
 		onEdit:function(){
             $.ajax({
                 url:'editUser',
@@ -106,6 +119,7 @@ var container = new Vue({
                 }
             })
 		},
+		//删除用户，未完成
 		deleteUser:function(index,row){
         	console.log(index,row);
         	$.ajax({
@@ -120,9 +134,7 @@ var container = new Vue({
 				}
 			})
 		},
-		onCancel:function(){
-
-		},
+		onCancel:function(){},
 		handleCurrentChange:function(){}
 	}
 });

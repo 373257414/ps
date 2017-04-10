@@ -128,6 +128,9 @@ select{		/*快速搜索区下拉菜单*/
     height:20px;
     margin-top:2px ;
 }
+#A_inputSec select{
+    width:130px;
+}
 #A_check{		/*高级搜索区单选区域*/
     margin-top:5px;
     margin-left:20px;

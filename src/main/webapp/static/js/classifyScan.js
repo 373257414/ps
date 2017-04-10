@@ -5,7 +5,9 @@ var container = new Vue({
     el: '#container',
     data: {
         categoryId:1,
+        //详细查看图片的对话框可见性
         dialogVisible:false,
+        //详细查看图片的信息
         dialogPictureInfo:{
             src:'',
             author:'',
@@ -14,8 +16,11 @@ var container = new Vue({
             name:'',
             time:''
         },
+        //类别数组
         categories:[],
+        //图片数组
         pictures:[],
+        //分页组件的属性
         pagination:{
             currentPage:1,
             pageSize:6,
@@ -23,6 +28,7 @@ var container = new Vue({
         }
     },
     mounted:function(){
+        //获取所有类别
         $.get({
             url:'getAllCategory',
             success:function(response){
@@ -40,6 +46,7 @@ var container = new Vue({
         this.getPicture();
     },
     methods:{
+        //页码变化
         handleCurrentChange:function(val){
             this.pagination.currentPage = val;
             $.get({
@@ -64,7 +71,9 @@ var container = new Vue({
                 }
             })
         },
+        //获取图片
         getPicture:function(){
+            //获取类别内图片个数
             $.get({
                 url:'getPicSumInCat',
                 data:{
@@ -72,6 +81,7 @@ var container = new Vue({
                 },
                 success:function(response){
                     container.pagination.total = response;
+                    //获取类别内图片，每页6张
                     $.get({
                         url:'getPicInCat',
                         data:{
@@ -109,6 +119,7 @@ var container = new Vue({
                 }
             });
         },
+        //详细展示图片，未完成
         showPicture:function(event){
             this.dialogPictureInfo.src = event.target.src;
             /*this.dialogPictureInfo.author = event.target.author;

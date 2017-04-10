@@ -9,7 +9,7 @@
 
 	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
 	<link rel="stylesheet" href="static/css/reset.css" media="screen">
-	<link rel="stylesheet" href="static/css/depManagement.css" media="screen">
+	<link rel="stylesheet" href="static/css/depManage.css" media="screen">
 	<script src="static/js/jquery-2.2.4.js" type="text/javascript"></script>
 	<script src="https://unpkg.com/vue@2.2.4/dist/vue.js"></script>
 	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
@@ -19,7 +19,7 @@
 <body>
 <div id="container">
 	<header>
-		<h1>用户管理</h1>
+		<h1>部门管理</h1>
 	</header>
 	<div id="mainSection">
 		<el-dialog title="添加用户" v-model="addUserDialog" size="small">
@@ -56,9 +56,11 @@
 		</el-dialog>
 		<el-row><el-col :span="3"><el-button @click="addUserDialog=true" icon="plus">添加</el-button></el-col></el-row>
 		<el-row>
-			<el-table :data="userData" border>
-				<el-table-column prop="department" label="部门名称" fixed="left"></el-table-column>
+			<el-table :data="depData" border>
+				<el-table-column prop="depName" label="部门名称" fixed="left" width="120"></el-table-column>
+				<el-table-column prop="depId" label="部门参数"></el-table-column>
 				<el-table-column prop="depManagerSum" label="部门管理员人数"></el-table-column>
+				<el-table-column prop="depTel" label="联系方式"></el-table-column>
 				<el-table-column fixed="right" label="操作" width="100">
 					<template scope="scope"><el-button-group>
 						<el-tooltip class="item" effect="dark" content="修改" placement="top"><el-button type="primary" size="small" icon="edit" @click="editUser(scope.$index, scope.row)"></el-button></el-tooltip>
@@ -70,6 +72,6 @@
 		<el-pagination @current-change="handleCurrentChange" :current-page="pagination.currentPage" :page-size="pagination.size" layout="total, prev, pager, next, jumper" :total="pagination.total"></el-pagination>
 	</div>
 </div>
-<script src="static/js/depManagement.js" type="text/javascript"></script>
+<script src="static/js/depManage.js" type="text/javascript"></script>
 </body>
 </html>

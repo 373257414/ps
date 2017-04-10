@@ -12,49 +12,10 @@ header h1{
     width: 300px;
     background:#00A1F1;
     font-size: 24px;
-    font-family: '微软雅黑','黑体',sans-serif;
+    font-family: '微锟斤拷锟脚猴拷','锟斤拷锟斤拷',sans-serif;
     float: left;
     margin-top: 0px;
     margin-left: 230px;
     line-height: 40px;
     color:white;
-}
-table{		/*表格*/
-	margin-top:20px;
-}
-#pwdChangeSection{		/*修改密码区域*/
-	margin-top:20px;
-	margin-left:200px;
-	position:absolute;
-}
-#emailChangeSection{		/*修改邮箱区域*/
-	margin-top:20px;
-	margin-left:200px;
-	position:absolute;
-}
-form{		/*表单区域*/
-	float:left;
-}
-.textInput p{		/*文本输入区域中文字的样式*/
-	font-size:14px;
-	margin-top:13px;
-}
-.textInput input{		/*文本输入框*/
-	height:25px;
-}
-.buttons{		/*按钮区域*/
-	margin-top:20px;
-	margin-left:40px;
-}
-.buttons input{		/*按钮*/
-	font-size:15px;
-	margin-left:30px;
-}
-.onError{		/*将错误时的提示信息设置为红色*/
-	color:red;
-	display:inline;
-}
-.onOk{
-	color:green;
-	display:inline;
 }

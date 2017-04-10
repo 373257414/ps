@@ -1,15 +1,19 @@
 var container = new Vue({
-    el:'#container',
+    el:'#container',//body内最大的容器container
     data:{
+        //高级搜索区域伸缩的计数器
         toggleCounter:0,
+        //导航区域数据
         navBars:[
             {href:'loginJsp', title:'首页'},
             {href:'testJsp', title:'人气排行'}
         ],
+        //登录表单数据
         loginInputs:[
             {id:'login_username', src:'static/img/ZHYuser16.png', title:'账号', type:'text', class:'username', name:'userName', placeholder:'请输入账号'},
             {id:'login_password', src:'static/img/ZHYpassword16.png', title:'密码', type:'password', class:'password', name:'password', placeholder:'请输入6~15位字母或数字'}
         ],
+        //搜索表单数据
         searchKeys:[
             {value:'fileNumber', type:'text', title:'档案号码'},
             {value:'description', type:'text', title:'图片说明'},
@@ -17,6 +21,7 @@ var container = new Vue({
             {value:'author', type:'text', title:'摄影人员'},
             {value:'place', type:'text', title:'拍摄地点'}
         ],
+        //选择输入框数据
         selectInputs:[
             {
                 name:'department',
@@ -28,27 +33,23 @@ var container = new Vue({
                 options:[]
             }
         ],
-        loginFunctions:[
-            {href:'userManageJsp',title:'userManage'},
-            {href:'searchResultJsp',title:'searchResult'},
-            {href:'classifyScanJsp',title:'classifyScan'},
-            {href:'checkPictureJsp',title:'checkPicture'},
-            {href:'uploadPictureJsp',title:'uploadPicture'}
-        ],
+        //系统管理员功能链接
         systemFunctions:[
             {href:'classifyScanJsp',title:'分类浏览'},
             {href:'classifyScanJsp',title:'下载照片'},
             {href:'depManageJsp',title:'部门管理'},
-            {href:'classifyScanJsp',title:'照片类别管理'},
+            {href:'checkPictureJsp',title:'照片类别管理'},
             {href:'userManageJsp',title:'用户管理'},
             {href:'classifyScanJsp',title:'图片管理'}
         ],
+        //部门管理员功能链接
         departmentFunctions:[
             {href:'classifyScanJsp',title:'分类浏览'},
             {href:'uploadPictureJsp',title:'上传照片'},
             {href:'classifyScanJsp',title:'下载照片'},
             {href:'classifyScanJsp',title:'部门用户管理'}
         ],
+        //普通用户功能链接
         normalFunctions:[
             {href:'classifyScanJsp',title:'分类浏览'},
             {href:'classifyScanJsp',title:'下载照片'},
@@ -67,6 +68,7 @@ var container = new Vue({
                 $parent.append("<img class='icon_inline icon_formtips' src='static/img/ZHYcorrect16.png' alt='正确' title='输入正确'/>");
             }
         });
+        //获取所有部门名称放入对应的选择输入框中
         $.get({
             url:'getAllDepartment',
             success:function(response){
@@ -81,6 +83,7 @@ var container = new Vue({
                 container.$message.error(response.statusText);
             }
         });
+        //获取所有类别名称放入对应的选择输入框中
         $.get({
             url:'getAllCategory',
             success:function(response){
@@ -94,6 +97,7 @@ var container = new Vue({
         });
     },
     methods:{
+        //功能区域标题的伸缩
         headerToggle:function(event){
             $(event.target).parent().next().stop(true, false).slideToggle(500);
         },
@@ -101,6 +105,7 @@ var container = new Vue({
         inputFocus:function(event){
             $(event.target).css("border-color","");
         },
+        //高级搜索区域的伸缩
         advancedSearchToggle:function(){
             this.toggleCounter++;
             if(this.toggleCounter%2 == 1) {
@@ -117,7 +122,7 @@ var container = new Vue({
                 });
             }
         },
-        /*给登录按钮添加表单验证，并跳转到action对象*/
+        /*给登录按钮添加表单验证，成功后提交表单*/
         onLogin:function(event){
             if($("#login_username").val().trim() == "") {
                 $("#login_username").css("border-color","red");
