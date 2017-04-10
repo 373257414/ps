@@ -19,6 +19,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
+//这是test的main类，2017年4月10日 16:01:00
 public class Main {
 
     private static TestService testService;
